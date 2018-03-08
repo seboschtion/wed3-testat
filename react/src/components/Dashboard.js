@@ -1,5 +1,6 @@
 import React from "react";
 import NewTransaction from "./NewTransaction";
+import TransactionOverview from "./TransactionOverview";
 
 function Dashboard(props) {
     return (
@@ -9,8 +10,10 @@ function Dashboard(props) {
             </div>
 
             <div>
-                <!-- transaction overview -->
+                <TransactionOverview />
             </div>
         </div>
     )
 }
+
+export default Dashboard;
