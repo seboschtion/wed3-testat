@@ -1,26 +1,51 @@
 import React from "react";
-import { Button } from "semantic-ui-react"
+import { Button, Form } from "semantic-ui-react"
+import ComponentTitle from "./ComponentTitle"
+import * as api from "../api"
 
 class NewTransaction extends React.Component {
+
+    state = {
+        transactionFromId: 0,
+        transactionToId: "",
+        amount: 0.0
+    };
+
+    submitTransaction = (event) => {
+        event.preventDefault();
+        api.transfer(this.state.transactionToId, this.state.amount);
+    };
+
+    transactionFromChanged = (event) => {
+        this.setState({transactionFromId:event.target.value});
+    };
+
+    transactionToChanged = (event) => {
+        this.setState({transactionToId:event.target.value});
+    };
+
+    amountChanged = (event) => {
+        this.setState({amount:event.target.value});
+    };
 
     render() {
         return (
             <div>
-                <p>Von</p>
-                <select>
-                    <option>Todo</option>
-                </select>
+                <ComponentTitle title="Neue Bewegung" />
+                <Form>
+                    <p>Von</p>
+                    <select value={this.state.transactionToId} onChange={this.transactionFromChanged}>
+                        <option>Todo</option>
+                    </select>
 
-                <p>Zu</p>
-                <select>
-                    <option>Todo</option>
-                </select>
+                    <p>Zu</p>
+                    <input value={this.state.transactionToId} onChange={this.transactionToChanged}/>
 
-                <input type="number" step=".01"/>
-                <p>CHF</p>
+                    <input type="number" step=".01" value={this.state.amount} onChange={this.amountChanged}/>
+                    <p>CHF</p>
 
-                <Button>Überweisen</Button>
-                <Button>Überweisen</Button>
+                    <Button type="submit" onClick={this.submitTransaction}>Überweisen</Button>
+                </Form>
             </div>
         );
     }
