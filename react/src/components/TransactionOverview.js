@@ -1,12 +1,14 @@
 import React from 'react'
 import { Table } from 'semantic-ui-react'
 import ComponentTitle from './ComponentTitle'
+import TableFilter from './TableFilter'
 
 class TransactionOverview extends React.Component {
     render() {
         return (
             <div>
                 <ComponentTitle title={this.props.title}/>
+                <TableFilter/>
                 <Table celled>
                     <Table.Header>
                         <Table.Row>
@@ -33,4 +35,4 @@ class TransactionOverview extends React.Component {
 }
 
 
-export default TransactionOverview;
+export default TransactionOverview
