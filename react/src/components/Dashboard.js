@@ -10,7 +10,7 @@ function Dashboard(props) {
             </div>
 
             <div>
-                <TransactionOverview />
+                <TransactionOverview title="Letzte Bewegungen" />
             </div>
         </div>
     )
