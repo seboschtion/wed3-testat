@@ -1,1 +1,25 @@
 /* Customizations */
+#root {
+    padding: 10px;
+}
+
+#newTransactionWindow {
+    width: 20%;
+    min-width: 400px;
+    border: 1px solid gray;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+#newTransactionForm {
+    padding: 0 10px 10px 10px;
+}
+
+#newTransactionForm > Button {
+    margin-top: 10px;
+}
+
+.componentTitle {
+    border-bottom: 1px solid gray;
+    background: lightgray;
+}
