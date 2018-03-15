@@ -14,13 +14,16 @@ class NewTransaction extends React.Component {
     state = {
         transactionFromId: 0,
         transactionToId: "",
-        transactionToName: "",
-        amount: 0.0
+        transactionToName: "Bitte geben Sie den Empfänger ein",
+        amount: "",
+        transferResult: null
     };
 
     submitTransaction = (event) => {
         event.preventDefault();
-        api.transfer(this.state.transactionToId, this.state.amount, this.props.token);
+        api.transfer(this.state.transactionToId, this.state.amount, this.props.token).then(transferResult => {
+            this.setState({transferResult:transferResult});
+        });
     };
 
     transactionToChanged = (event) => {
@@ -36,25 +39,46 @@ class NewTransaction extends React.Component {
         this.setState({amount:event.target.value});
     };
 
+    clearSuccessfulTransaction = (event) => {
+        this.setState({transferResult:null});
+    };
+
     render() {
-        return (
-            <div>
-                <ComponentTitle title="Neue Bewegung" />
-                <Form>
-                    <p>Von</p>
-                    <input type="text" value={this.state.transactionFromId} disabled />
 
-                    <p>Zu</p>
-                    <input value={this.state.transactionToId} onChange={this.transactionToChanged}/>
-                    <label>{this.state.transactionToName}</label>
+        if(this.state.transferResult) {
+            return (
+                <div>
+                    <ComponentTitle title="Neue Bewegung" />
+                    <p>Überweisung an {this.state.transferResult.target} war erfolgreich.</p>
+                    <p>Ihr neuer Kontostand beträgt {this.state.transferResult.total}</p>
+                    <Button onClick={this.clearSuccessfulTransaction}>Neue Überweisung</Button>
+                </div>
+            );
+        } else {
+            return (
+                <div>
+                    <ComponentTitle title="Neue Bewegung" />
+                    <Form>
+                        <p>Von</p>
+                        <input type="text" value={this.state.transactionFromId} disabled />
 
-                    <input type="number" step=".01" value={this.state.amount} onChange={this.amountChanged}/>
-                    <p>CHF</p>
+                        <p>Zu</p>
+                        <input value={this.state.transactionToId}
+                               onChange={this.transactionToChanged}
+                               placeholder="Empfängeraccount"/>
+                        <label>{this.state.transactionToName}</label>
 
-                    <Button type="submit" onClick={this.submitTransaction}>Überweisen</Button>
-                </Form>
-            </div>
-        );
+                        <p>Betrag [CHF]</p>
+                        <input type="number" step=".01" value={this.state.amount}
+                               onChange={this.amountChanged}
+                               placeholder="Betrag in CHF"/>
+
+
+                        <Button type="submit" onClick={this.submitTransaction}>Überweisen</Button>
+                    </Form>
+                </div>
+            );
+        }
     }
 }
 
