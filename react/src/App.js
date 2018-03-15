@@ -17,6 +17,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import * as api from "./api";
 
 import type { User } from "./api";
+import { Button } from "semantic-ui-react"
 
 // TODO: Move to own files
 const AllTransactions = () => <div />;
@@ -80,23 +81,15 @@ class App extends React.Component<{}, State> {
     const MenuBar = withRouter(({ history, location: { pathname } }) => {
       if (isAuthenticated && user) {
         return (
-          <nav>
-            <span>
-              {user.firstname} {user.lastname} &ndash; {user.accountNr}
-            </span>
-            {/* Links inside the App are created using the react-router's Link component */}
+          <nav id="navigation">
             <Link to="/">Home</Link>
             <Link to="/dashboard">Kontoübersicht</Link>
             <Link to="/transactions">Zahlungen</Link>
-            <a
-              href="/logout"
-              onClick={event => {
-                event.preventDefault();
-                this.signout(() => history.push("/"));
-              }}
-            >
-              Logout {user.firstname} {user.lastname}
-            </a>
+            <Button id="logoutButton"
+                    onClick={event => {
+                        event.preventDefault();
+                        this.signout(() => history.push("/"));
+                    }}>{user.firstname} {user.lastname} abmelden</Button>
           </nav>
         );
       } else {

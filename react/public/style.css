@@ -1,7 +1,22 @@
 /* Customizations */
-#root {
-    padding: 10px;
+#navigation {
+    display: flex;
+    background: black;
+    color: white;
+    height: 4rem;
+    font-size: 1.5rem;
+    width: 100%;
+    justify-content: flex-start;
 }
+
+#navigation > a {
+    color: white;
+}
+
+#logoutButton {
+    height: 3rem;
+}
+
 
 #newTransactionWindow {
     width: 20%;
