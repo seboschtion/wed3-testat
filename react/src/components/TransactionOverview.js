@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import React from 'react'
 import { Table } from 'semantic-ui-react'
 import ComponentTitle from './ComponentTitle'
@@ -14,22 +15,41 @@ class TransactionOverview extends React.Component {
     }
 
     state = {
-        transactions: []
+        transactions: [],
+        column: null,
+        direction: null
     };
+
+    handleSort = clickedColumn => () => {
+        const { column, transactions, direction} = this.state;
+
+        if (column !== clickedColumn) {
+            this.setState({
+                column: clickedColumn,
+                transactions: _.sortBy(transactions, [clickedColumn]),
+                direction: 'asc'
+            });
+            return;
+        }
+
+        this.setState({
+            transactions: transactions.reverse(),
+            direction: direction === 'asc' ? 'desc' : 'asc'
+        });
+    }
 
     render() {
         return (
             <div>
                 <ComponentTitle title={this.props.title}/>
                 <TableFilter/>
-                <Table celled>
-                    <TransactionOverviewHeader />
+                <Table sortable celled>
+                    <TransactionOverviewHeader sortHandler={this.handleSort}/>
                     <TransactionOverviewRows transactions={this.state.transactions} />
                 </Table>
             </div>
         );
     }
 }
-
 
 export default TransactionOverview
