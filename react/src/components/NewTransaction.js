@@ -63,7 +63,7 @@ class NewTransaction extends React.Component {
 
         if(this.state.transferResult) {
             return (
-                <div>
+                <div id="newTransactionWindow" >
                     <ComponentTitle title="Neue Bewegung" />
                     <p>Überweisung an {this.state.transferResult.target} war erfolgreich.</p>
                     <p>Ihr neuer Kontostand beträgt {this.state.transferResult.total.toFixed(2)}</p>
@@ -72,9 +72,9 @@ class NewTransaction extends React.Component {
             );
         } else {
             return (
-                <div>
+                <div id="newTransactionWindow" >
                     <ComponentTitle title="Neue Bewegung" />
-                    <Form>
+                    <Form id="newTransactionForm">
                         <p>Von</p>
                         <input type="text" value={this.constructAccountName()} disabled />
 
