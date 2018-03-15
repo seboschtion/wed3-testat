@@ -7,12 +7,16 @@ class NewTransaction extends React.Component {
 
     componentDidMount() {
         api.getAccountDetails(this.props.token).then(value => {
-            this.setState({transactionFromId:value.accountNr});
+            this.setState({
+                transactionFromId:value.accountNr,
+                balance: value.amount
+            });
         });
     }
 
     state = {
         transactionFromId: 0,
+        balance: 0,
         transactionToId: "",
         transactionToName: "Bitte geben Sie den Empfänger ein",
         amount: "",
@@ -22,7 +26,10 @@ class NewTransaction extends React.Component {
     submitTransaction = (event) => {
         event.preventDefault();
         api.transfer(this.state.transactionToId, this.state.amount, this.props.token).then(transferResult => {
-            this.setState({transferResult:transferResult});
+            this.setState({
+                transferResult:transferResult,
+                balance: transferResult.total
+            });
         });
     };
 
@@ -40,7 +47,16 @@ class NewTransaction extends React.Component {
     };
 
     clearSuccessfulTransaction = (event) => {
-        this.setState({transferResult:null});
+        this.setState({
+            transactionToId: "",
+            transactionToName: "Bitte geben Sie den Empfänger ein",
+            amount: "",
+            transferResult: null
+        });
+    };
+
+    constructAccountName= function() {
+        return this.state.transactionFromId + " [" + this.state.balance.toFixed(2) + " CHF]";
     };
 
     render() {
@@ -50,7 +66,7 @@ class NewTransaction extends React.Component {
                 <div>
                     <ComponentTitle title="Neue Bewegung" />
                     <p>Überweisung an {this.state.transferResult.target} war erfolgreich.</p>
-                    <p>Ihr neuer Kontostand beträgt {this.state.transferResult.total}</p>
+                    <p>Ihr neuer Kontostand beträgt {this.state.transferResult.total.toFixed(2)}</p>
                     <Button onClick={this.clearSuccessfulTransaction}>Neue Überweisung</Button>
                 </div>
             );
@@ -60,7 +76,7 @@ class NewTransaction extends React.Component {
                     <ComponentTitle title="Neue Bewegung" />
                     <Form>
                         <p>Von</p>
-                        <input type="text" value={this.state.transactionFromId} disabled />
+                        <input type="text" value={this.constructAccountName()} disabled />
 
                         <p>Zu</p>
                         <input value={this.state.transactionToId}
