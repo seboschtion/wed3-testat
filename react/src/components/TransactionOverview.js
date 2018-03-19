@@ -40,13 +40,15 @@ class TransactionOverview extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className={this.props.className}>
                 <ComponentTitle title={this.props.title}/>
-                <TableFilter/>
-                <Table sortable celled>
-                    <TransactionOverviewHeader sortHandler={this.handleSort}/>
-                    <TransactionOverviewRows transactions={this.state.transactions} />
-                </Table>
+                <div className="window-content">
+                    <TableFilter/>
+                    <Table sortable celled>
+                        <TransactionOverviewHeader sortHandler={this.handleSort}/>
+                        <TransactionOverviewRows transactions={this.state.transactions} />
+                    </Table>
+                </div>
             </div>
         );
     }

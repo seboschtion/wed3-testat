@@ -81,15 +81,19 @@ class App extends React.Component<{}, State> {
     const MenuBar = withRouter(({ history, location: { pathname } }) => {
       if (isAuthenticated && user) {
         return (
-          <nav id="navigation">
-            <Link to="/">Home</Link>
-            <Link to="/dashboard">Kontoübersicht</Link>
-            <Link to="/transactions">Zahlungen</Link>
-            <Button id="logoutButton"
+          <nav>
+            <div className="navigation-targets">
+                <Link to="/">Home</Link>
+                <Link to="/dashboard">Kontoübersicht</Link>
+                <Link to="/transactions">Zahlungen</Link>
+            </div>
+            <div className="navigation-actions">
+                <Button className="button-logout"
                     onClick={event => {
                         event.preventDefault();
                         this.signout(() => history.push("/"));
                     }}>{user.firstname} {user.lastname} abmelden</Button>
+            </div>
           </nav>
         );
       } else {

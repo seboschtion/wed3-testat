@@ -4,14 +4,10 @@ import TransactionOverview from "./TransactionOverview";
 
 function Dashboard(props) {
     return (
-        <div>
-            <div>
-                <NewTransaction token={props.token} />
-            </div>
+        <div className="site-content">
+            <NewTransaction className="window window-left" token={props.token} />
 
-            <div>
-                <TransactionOverview token={props.token} title="Letzte Bewegungen"/>
-            </div>
+            <TransactionOverview className="window" token={props.token} title="Letzte Bewegungen"/>
         </div>
     )
 }
