@@ -2,15 +2,23 @@ import React from 'react'
 import { Dropdown } from 'semantic-ui-react'
 
 class TableFilter extends React.Component {
+    prepareDropdownItems(items) {
+        let result = [];
+        items.forEach(function(item) {
+        });
+        return result;
+    }
+
+    handleChange(e, data) {
+        console.log(e);
+    }
+    
     render() {
         return (
-            <Dropdown text='Filter' icon='filter' floating labeled button className='icon'>
+            <Dropdown placeholder={this.props.name} onChange={this.handleChange} icon='filter' labeled button closeOnChange className='icon' options={this.prepareDropdownItems(this.props.items)}>
                 <Dropdown.Menu>
-                <Dropdown.Header icon='tags' content='Filter by tag' />
-                <Dropdown.Divider />
-                <Dropdown.Item>Important</Dropdown.Item>
-                <Dropdown.Item>Announcement</Dropdown.Item>
-                <Dropdown.Item>Discussion</Dropdown.Item>
+                    <Dropdown.Header icon='tags' content={"Filtern nach " + this.props.name} />
+                    <Dropdown.Divider />
                 </Dropdown.Menu>
             </Dropdown>
         )
