@@ -64,7 +64,11 @@ nav a.active {
 }
 
 .button {
-    margin: 12px 0px !important;
+    margin: 12px 12px 12px 0px !important;
+}
+
+.hide {
+    display: none !important;
 }
 
 .component-title {

@@ -77,9 +77,11 @@ class NewTransaction extends React.Component {
             return (
                 <div className={this.props.className}>
                     <ComponentTitle title="Neue Bewegung" />
-                    <p>Überweisung an {this.state.transferResult.target} war erfolgreich.</p>
-                    <p>Ihr neuer Kontostand beträgt {this.state.transferResult.total.toFixed(2)}</p>
-                    <Button onClick={this.clearSuccessfulTransaction}>Neue Überweisung</Button>
+                    <div className="window-content">
+                        <p>Überweisung an {this.state.transferResult.target} war erfolgreich.</p>
+                        <p>Ihr neuer Kontostand beträgt {this.state.transferResult.total.toFixed(2)}</p>
+                        <Button onClick={this.clearSuccessfulTransaction}>Neue Überweisung</Button>
+                    </div>
                 </div>
             );
         } else {
