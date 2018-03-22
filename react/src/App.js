@@ -81,7 +81,7 @@ class App extends React.Component<{}, State> {
         return (
           <nav>
             <div className="navigation-targets">
-                <NavLink to="/">Home</NavLink>
+                <NavLink exact to="/">Home</NavLink>
                 <NavLink to="/dashboard">Kontoübersicht</NavLink>
                 <NavLink to="/transactions">Zahlungen</NavLink>
             </div>
