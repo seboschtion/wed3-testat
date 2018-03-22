@@ -71,12 +71,18 @@ class Login extends React.Component<Props, *> {
             placeholder="Login"
             value={this.state.login}
           />
+          {this.state.login.length < 3
+            ? "Bitte geben Sie mindestens 3 Zeichen an."
+            : null}
           <input
             onChange={this.handlePasswordChanged}
             placeholder="Password"
             type="password"
             value={this.state.password}
           />
+          {this.state.password.length < 3
+            ? "Bitte geben Sie mindestens 3 Zeichen an."
+            : null}
           <button onClick={this.handleSubmit}>Log-in</button>
         </form>
         {error && <p>Es ist ein Fehler aufgetreten!</p>}

@@ -1,0 +1,86 @@
+/* Customizations */
+nav {
+    display: flex;
+    height: 4rem;
+    width: 100%;
+    margin-bottom: 80px;
+    background-color: #0065a3;
+}
+
+.navigation-targets,
+.navigation-actions {
+    display: flex;
+}
+
+.navigation-targets {
+    flex: 1 1 auto;
+}
+
+.navigation-actions {
+    flex: 0 0 auto;
+    margin-right: 12px;
+}
+
+.navigation-actions button,
+nav a {
+    align-self: center;
+}
+
+nav a {
+    display: block;
+    font-size: 1.7em;
+    color: white;
+    margin: 12px;
+    padding: 8px 12px;
+    border-radius: 4px;
+}
+
+nav a:hover {
+    color: #0065a3;
+    background-color: white;
+    transition: 0.2s;
+}
+
+.site-content {
+    display: flex;
+    margin: 12px;
+}
+
+.window {
+    border: 1px solid gray;
+    border-radius: 10px;
+    margin: 12px;
+    flex: 1 1 100%;
+}
+
+.window-left {
+    flex: 0 0 20%;
+    min-width: 400px;
+}
+
+.window-content {
+    margin: 12px;
+}
+
+.button {
+    margin: 12px 0px !important;
+}
+
+.component-title {
+    background-color: #0065a3;
+    color: white;
+    border-radius: 10px 10px 0px 0px;
+    padding: 4px 8px;
+}
+
+@media (max-width: 940px) {
+    .window-left {
+        flex: none;
+        min-width: none;
+        width: auto;
+    }
+
+    .site-content {
+        flex-flow: row wrap;
+    }
+}
