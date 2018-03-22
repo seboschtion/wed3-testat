@@ -4,7 +4,7 @@ import React from "react";
 import {
   BrowserRouter as Router,
   Route,
-  Link,
+  NavLink,
   withRouter
 } from "react-router-dom";
 
@@ -12,15 +12,13 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Dashboard from "./components/Dashboard";
+import AllTransactions from "./components/AllTransactions";
 import PrivateRoute from "./components/PrivateRoute";
 
 import * as api from "./api";
 
 import type { User } from "./api";
 import { Button } from "semantic-ui-react"
-
-// TODO: Move to own files
-const AllTransactions = () => <div />;
 
 type State = {
   isAuthenticated: boolean,
@@ -83,9 +81,9 @@ class App extends React.Component<{}, State> {
         return (
           <nav>
             <div className="navigation-targets">
-                <Link to="/">Home</Link>
-                <Link to="/dashboard">Kontoübersicht</Link>
-                <Link to="/transactions">Zahlungen</Link>
+                <NavLink to="/">Home</NavLink>
+                <NavLink to="/dashboard">Kontoübersicht</NavLink>
+                <NavLink to="/transactions">Zahlungen</NavLink>
             </div>
             <div className="navigation-actions">
                 <Button className="button-logout"
