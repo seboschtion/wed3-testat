@@ -10,40 +10,29 @@ import * as api from "../api"
 
 class TransactionOverview extends React.Component {
     state = {
-        transactions: [],
         column: null,
         direction: null,
-        count: 3,
-        offset: 0,
-        from: "",
-        to: ""
     };
 
-    componentDidMount() {
-        api.getTransactions(this.props.token, this.state.from, this.state.to, this.state.count, this.state.offset).then(value => {
-            this.setState({transactions: value.result});
-        });
-    }
-
     handleSort = clickedColumn => () => {
-        const { column, transactions, direction} = this.state;
-
+        const { column, direction} = this.state;
         if (column !== clickedColumn) {
             this.setState({
                 column: clickedColumn,
-                transactions: _.sortBy(transactions, [clickedColumn]),
                 direction: 'asc'
             });
-            return;
+        } else {
+            this.setState({
+                direction: direction === 'asc' ? 'desc' : 'asc'
+            });
         }
-
-        this.setState({
-            transactions: transactions.reverse(),
-            direction: direction === 'asc' ? 'desc' : 'asc'
-        });
     }
 
     render() {
+        let sortedTransactions = _.sortBy(this.props.transactions, [this.state.column]);
+        if(this.state.direction === "desc") {
+            sortedTransactions.reverse();
+        }
         return (
             <div className={this.props.className}>
                 <ComponentTitle title={this.props.title}/>
@@ -52,7 +41,7 @@ class TransactionOverview extends React.Component {
                     <TableFilter name="Monat" items={["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"]}/>
                     <Table sortable celled>
                         <TransactionOverviewHeader sortHandler={this.handleSort}/>
-                        <TransactionOverviewRows transactions={this.state.transactions} />
+                        <TransactionOverviewRows transactions={sortedTransactions} />
                         <TransactionOverviewPagination/>
                     </Table>
                 </div>

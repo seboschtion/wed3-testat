@@ -30,6 +30,7 @@ class NewTransaction extends React.Component {
                 transferResult:transferResult,
                 balance: transferResult.total
             });
+            this.props.transactionCallback();
         });
     };
 
