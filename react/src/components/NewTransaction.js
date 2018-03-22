@@ -19,12 +19,19 @@ class NewTransaction extends React.Component {
         balance: 0,
         transactionToId: "",
         transactionToName: "Bitte geben Sie den Empfänger ein",
+        submitWarning: "",
         amount: "",
         transferResult: null
     };
 
     submitTransaction = (event) => {
         event.preventDefault();
+
+        if(this.state.balance < this.state.amount) {
+            this.setState({submitWarning: "Der Betrag ist grösser als der momentane Kontostand."});
+            return;
+        }
+
         api.transfer(this.state.transactionToId, this.state.amount, this.props.token).then(transferResult => {
             this.setState({
                 transferResult:transferResult,
@@ -44,13 +51,17 @@ class NewTransaction extends React.Component {
     };
 
     amountChanged = (event) => {
-        this.setState({amount:event.target.value});
+        this.setState({
+            amount:event.target.value,
+            submitWarning: ""
+        });
     };
 
     clearSuccessfulTransaction = (event) => {
         this.setState({
             transactionToId: "",
             transactionToName: "Bitte geben Sie den Empfänger ein",
+            submitWarning: "",
             amount: "",
             transferResult: null
         });
@@ -92,6 +103,7 @@ class NewTransaction extends React.Component {
 
 
                         <Button type="submit" onClick={this.submitTransaction}>Überweisen</Button>
+                        <label>{this.state.submitWarning}</label>
                     </Form>
                 </div>
             );
