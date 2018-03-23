@@ -15,7 +15,8 @@ class TransactionOverview extends React.Component {
 
     filter = {
         from: moment("1970-01-01"),
-        to: moment()
+        to: moment(),
+        monthWasSet: false
     }
 
     handleSort = clickedColumn => () => {
@@ -37,7 +38,6 @@ class TransactionOverview extends React.Component {
             { text: "2018", value: 2018, key: 2018},
             { text: "2017", value: 2017, key: 2017},
             { text: "2016", value: 2016, key: 2016},
-            { text: "2015", value: 2015, key: 2015},
         ];
     }
 
@@ -58,16 +58,29 @@ class TransactionOverview extends React.Component {
         ];
     }
 
+
+    // TODO: Filter das nächste mal besser auslagern
     filterChanged = (newValue) => {
         if(newValue > 12) {
-            this.filter.from.set("year", newValue);
-            this.filter.to.set("year", newValue);
+            this.filter.from.year(newValue);
+            this.filter.to.year(newValue);
+            if(!this.filter.monthWasSet) {
+                this.filter.from.month(0);
+                this.filter.to.month(11);
+            }
         } else {
-            this.filter.from.set("month", newValue);
-            this.filter.to.set("month", newValue + 1);
+            this.filter.from.month(newValue - 1);
+            this.filter.to.month(newValue);
+            this.filter.from.year(this.filter.to.year());
+            this.filter.to.year(this.filter.to.year());
+            this.filter.monthWasSet = true;
         }
-        this.filter.to.set("day", 1);
-        this.props.filterChangedCallback(this.filter.from.format(), this.filter.to.format());
+
+        this.filter.from.date(1);
+        this.filter.to.date(1);
+        
+        const format = "YYYY-MM-D";
+        this.props.filterChangedCallback(this.filter.from.format(format), this.filter.to.format(format));
     }
 
     hideFilters() {

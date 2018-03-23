@@ -14,7 +14,6 @@ class Dashboard extends React.Component {
     }
 
     transactionsUpdated(){
-        console.log("transactionsUpdated");
         this.fetchTransactions();
     }
 
@@ -29,7 +28,6 @@ class Dashboard extends React.Component {
         return (
             <div className="site-content">
                 <NewTransaction className="window window-left" token={this.props.token} transactionCallback={this.transactionsUpdated.bind(this)}/>
-
                 <TransactionOverview className="window" token={this.props.token} title="Letzte Bewegungen" transactions={this.state.transactions}/>
             </div>
         );
