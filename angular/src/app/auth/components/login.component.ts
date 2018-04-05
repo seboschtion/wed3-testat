@@ -43,8 +43,11 @@ export class LoginComponent implements OnInit {
 
   public doLogin(f: NgForm): boolean {
     if (f && f.valid) {
+      console.log("Login valid");
       this.isProcessing = true;
       this.autSvc.login(new LoginInfo(f.value.login, f.value.password));
+    } else {
+      console.log("Login invalid");
     }
     return false;
   }

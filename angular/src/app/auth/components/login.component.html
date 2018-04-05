@@ -1,5 +1,5 @@
 <!-- TODO: Add ng specific directives/validation settings and add styling -->
-<form (ngSubmit)="doLogin(null)">
+<form (ngSubmit)="doLogin(loginForm)" #loginForm="ngForm">
   <label>
     User name:
     <div>
