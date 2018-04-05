@@ -8,6 +8,7 @@ import {AuthResourceService, TokenInterceptor} from './resources';
 import {LoginComponent, LogoutComponent,
   RegisterComponent} from './components';
 import {SharedModule} from '../shared/shared.module';
+import {RouterModule} from '@angular/router';
 
 const EXPORTED_DECLARATIONS = [
   LoginComponent, LogoutComponent, RegisterComponent
@@ -24,6 +25,7 @@ const EXPORTS = [
 @NgModule({
   declarations: INTERNAL_DECLARATIONS,
   imports: [
+    RouterModule,
     FormsModule,
     SharedModule
   ],
