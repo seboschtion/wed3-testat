@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
 
   public login: string;
   public password: string;
+  public passwordConfirm: string;
   public firstname: string;
   public lastname: string;
 
@@ -36,6 +37,7 @@ export class RegisterComponent implements OnInit {
   public doRegister(f: NgForm): boolean {
     if (f && f.valid) {
       this.isProcessing = true;
+      console.log(f);
       this.autSvc.register(new RegistrationInfo(
         f.value.login,
         f.value.password,
