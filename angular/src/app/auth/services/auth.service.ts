@@ -35,7 +35,7 @@ export class AuthService {
       } );
   }
 
-  public login(loginModel: LoginInfo):void {
+  public login(loginModel: LoginInfo): void {
     this.resource.login(loginModel).subscribe(
       (data: Credential) => {
         this.tokenStore.storedValue = data;
