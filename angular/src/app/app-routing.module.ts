@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
+
 const appRoutes: Routes = [
   // TODO: Add routing of lazy loaded dashboard Module (with guards) here...
   { path: 'dashboard', loadChildren: 'app/dashboard/dashboard.module#DashboardModule', canLoad: [ ] },
