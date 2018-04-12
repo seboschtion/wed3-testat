@@ -1,4 +1,7 @@
-<p>
-  dashboard works!
-</p>
+<nav>
+  <ul>
+    <li><a routerLink="." routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">overview</a></li>
+    <li><a routerLink="transactions" routerLinkActive="active">transactions</a></li>
+  </ul>
+</nav>
 <router-outlet></router-outlet>
