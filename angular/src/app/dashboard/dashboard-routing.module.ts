@@ -1,12 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { OverviewComponent } from './components/overview/overview.component';
+import { TransactionsComponent } from './components/transactions/transactions.component';
 
 const appRoutes: Routes = [
   {
     path: '',
-    component: null, // TODO: Add initial router outlet dashboard component...
+    component: DashboardComponent, // TODO: Add initial router outlet dashboard component...
+    canActivate: [ ],
     children: [
-      // TODO: Add routing path for dashboard here...
+      { path: '', component: OverviewComponent },
+      { path: 'transactions', component: TransactionsComponent }
     ]
   }
 ];
@@ -19,4 +24,4 @@ const appRoutes: Routes = [
     RouterModule
   ]
 })
-export class DashbaordRoutingModule {}
+export class DashboardRoutingModule {}
