@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from "../../../auth/services";
-import {BankAccountService} from "../../services";
+import {TransactionService} from "../../services/transaction.service";
+import {Transaction} from "../../models/transaction";
 
 @Component({
   selector: 'wed-transaction-overview',
@@ -9,10 +9,17 @@ import {BankAccountService} from "../../services";
 })
 export class TransactionOverviewComponent implements OnInit {
 
-  constructor(private bankAccountService: BankAccountService) { }
+  constructor(private transactionService: TransactionService) { }
 
   ngOnInit() {
-
+    this.transactionService.getTransactions().subscribe((value: [Transaction]) => {
+      console.log("transactions received");
+      console.log(value);
+    },
+    error => {
+      console.log("error");
+      console.log(error);
+    });
   }
 
 }
