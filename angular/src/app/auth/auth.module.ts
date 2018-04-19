@@ -9,6 +9,7 @@ import {LoginComponent, LogoutComponent,
   RegisterComponent} from './components';
 import {SharedModule} from '../shared/shared.module';
 import {RouterModule} from '@angular/router';
+import {AuthGuard} from './services/auth.guard';
 
 const EXPORTED_DECLARATIONS = [
   LoginComponent, LogoutComponent, RegisterComponent
@@ -41,6 +42,7 @@ export class AuthModule {
 
         // TODO: Add services/guards/... here, if additional classes are placed within the Auth moduley
         AuthService,
+        AuthGuard,
         SecurityTokenStore,
         {
           provide: HTTP_INTERCEPTORS,
