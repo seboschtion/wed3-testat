@@ -1,22 +1,23 @@
-<!-- TODO: Add ng specific directives/validation settings and add styling -->
-<form (ngSubmit)="doLogin(loginForm)" #loginForm="ngForm">
-  <label>
-    User name:
-    <div>
-      <input pattern=".{3,}" placeholder="User" type="text" name="login" #login="ngModel" ngModel required>
-      <div [hidden]="login.valid">Please specify your login, at least three characters.</div>
-    </div>
-  </label>
-  <label>
-    Password:
-    <div>
-      <input pattern=".{3,}" placeholder="Password" type="password" name="password" #password="ngModel" ngModel required>
-      <div [hidden]="password.valid">Please specify your login, at least three characters.</div>
-    </div>
-  </label>
-  <button>Login</button>
-</form>
+<wed-box>
+  <button [routerLink]="['./register']">Register</button>
 
+  <form (ngSubmit)="doLogin(loginForm)" #loginForm="ngForm">
+    <label>
+      User name:
+      <div>
+        <input pattern=".{3,}" placeholder="User" type="text" name="login" #login="ngModel" ngModel required>
+        <div [hidden]="login.valid">Please specify your login, at least three characters.</div>
+      </div>
+    </label>
+    <label>
+      Password:
+      <div>
+        <input pattern=".{3,}" placeholder="Password" type="password" name="password" #password="ngModel" ngModel required>
+        <div [hidden]="password.valid">Please specify your password, at least three characters.</div>
+      </div>
+    </label>
+    <button>Login</button>
+  </form>
+</wed-box>
 
-<button [routerLink]="['./register']">Register</button>
 

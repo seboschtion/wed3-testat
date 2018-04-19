@@ -7,7 +7,7 @@ import { TransactionsComponent } from './components/transactions/transactions.co
 const appRoutes: Routes = [
   {
     path: '',
-    component: DashboardComponent, // TODO: Add initial router outlet dashboard component...
+    component: DashboardComponent,
     canActivate: [ ],
     children: [
       { path: '', component: OverviewComponent },

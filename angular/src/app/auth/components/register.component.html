@@ -1,39 +1,40 @@
-<!-- TODO: Add styling -->
-<form (ngSubmit)="doRegister(registerForm)" #registerForm="ngForm">
-  <label>
-    First name:
-    <div>
-      <input pattern=".{2,}" placeholder="First name" type="text" name="firstname" #firstname="ngModel" ngModel required>
-      <div [hidden]="firstname.valid || firstname.pristine">Please specify your first name.</div>
-    </div>
-  </label>
-  <label>
-    Last name:
-    <div>
-      <input pattern=".{2,}" placeholder="Last name" type="text" name="lastname" #lastname="ngModel" ngModel required>
-      <div [hidden]="lastname.valid || lastname.pristine">Please specify your last name.</div>
-    </div>
-  </label>
-  <label>
-    User name:
-    <div>
-      <input pattern=".{3,}" placeholder="User" type="text" name="login" #login="ngModel" ngModel required>
-      <div [hidden]="login.valid || login.pristine">Please specify your login, at least three characters.</div>
-    </div>
-  </label>
-  <label>
-    Password:
-    <div>
-      <input pattern=".{3,}" placeholder="Password" type="password" name="password" #password="ngModel" ngModel required>
-      <div [hidden]="password.valid || password.pristine">Please specify your password, at least three characters.</div>
-    </div>
-  </label>
-  <label>
-    Confirm Password:
-    <div>
-      <input pattern="^{{password.value}}$" placeholder="Password" type="password" name="passwordConfirm" #passwordConfirm="ngModel" ngModel required>
-      <div [hidden]="passwordConfirm.valid || passwordConfirm.pristine">Please confirm your password.</div>
-    </div>
-  </label>
-  <button [disabled]="!registerForm.valid">Register</button>
-</form>
+<wed-box>
+  <form (ngSubmit)="doRegister(registerForm)" #registerForm="ngForm">
+    <label>
+      First name:
+      <div>
+        <input pattern=".{2,}" placeholder="First name" type="text" name="firstname" #firstname="ngModel" ngModel required>
+        <div [hidden]="firstname.valid || firstname.pristine">Please specify your first name.</div>
+      </div>
+    </label>
+    <label>
+      Last name:
+      <div>
+        <input pattern=".{2,}" placeholder="Last name" type="text" name="lastname" #lastname="ngModel" ngModel required>
+        <div [hidden]="lastname.valid || lastname.pristine">Please specify your last name.</div>
+      </div>
+    </label>
+    <label>
+      User name:
+      <div>
+        <input pattern=".{3,}" placeholder="User" type="text" name="login" #login="ngModel" ngModel required>
+        <div [hidden]="login.valid || login.pristine">Please specify your login, at least three characters.</div>
+      </div>
+    </label>
+    <label>
+      Password:
+      <div>
+        <input pattern=".{3,}" placeholder="Password" type="password" name="password" #password="ngModel" ngModel required>
+        <div [hidden]="password.valid || password.pristine">Please specify your password, at least three characters.</div>
+      </div>
+    </label>
+    <label>
+      Confirm Password:
+      <div>
+        <input pattern="^{{password.value}}$" placeholder="Password" type="password" name="passwordConfirm" #passwordConfirm="ngModel" ngModel required>
+        <div [hidden]="passwordConfirm.valid || passwordConfirm.pristine">Please confirm your password.</div>
+      </div>
+    </label>
+    <button [disabled]="!registerForm.valid">Register</button>
+  </form>  
+</wed-box>
