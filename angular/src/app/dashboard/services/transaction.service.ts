@@ -26,7 +26,7 @@ export class TransactionService extends ResourceBase {
     );
   }
 
-  public getTransactions(dateFrom: Date, dateTo: Date, count: number = 1000): Observable<[Transaction]>{
+  public getTransactions(dateFrom: Date = null, dateTo: Date = null, count: number = 1000): Observable<[Transaction]>{
     if(!dateFrom){
       dateFrom = new Date("1968-11-16T00:00:00");
     }
