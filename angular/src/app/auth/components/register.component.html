@@ -1,40 +1,36 @@
 <wed-box>
+  <h3>Registrierung</h3>
   <form (ngSubmit)="doRegister(registerForm)" #registerForm="ngForm">
     <label>
-      First name:
-      <div>
-        <input pattern=".{2,}" placeholder="First name" type="text" name="firstname" #firstname="ngModel" ngModel required>
-        <div [hidden]="firstname.valid || firstname.pristine">Please specify your first name.</div>
+      <div class="validated-input">
+        <input pattern=".{2,}" placeholder="Vorname" type="text" name="firstname" #firstname="ngModel" ngModel required>
+        <small class="validation-warning" [hidden]="firstname.pristine || firstname.valid">Gib bitte deinen Vornamen an.</small>
       </div>
     </label>
     <label>
-      Last name:
-      <div>
-        <input pattern=".{2,}" placeholder="Last name" type="text" name="lastname" #lastname="ngModel" ngModel required>
-        <div [hidden]="lastname.valid || lastname.pristine">Please specify your last name.</div>
+      <div class="validated-input">
+        <input pattern=".{2,}" placeholder="Nachname" type="text" name="lastname" #lastname="ngModel" ngModel required>
+        <small class="validation-warning" [hidden]="lastname.pristine || lastname.valid">Gib bitte deinen Vornamen an.</small>
       </div>
     </label>
     <label>
-      User name:
-      <div>
-        <input pattern=".{3,}" placeholder="User" type="text" name="login" #login="ngModel" ngModel required>
-        <div [hidden]="login.valid || login.pristine">Please specify your login, at least three characters.</div>
+      <div class="validated-input">
+        <input pattern=".{3,}" placeholder="Username" type="text" name="login" #login="ngModel" ngModel required>
+        <small class="validation-warning" [hidden]="login.pristine || login.valid">Wähle einen Usernamen mit mindestens 3 Zeichen.</small>
       </div>
     </label>
     <label>
-      Password:
-      <div>
-        <input pattern=".{3,}" placeholder="Password" type="password" name="password" #password="ngModel" ngModel required>
-        <div [hidden]="password.valid || password.pristine">Please specify your password, at least three characters.</div>
+      <div class="validated-input">
+        <input pattern=".{3,}" placeholder="Passwort" type="password" name="password" #password="ngModel" ngModel required>
+        <small class="validation-warning" [hidden]="password.pristine || password.valid">Das Passwort muss mindestens aus 3 Zeichen bestehen.</small>
       </div>
     </label>
     <label>
-      Confirm Password:
-      <div>
-        <input pattern="^{{password.value}}$" placeholder="Password" type="password" name="passwordConfirm" #passwordConfirm="ngModel" ngModel required>
-        <div [hidden]="passwordConfirm.valid || passwordConfirm.pristine">Please confirm your password.</div>
+      <div class="validated-input">
+        <input pattern="^{{password.value}}$" placeholder="Passwort bestätigen" type="password" name="passwordConfirm" #passwordConfirm="ngModel" ngModel required>
+        <small class="validation-warning" [hidden]="passwordConfirm.pristine || passwordConfirm.valid">Bitte bestätige dein gewähltes Passwort.</small>
       </div>
     </label>
-    <button [disabled]="!registerForm.valid">Register</button>
+    <button class="button-right" [disabled]="!registerForm.valid">Register</button>
   </form>  
 </wed-box>
