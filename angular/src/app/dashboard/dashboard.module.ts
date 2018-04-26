@@ -1,11 +1,12 @@
 import {NgModule, ModuleWithProviders} from '@angular/core';
 
 import {SharedModule} from '../shared/shared.module';
+import {AuthModule} from '../auth/auth.module';
 
 import {DashboardRoutingModule} from './dashboard-routing.module';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { TransactionsComponent } from './components/transactions/transactions.component';
-import { OverviewComponent } from './components/overview/overview.component';
+import {DashboardComponent} from './components/dashboard/dashboard.component';
+import {TransactionsComponent} from './components/transactions/transactions.component';
+import {OverviewComponent} from './components/overview/overview.component';
 import {BankAccountService} from "./services";
 import {TransactionService} from "./services/transaction.service";
 import {TransactionOverviewComponent} from "./components/transaction-overview/transaction-overview.component";
@@ -27,7 +28,7 @@ const EXPORTS = [
   declarations: INTERNAL_DECLARATIONS,
   imports: [
     // Other Modules to import (imports the exported Components/Directives from the other module)
-    SharedModule, DashboardRoutingModule
+    SharedModule, AuthModule, DashboardRoutingModule
   ],
   exports: EXPORTS,
   providers: [

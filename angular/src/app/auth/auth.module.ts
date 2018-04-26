@@ -5,8 +5,7 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AuthService, SecurityTokenStore} from './services';
 import {AuthResourceService, TokenInterceptor} from './resources';
 
-import {LoginComponent, LogoutComponent,
-  RegisterComponent} from './components';
+import {LoginComponent, LogoutComponent, RegisterComponent} from './components';
 import {SharedModule} from '../shared/shared.module';
 import {RouterModule} from '@angular/router';
 import {AuthGuard} from './services/auth.guard';
