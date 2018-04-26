@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
-import {ResourceBase} from "../../core";
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs/Observable";
+import {Injectable} from '@angular/core';
+import {ResourceBase} from '../../core';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs/Observable';
 import {map, catchError} from 'rxjs/operators';
-import {Account} from "../../auth/models";
-import {BankAccount} from "../models/bankaccount";
-import {of} from "rxjs/observable/of";
+import {Account} from '../../auth/models';
+import {BankAccount} from '../models/bankaccount';
+import {of} from 'rxjs/observable/of';
 
 @Injectable()
 export class BankAccountService extends ResourceBase {

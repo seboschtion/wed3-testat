@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
-import {ResourceBase} from "../../core";
-import {HttpClient} from "@angular/common/http";
-import {catchError, map} from "rxjs/operators";
-import {BankAccount} from "../models/bankaccount";
-import {Transaction} from "../models/transaction";
-import {of} from "rxjs/observable/of";
-import {Observable} from "rxjs/Observable";
+import {Injectable} from '@angular/core';
+import {ResourceBase} from '../../core';
+import {HttpClient} from '@angular/common/http';
+import {catchError, map} from 'rxjs/operators';
+import {BankAccount} from '../models/bankaccount';
+import {Transaction} from '../models/transaction';
+import {of} from 'rxjs/observable/of';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class TransactionService extends ResourceBase {
@@ -26,12 +26,12 @@ export class TransactionService extends ResourceBase {
     );
   }
 
-  public getTransactions(dateFrom: Date = null, dateTo: Date = null, count: number = 1000): Observable<[Transaction]>{
-    if(!dateFrom){
-      dateFrom = new Date("1968-11-16T00:00:00");
+  public getTransactions(dateFrom: Date = null, dateTo: Date = null, count: number = 1000): Observable<[Transaction]> {
+    if (!dateFrom) {
+      dateFrom = new Date('1968-11-16T00:00:00');
     }
 
-    if(!dateTo){
+    if (!dateTo) {
       dateTo = new Date();
     }
 

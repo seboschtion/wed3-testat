@@ -1,18 +1,25 @@
 <wed-box>
   <h3>Login</h3>
-  <p>Noch keinen Account? <button [routerLink]="['./register']">Registriere dich hier!</button></p>
+  <p>Noch keinen Account?
+    <button [routerLink]="['./register']">Registriere dich hier!</button>
+  </p>
 
   <form (ngSubmit)="doLogin(loginForm)" #loginForm="ngForm">
     <label>
       <div class="validated-input">
         <input pattern=".{3,}" placeholder="Username" type="text" name="login" #login="ngModel" ngModel required>
-        <small class="validation-warning" [hidden]="login.pristine || login.valid">Der Username muss aus mindestens 3 Zeichen bestehen.</small>
+        <small class="validation-warning" [hidden]="login.pristine || login.valid">Der Username muss aus mindestens 3
+          Zeichen bestehen.
+        </small>
       </div>
     </label>
     <label>
       <div class="validated-input">
-        <input pattern=".{3,}" placeholder="Passwort" type="password" name="password" #password="ngModel" ngModel required>
-        <small class="validation-warning" [hidden]="password.pristine || password.valid">Das Passwort muss aus mindestens 3 Zeichen bestehen.</small>
+        <input pattern=".{3,}" placeholder="Passwort" type="password" name="password" #password="ngModel" ngModel
+               required>
+        <small class="validation-warning" [hidden]="password.pristine || password.valid">Das Passwort muss aus
+          mindestens 3 Zeichen bestehen.
+        </small>
       </div>
     </label>
     <button class="button-right" [disabled]="!loginForm.valid">Login</button>

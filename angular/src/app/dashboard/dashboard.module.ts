@@ -7,13 +7,14 @@ import {DashboardRoutingModule} from './dashboard-routing.module';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {TransactionsComponent} from './components/transactions/transactions.component';
 import {OverviewComponent} from './components/overview/overview.component';
-import {BankAccountService} from "./services";
-import {TransactionService} from "./services/transaction.service";
-import {TransactionOverviewComponent} from "./components/transaction-overview/transaction-overview.component";
+import {BankAccountService} from './services';
+import {TransactionService} from './services/transaction.service';
+import {TransactionOverviewComponent} from './components/transaction-overview/transaction-overview.component';
+import {PaymentComponent} from './components/payment/payment.component';
 
 const EXPORTED_DECLARATIONS = [
   // Declarations (Components / Directives) which can be used outside the Module
-  DashboardComponent, OverviewComponent, TransactionsComponent, TransactionOverviewComponent
+  DashboardComponent, OverviewComponent, TransactionsComponent, TransactionOverviewComponent, PaymentComponent
 ];
 const INTERNAL_DECLARATIONS = [
   ...EXPORTED_DECLARATIONS,
@@ -43,8 +44,7 @@ export class DashboardModule {
   static forRoot(config?: {}): ModuleWithProviders {
     return {
       ngModule: DashboardModule,
-      providers: [
-      ]
+      providers: []
     };
   }
 

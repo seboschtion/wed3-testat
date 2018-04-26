@@ -25,13 +25,13 @@ const EXPORTS = [
     WelcomeRoutingModule, SharedModule, AuthModule
   ],
   exports: EXPORTS,
-  providers: [ ]
+  providers: []
 })
 export class WelcomeModule {
   static forRoot(config?: {}): ModuleWithProviders {
     return {
       ngModule: WelcomeModule,
-      providers: [ ]
+      providers: []
     };
   }
 

@@ -8,7 +8,7 @@ export abstract class ResourceBase {
 
   static JSON_HEADERS = {
     headers: new HttpHeaders({
-      'Content-Type':  'application/json'
+      'Content-Type': 'application/json'
     })
   };
 
