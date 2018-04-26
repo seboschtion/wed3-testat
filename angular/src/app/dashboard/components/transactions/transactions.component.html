@@ -1,3 +1,20 @@
-<p>
-  transactions works!
-</p>
+<div>
+  <div>
+    <h2>Filter</h2>
+    <p>Select a year</p>
+    <select [(ngModel)]="selectedYear">
+      <option *ngFor="let year of getYearFilters()" value="{{year.value}}">
+        {{year.text}}
+      </option>
+    </select>
+
+    <p>Select a month</p>
+    <select [(ngModel)]="selectedMonth">
+      <option *ngFor="let month of getMonthFilters()" value="{{month.value}}">
+        {{month.text}}
+      </option>
+    </select>
+  </div>
+
+  <wed-transaction-overview [yearFilter]="selectedYear" [monthFilter]="selectedMonth"></wed-transaction-overview>
+</div>

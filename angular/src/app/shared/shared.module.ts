@@ -12,8 +12,9 @@ const INTERNAL_DECLARATIONS = [
   // Declarations (Components / Directives) which can be used inside the Module
 ];
 const EXPORTS = [
-  ...EXPORTED_DECLARATIONS
+  ...EXPORTED_DECLARATIONS,
   // TODO: Add exports here, if additional modules should be exported
+  CommonModule, FormsModule
 ];
 
 @NgModule({
