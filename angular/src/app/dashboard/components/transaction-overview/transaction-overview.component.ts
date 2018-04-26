@@ -40,6 +40,7 @@ export class TransactionOverviewComponent implements OnInit {
   }
 
   applyFilter() {
+    if(!this.transactions){return;}
     this.filteredTransactions = this.transactions.filter((transaction, index) => {
       let yearMatches = true;
       if(this.yearFilter){
