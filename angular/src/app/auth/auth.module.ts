@@ -26,7 +26,6 @@ const EXPORTS = [
   declarations: INTERNAL_DECLARATIONS,
   imports: [
     RouterModule,
-    FormsModule,
     SharedModule
   ],
   exports: EXPORTS,
