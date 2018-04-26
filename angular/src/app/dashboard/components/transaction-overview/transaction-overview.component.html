@@ -2,10 +2,10 @@
   <table>
 
     <tr>
-      <th>Source</th>
-      <th>Target</th>
-      <th>Amount[CHF]</th>
-      <th>Balance[CHF]</th>
+      <th>Von</th>
+      <th>Zu</th>
+      <th>Betrag[CHF]</th>
+      <th>Kontostand[CHF]</th>
     </tr>
 
     <tr *ngFor="let transaction of filteredTransactions">
@@ -17,5 +17,4 @@
 
   </table>
 
-  <a routerLink="transactions" routerLinkActive="active">All transactions</a>
 </div>

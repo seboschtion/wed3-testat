@@ -1,14 +1,14 @@
 <div>
   <div>
     <h2>Filter</h2>
-    <p>Select a year</p>
+    <p>Wähle ein Jahr aus</p>
     <select [(ngModel)]="selectedYear">
       <option *ngFor="let year of getYearFilters()" value="{{year.value}}">
         {{year.text}}
       </option>
     </select>
 
-    <p>Select a month</p>
+    <p>Wähle einen Monat aus</p>
     <select [(ngModel)]="selectedMonth">
       <option *ngFor="let month of getMonthFilters()" value="{{month.value}}">
         {{month.text}}
