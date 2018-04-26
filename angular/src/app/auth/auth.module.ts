@@ -30,7 +30,7 @@ const EXPORTS = [
     SharedModule
   ],
   exports: EXPORTS,
-  providers: [ AuthResourceService ]
+  providers: [AuthResourceService]
 })
 export class AuthModule {
   static forRoot(config?: {}): ModuleWithProviders {

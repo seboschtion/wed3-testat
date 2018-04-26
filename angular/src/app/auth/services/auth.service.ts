@@ -32,7 +32,7 @@ export class AuthService {
     this.resource.register(registerModel).subscribe(
       (data: Account) => {
         this.login(registerModel);
-      } );
+      });
   }
 
   public login(loginModel: LoginInfo): void {
@@ -41,7 +41,7 @@ export class AuthService {
         this.tokenStore.storedValue = data;
         this.authUser = !isBlank(data) ? data.owner : null;
         this.authenticatedUserChange.emit(this.authenticatedUser);
-      } );
+      });
   }
 
   public logout(): void {

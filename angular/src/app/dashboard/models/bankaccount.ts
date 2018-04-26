@@ -1,4 +1,4 @@
-import {Account} from "../../auth/models";
+import {Account} from '../../auth/models';
 
 export class BankAccount {
   constructor(public ownerId: string,

@@ -1,4 +1,3 @@
-
 export class Transaction {
   constructor(public from: string,
               public target: string,

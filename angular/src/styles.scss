@@ -10,104 +10,104 @@ b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-    vertical-align: baseline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 
 body {
-	line-height: 1;
+  line-height: 1;
 }
 
 ol, ul {
-	list-style: none;
+  list-style: none;
 }
 
 blockquote, q {
-	quotes: none;
+  quotes: none;
 }
 
 blockquote:before, blockquote:after,
 q:before, q:after {
-	content: '';
-	content: none;
+  content: '';
+  content: none;
 }
 
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 /* base */
 
 * {
-    font-family: 'Yantramanav', sans-serif;
-    font-weight: 300;
+  font-family: 'Yantramanav', sans-serif;
+  font-weight: 300;
 }
 
 p, input, button {
-    font-size: 16pt;
+  font-size: 16pt;
 }
 
 h3 {
-    font-size: 32pt;
+  font-size: 32pt;
 }
 
 input {
-    border: none;
-    border-bottom: 1px black solid;
-    box-sizing: border-box;
-    padding: 4px 8px;
-    width: 100%;
-    margin: 24px 0px;
+  border: none;
+  border-bottom: 1px black solid;
+  box-sizing: border-box;
+  padding: 4px 8px;
+  width: 100%;
+  margin: 24px 0px;
 }
 
 input.ng-invalid.ng-dirty {
-    color: lightcoral;
-    border-bottom: 1px lightcoral solid;
+  color: lightcoral;
+  border-bottom: 1px lightcoral solid;
 }
 
 .shadow {
-    box-shadow: 0px 0px 8px 1px #c0bfbf;
+  box-shadow: 0px 0px 8px 1px #c0bfbf;
 }
 
 .validated-input {
-    position: relative;
+  position: relative;
 }
 
 small[hidden] {
-    display: block;
-    visibility: hidden;
+  display: block;
+  visibility: hidden;
 }
 
 .validation-warning {
-    color: lightcoral;
-    height: 16pt;
-    position: absolute;
-    bottom: 0;
-    visibility: visible;
-    margin-left: 8px;
+  color: lightcoral;
+  height: 16pt;
+  position: absolute;
+  bottom: 0;
+  visibility: visible;
+  margin-left: 8px;
 }
 
 button {
-    border-radius: 0px;
-    border: none;
-    cursor: pointer;
-    background: none;
-    color: #2c99f1;
+  border-radius: 0px;
+  border: none;
+  cursor: pointer;
+  background: none;
+  color: #2c99f1;
 }
 
 button:hover {
-    color: #136bb3;
+  color: #136bb3;
 }
 
 button[disabled] {
-    color: #c0bfbf;
+  color: #c0bfbf;
 }

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {TransactionService} from "../../services/transaction.service";
-import {Transaction} from "../../models/transaction";
+import {Component, OnInit} from '@angular/core';
+import {TransactionService} from '../../services/transaction.service';
+import {Transaction} from '../../models/transaction';
 
 @Component({
   selector: 'wed-transaction-overview',
@@ -9,17 +9,18 @@ import {Transaction} from "../../models/transaction";
 })
 export class TransactionOverviewComponent implements OnInit {
 
-  constructor(private transactionService: TransactionService) { }
+  constructor(private transactionService: TransactionService) {
+  }
 
   ngOnInit() {
     this.transactionService.getTransactions().subscribe((value: [Transaction]) => {
-      console.log("transactions received");
-      console.log(value);
-    },
-    error => {
-      console.log("error");
-      console.log(error);
-    });
+        console.log('transactions received');
+        console.log(value);
+      },
+      error => {
+        console.log('error');
+        console.log(error);
+      });
   }
 
 }

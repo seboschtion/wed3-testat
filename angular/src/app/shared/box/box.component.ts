@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 
 @Component({
   selector: 'wed-box',
@@ -6,9 +6,10 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./box.component.scss']
 })
 export class BoxComponent implements OnInit {
-  @Input() boxContent: any
+  @Input() boxContent: any;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
