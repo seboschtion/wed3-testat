@@ -1,3 +1,21 @@
-<p>
-  transaction-overview works!
-</p>
+<div>
+  <table>
+
+    <tr>
+      <th>Source</th>
+      <th>Target</th>
+      <th>Amount[CHF]</th>
+      <th>Balance[CHF]</th>
+    </tr>
+
+    <tr *ngFor="let transaction of filteredTransactions">
+      <td>{{transaction.from}}</td>
+      <td>{{transaction.target}}</td>
+      <td>{{transaction.amount}}</td>
+      <td>{{transaction.total}}</td>
+    </tr>
+
+  </table>
+
+  <a routerLink="transactions" routerLinkActive="active">All transactions</a>
+</div>
