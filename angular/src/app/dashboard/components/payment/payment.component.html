@@ -1,6 +1,7 @@
-<p>
+
+<p *ngIf="bankAccount">
   Von:
-  <input type="text"/>
+  <input type="text" value="{{bankAccount.accountNr}} [{{bankAccount.amount}} CHF]" [readonly]="true"/>
 
   Zu:
   <input type="text" placeholder="Zielkontonummer"/>

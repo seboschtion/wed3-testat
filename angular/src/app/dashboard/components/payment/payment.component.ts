@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {BankAccountService} from '../../services';
+import {BankAccount} from '../../models/bankaccount';
 
 @Component({
   selector: 'wed-payment',
@@ -7,10 +9,17 @@ import {Component, OnInit} from '@angular/core';
 })
 export class PaymentComponent implements OnInit {
 
-  constructor() {
+  constructor(private bankAccountService: BankAccountService) {
   }
 
+  public bankAccount: BankAccount;
+
   ngOnInit() {
+    const bankAccount = this.bankAccountService.getCurrentBankAccount().subscribe(value =>
+      this.bankAccount = value
+    );
+    console.log('bankAccount:');
+    console.log(bankAccount);
   }
 
 }
