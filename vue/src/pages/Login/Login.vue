@@ -5,8 +5,7 @@
   </div>
 </template>
 
-<script>
-</script>
+<script src="./Login.js"></script>
 
 <style>
 h1 {
