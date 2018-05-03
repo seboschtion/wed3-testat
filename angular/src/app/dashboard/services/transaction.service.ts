@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ResourceBase} from '../../core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpResponse} from '@angular/common/http';
 import {catchError, map} from 'rxjs/operators';
 import {BankAccount} from '../models/bankaccount';
 import {Transaction} from '../models/transaction';
@@ -26,7 +26,7 @@ export class TransactionService extends ResourceBase {
     );
   }
 
-  public getTransactions(dateFrom: Date = null, dateTo: Date = null, count: number = 1000): Observable<[Transaction]> {
+  public getTransactions(dateFrom: Date = null, dateTo: Date = null, count: number = 1000): Observable<HttpResponse<Transaction[]>> {
     if (!dateFrom) {
       dateFrom = new Date('1968-11-16T00:00:00');
     }

@@ -1,6 +1,7 @@
 import {Component, Input, OnInit, SimpleChange, SimpleChanges} from '@angular/core';
 import {TransactionService} from "../../services/transaction.service";
 import {Transaction} from "../../models/transaction";
+import {HttpResponse} from "@angular/common/http";
 
 @Component({
   selector: 'wed-transaction-overview',
@@ -9,8 +10,8 @@ import {Transaction} from "../../models/transaction";
 })
 export class TransactionOverviewComponent implements OnInit {
 
-  private transactions: Transaction[];
-  public filteredTransactions: Transaction[];
+  private transactions: Transaction[] = [];
+  public filteredTransactions: Transaction[] = [];
   @Input() maxTransactions: number = 1000;
   @Input() yearFilter: number;
   @Input() monthFilter: number;
@@ -18,17 +19,9 @@ export class TransactionOverviewComponent implements OnInit {
   constructor(private transactionService: TransactionService) {}
 
   ngOnInit() {
-    this.transactionService.getTransactions(null, null, this.maxTransactions).subscribe((value: Transaction[]) => {
-        this.transactions = value;
-        this.filteredTransactions = this.transactions;
-
-        //TODO REMOVE MOCK
-        const x = new Transaction("1", "3", 100.0, 900, new Date());
-        const d = new Date();
-        d.setFullYear(2017);
-        const y = new Transaction("2", "4", 100.0, 900, d);
-        this.transactions = [x, y];
-        this.filteredTransactions = this.transactions;
+    this.transactionService.getTransactions(null, null, this.maxTransactions).subscribe((response: HttpResponse<Transaction[]>) => {
+       this.transactions = response.body;
+       this.filteredTransactions = this.transactions;
     },
     error => {
       console.log(error);
