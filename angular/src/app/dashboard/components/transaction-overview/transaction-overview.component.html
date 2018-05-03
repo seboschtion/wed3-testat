@@ -1,5 +1,10 @@
 <div>
-  <table>
+
+  <h4 *ngIf="!filteredTransactions || filteredTransactions.length == 0">
+    Keine Transaktionen für dieses Konto gefunden.
+  </h4>
+
+  <table *ngIf="filteredTransactions && filteredTransactions.length > 0">
 
     <tr>
       <th>Von</th>
