@@ -3,7 +3,7 @@ import Router from 'vue-router';
 import Auth from '@/services/Auth';
 import Login from '@/pages/Login';
 import Registration from '@/pages/Registration';
-import Dashboard from '@/pages/Dashboard';
+import Dashboard from '@/pages/Dashboard/Dashboard.vue';
 
 Vue.use(Router);
 
