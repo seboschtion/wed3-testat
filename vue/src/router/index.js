@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Auth from '@/services/Auth';
 import Login from '@/pages/Login';
-import Registration from '@/pages/Registration';
+import Registration from '@/pages/Registration/Registration.vue';
 import Dashboard from '@/pages/Dashboard/Dashboard.vue';
 
 Vue.use(Router);

@@ -1,5 +1,5 @@
 export default class Auth {
   isAuthenticated() {
-    return true;
+    return false;
   }
 }
