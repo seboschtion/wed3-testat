@@ -26,10 +26,4 @@
 </template>
 
 <script src="./Registration.js"></script>
-
-<style>
-    h1 {
-        color: lightgreen;
-    }
-</style>
-
+<style src="./Registration.css"></style>

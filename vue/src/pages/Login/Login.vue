@@ -6,10 +6,4 @@
 </template>
 
 <script src="./Login.js"></script>
-
-<style>
-h1 {
-    color: lightblue;
-}
-</style>
-
+<style src="./Login.css"></style>
