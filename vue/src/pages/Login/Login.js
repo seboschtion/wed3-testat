@@ -1,7 +1,7 @@
 export default {
-    data() {
-        return {
-            message: "sali gell vo extern - Login"
-        }
-    }
-}
+  data() {
+    return {
+      message: 'sali gell vo extern - Login',
+    };
+  },
+};

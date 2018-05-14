@@ -46,6 +46,10 @@ module.exports = {
     }],
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'class-methods-use-this': [0]
+    'class-methods-use-this': [0],
+
+    'no-shadow': [0],
+    'no-use-before-define': [0],
+    'import/extensions': [0]
   }
 }

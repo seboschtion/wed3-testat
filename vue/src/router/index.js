@@ -4,6 +4,8 @@ import Auth from '@/services/Auth';
 import Login from '@/pages/Login/Login.vue';
 import Registration from '@/pages/Registration/Registration.vue';
 import Dashboard from '@/pages/Dashboard/Dashboard.vue';
+import NewTransaction from '@/pages/NewTransaction/NewTransaction.vue';
+import TransactionOverview from '@/pages/TransactionOverview/TransactionOverview.vue';
 
 Vue.use(Router);
 
@@ -20,7 +22,7 @@ function requireAuth(to, from, next) {
 }
 
 function redirectHome(to, from, next) {
-  next({ path: auth.isAuthenticated() ? '/dashboard' : 'login' });
+  next({ path: auth.isAuthenticated() ? '/dashboard' : '/login' });
 }
 
 export default new Router({
@@ -35,9 +37,20 @@ export default new Router({
     component: Registration,
   }, {
     path: '/dashboard',
+    redirect: '/dashboard/new-transaction',
     component: Dashboard,
     beforeEnter: requireAuth,
+    children: [
+      {
+        path: 'new-transaction',
+        component: NewTransaction,
+        beforeEnter: requireAuth,
+      },
+      {
+        path: 'transaction-overview',
+        component: TransactionOverview,
+        beforeEnter: requireAuth,
+      },
+    ],
   }],
 });
-
-// https://github.com/vuejs/vue-router/tree/dev/examples

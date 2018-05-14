@@ -11,11 +11,10 @@ export default {
     };
   },
   methods: {
-    register: function(event){
+    register(event) {
       event.preventDefault();
-      if(this.password !== this.passwordConfirmation){ return; }
+      if (this.password !== this.passwordConfirmation) { return; }
       signup(this.username, this.firstname, this.lastname, this.password);
-
     },
   },
 };

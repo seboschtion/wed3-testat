@@ -1,66 +1,65 @@
-const backend = "https://wed3-server.herokuapp.com";
+const backend = 'https://wed3-server.herokuapp.com';
 
-export function login( login, password) {
-  return postJson("/auth/login", { login, password }).then(parseJSON);
+export function login(login, password) {
+  return postJson('/auth/login', { login, password }).then(parseJSON);
 }
 
 export function signup(
   login,
   firstname,
   lastname,
-  password
-){
-  return postJson("/auth/register", {
+  password,
+) {
+  return postJson('/auth/register', {
     login,
     firstname,
     lastname,
-    password
+    password,
   }).then(parseJSON);
 }
 
 export function getAccountDetails(token) {
-  return getAuthenticatedJson(`/accounts`, token).then(parseJSON);
+  return getAuthenticatedJson('/accounts', token).then(parseJSON);
 }
 
 export function getAccount(
   accountNr,
-  token
-){
+  token,
+) {
   return getAuthenticatedJson(`/accounts/${accountNr}`, token).then(parseJSON);
 }
 
 export function transfer(
   target,
   amount,
-  token
-){
-  return postAuthenticatedJson("/accounts/transactions", token, {
+  token,
+) {
+  return postAuthenticatedJson('/accounts/transactions', token, {
     target,
-    amount
+    amount,
   }).then(parseJSON);
 }
 
 export function getTransactions(
   token,
-  fromDate = "",
-  toDate = "",
+  fromDate = '',
+  toDate = '',
   count = 3,
-  skip = 0
+  skip = 0,
 ) {
   return getAuthenticatedJson(
     `/accounts/transactions?fromDate=${fromDate}&toDate=${toDate}&count=${count}&skip=${skip}`,
-    token
+    token,
   ).then(parseJSON);
 }
 
 function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return response;
-  } else {
-    const error = new Error(response.statusText);
-    error.response = response;
-    throw error;
   }
+  const error = new Error(response.statusText);
+  error.response = response;
+  throw error;
 }
 
 function parseJSON(response) {
@@ -69,37 +68,37 @@ function parseJSON(response) {
 
 function getAuthenticatedJson(endpoint, token) {
   return fetch(`${backend}${endpoint}`, {
-    method: "GET",
+    method: 'GET',
     headers: {
       Authorization: `Bearer ${token}`,
-      Accept: "application/json"
-    }
+      Accept: 'application/json',
+    },
   }).then(checkStatus);
 }
 
 function postJson(endpoint, params) {
   return fetch(`${backend}${endpoint}`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json"
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
     },
-    body: JSON.stringify(params)
+    body: JSON.stringify(params),
   }).then(checkStatus);
 }
 
 function postAuthenticatedJson(
   endpoint,
   token,
-  params
+  params,
 ) {
   return fetch(`${backend}${endpoint}`, {
-    method: "POST",
+    method: 'POST',
     headers: {
       Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-      Accept: "application/json"
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
     },
-    body: JSON.stringify(params)
+    body: JSON.stringify(params),
   }).then(checkStatus);
 }
