@@ -1,7 +1,7 @@
+import Nav from '../../components/Nav/Nav.vue';
+
 export default {
-  data() {
-    return {
-      message: 'sali gell vo extern',
-    };
+  components: {
+    Nav
   },
 };

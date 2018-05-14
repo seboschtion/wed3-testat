@@ -1,7 +1,6 @@
 <template>
   <div>
-    <h1>Dashboard</h1>
-    <p>{{message}}</p>
+    <Nav/>
     <router-view></router-view>
   </div>
 </template>
