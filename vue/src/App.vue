@@ -11,10 +11,16 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css?family=Gothic+A1:300,500,800');
+
 #app {
-    font-family: "Avenir", Helvetica, Arial, sans-serif;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
+    font-family: 'Gothic A1', sans-serif;
+    font-weight: 300;
+    margin: 24px 48px;
+}
+
+a {
+    color: black;
 }
 </style>
+

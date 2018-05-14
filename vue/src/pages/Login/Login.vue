@@ -1,7 +1,7 @@
 <template>
   <div>
-        <h1>Login</h1>
-        <p>No account? <router-link to="/register">Register for free!</router-link></p>
+        <Title title="Login"/>
+        <p>Noch kein Account? <router-link to="/register">Melde dich hier an!</router-link></p>
   </div>
 </template>
 

@@ -1,7 +1,7 @@
+import Title from '../../components/Title/Title.vue';
+
 export default {
-  data() {
-    return {
-      message: 'sali gell vo extern - Login',
-    };
+  components: {
+    Title
   },
 };

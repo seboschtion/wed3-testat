@@ -1,24 +1,16 @@
 <template>
   <div>
-    <h1>Registration</h1>
+    <Title title="Registration"/>
 
     <form v-on:submit.prevent="register">
-      <label>Vorname</label>
-      <input type="text" v-model="firstname"/>
-
-      <label>Nachname</label>
-      <input type="text" v-model="lastname"/>
-
-      <label>Username</label>
-      <input type="text" v-model="username"/>
-
-      <label>Passwort</label>
-      <input type="password" v-model="password"/>
-
-      <label>Passwort bestätigen</label>
-      <input type="password" v-model="passwordConfirmation"/>
-      <label v-if="passwordConfirmation !== password">Die Passwörter stimmen nicht überein</label>
-
+      <Input label="Vorname" v-model="firstname"/>
+      <Input label="Nachname" v-model="lastname"/>
+      <Input label="Benutzername" v-model="username"/>
+      <Input label="Passwort" type="password" v-model="password"/>
+      <Input label="Passwort bestätigen" type="password" v-model="passwordConfirmation"/>
+      <small v-if="passwordConfirmation !== password" class="error">
+        Die Passwörter stimmen nicht überein
+      </small>
       <button type="submit">Registrieren</button>
     </form>
 

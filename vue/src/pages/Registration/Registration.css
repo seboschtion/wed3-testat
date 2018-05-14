@@ -1,3 +1,10 @@
-h1 {
-    color: lightgreen;
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+small.error {
+    color: #ff5e00;
+    font-weight: 500;
+    margin-bottom: 24px;
 }
