@@ -23,7 +23,7 @@ export default {
       if (this.password !== this.passwordConfirmation) { return; }
       signup(this.username, this.firstname, this.lastname, this.password)
         .then(result => {
-          this.$router.push('/login')
+          this.$router.push('/login');
         });
     },
   },

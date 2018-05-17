@@ -9,10 +9,8 @@ import TransactionOverview from '@/pages/TransactionOverview/TransactionOverview
 
 Vue.use(Router);
 
-const auth = new Auth();
-
 function requireAuth(to, from, next) {
-  if (!auth.isAuthenticated()) {
+  if (!Auth.isAuthenticated()) {
     next({
       path: '/',
     });
@@ -22,7 +20,7 @@ function requireAuth(to, from, next) {
 }
 
 function redirectHome(to, from, next) {
-  next({ path: auth.isAuthenticated() ? '/dashboard' : '/login' });
+  next({ path: Auth.isAuthenticated() ? '/dashboard' : '/login' });
 }
 
 export default new Router({
