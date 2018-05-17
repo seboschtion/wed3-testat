@@ -1,4 +1,3 @@
-
 class Auth {
   token = '';
   owner = null;

@@ -1,3 +1,9 @@
-h1 {
-    color: lightblue;
+#form-login,
+#new-account {
+    margin: 0px auto;
+    max-width: 420px;
+}
+
+#new-account {
+    padding: 48px 0px;
 }

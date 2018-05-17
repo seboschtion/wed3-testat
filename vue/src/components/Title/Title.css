@@ -2,3 +2,9 @@ h2 {
     font-size: 48pt;
     margin: 24px 0px;
 }
+
+@media(max-width: 400px){
+    h2 {
+        font-size: 36pt;
+    }
+}
