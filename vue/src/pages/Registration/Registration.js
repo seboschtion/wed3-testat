@@ -21,7 +21,10 @@ export default {
     register(event) {
       event.preventDefault();
       if (this.password !== this.passwordConfirmation) { return; }
-      signup(this.username, this.firstname, this.lastname, this.password);
+      signup(this.username, this.firstname, this.lastname, this.password)
+        .then(result => {
+          this.$router.push('/login')
+        });
     },
   },
 };
