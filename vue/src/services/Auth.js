@@ -1,6 +1,14 @@
+const TOKEN_KEY = "token";
+
 class Auth {
-  token = '';
-  owner = null;
+
+  get token() {
+    return localStorage.getItem(TOKEN_KEY);
+  }
+
+  set token(token) {
+    localStorage.setItem(TOKEN_KEY, token);
+  }
 
   isAuthenticated = () => this.token !== null && this.token !== '';
 }
