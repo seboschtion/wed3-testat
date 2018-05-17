@@ -6,7 +6,8 @@
       <input disabled v-model="from"/>
 
       <label>An</label>
-      <input v-model="to"/>
+      <input v-model="to" v-on:input='loadAccount($event.target.value)'/>
+      <p>{{recipientName}}</p>
 
       <label>Betrag</label>
       <input v-model="amount"/>
