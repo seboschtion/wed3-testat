@@ -6,4 +6,4 @@ export default {
     CreateTransaction,
     TransactionOverview,
   },
-}
+};

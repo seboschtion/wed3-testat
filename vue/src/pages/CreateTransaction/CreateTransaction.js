@@ -12,11 +12,11 @@ export default {
     };
   },
 
-  beforeMount(){
-    getAccountDetails(Auth.token).then(response => {
+  beforeMount() {
+    getAccountDetails(Auth.token).then((response) => {
       this.myAccountNumber = response.accountNr;
       this.myBalance = response.amount;
       this.from = `${this.myAccountNumber} [${this.myBalance} CHF]`;
     });
-  }
+  },
 };

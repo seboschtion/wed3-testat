@@ -1,11 +1,11 @@
 import Title from '../../components/Title/Title.vue';
 import Input from '../../components/Input/Input.vue';
 import Auth from '../../services/Auth';
-import { login } from "../../services/Api";
+import { login } from '../../services/Api';
 
 export default {
   components: {
-    Title, Input
+    Title, Input,
   },
 
   data() {
@@ -18,7 +18,7 @@ export default {
   methods: {
     login(event) {
       event.preventDefault();
-      login(this.username, this.password).then(response => {
+      login(this.username, this.password).then((response) => {
         Auth.token = response.token;
         Auth.owner = response.owner;
         this.$router.push('/dashboard');
