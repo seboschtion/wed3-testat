@@ -1,3 +1,33 @@
-.active {
-  background-color: lightgreen;
+@import "../../../../variables.scss";
+
+#wrapper {
+  height: 90vh;
+  width: 100vw;
+}
+
+#dashboard {
+  padding: 48px;
+}
+
+h2 {
+  font-size: 48pt;
+  margin: 48px;
+}
+
+nav ul {
+  display: flex;
+  margin-bottom: 48px;
+
+  a {
+    border: 1px lightgray solid;
+    padding: 12px;
+    margin-right: 24px;
+    border-radius: 8px; 
+    display: block;
+  }
+
+  a.active {
+    color: $theme-dark;
+    border-color: $theme;
+  } 
 }

@@ -1,0 +1,11 @@
+@import "../../../variables.scss";
+
+button {
+    color: $warning;
+    font-weight: 700;
+}
+
+button:hover {
+    color: white;
+    background-color: $warning;
+}
