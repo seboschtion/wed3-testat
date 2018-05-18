@@ -1,20 +1,19 @@
-<div>
-  <div>
-    <h2>Filter</h2>
-    <p>Wähle ein Jahr aus</p>
+<div class="filter">
+  <label>Wähle ein Jahr aus
     <select [(ngModel)]="selectedYear">
       <option *ngFor="let year of getYearFilters()" value="{{year.value}}">
         {{year.text}}
       </option>
     </select>
+  </label>
 
-    <p>Wähle einen Monat aus</p>
-    <select [(ngModel)]="selectedMonth">
+  <label>Wähle einen Monat aus
+    <select id="month" [(ngModel)]="selectedMonth">
       <option *ngFor="let month of getMonthFilters()" value="{{month.value}}">
         {{month.text}}
       </option>
     </select>
-  </div>
-
-  <wed-transaction-overview [yearFilter]="selectedYear" [monthFilter]="selectedMonth"></wed-transaction-overview>
+  </label>
 </div>
+
+<wed-transaction-overview [yearFilter]="selectedYear" [monthFilter]="selectedMonth"></wed-transaction-overview>
