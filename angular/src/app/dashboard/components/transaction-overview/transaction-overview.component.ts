@@ -19,8 +19,8 @@ export class TransactionOverviewComponent implements OnInit {
   constructor(private transactionService: TransactionService) {}
 
   ngOnInit() {
-    this.transactionService.getTransactions(null, null, this.maxTransactions).subscribe((response: HttpResponse<Transaction[]>) => {
-       this.transactions = response.body;
+    this.transactionService.getTransactions(null, null, this.maxTransactions).subscribe((response: any) => {
+       this.transactions = response.result;
        this.filteredTransactions = this.transactions;
     },
     error => {
@@ -34,15 +34,18 @@ export class TransactionOverviewComponent implements OnInit {
 
   applyFilter() {
     if(!this.transactions){return;}
+
     this.filteredTransactions = this.transactions.filter((transaction, index) => {
+      const date = new Date(transaction.date);
       let yearMatches = true;
+
       if(this.yearFilter){
-        yearMatches = transaction.date.getFullYear() == this.yearFilter
+        yearMatches = date.getFullYear() == this.yearFilter
       }
 
       let monthMatches = true;
       if(this.monthFilter){
-        monthMatches = transaction.date.getMonth() == (this.monthFilter-1);
+        monthMatches = date.getMonth() == (this.monthFilter-1);
       }
       return yearMatches && monthMatches;
     });
