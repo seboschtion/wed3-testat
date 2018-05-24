@@ -18,6 +18,7 @@ export class PaymentComponent implements OnInit {
   public bankAccount: BankAccount;
   private transaction: Transaction;
   public target: string;
+  public targetBankAccountOwner: string;
 
   ngOnInit() {
     const bankAccount = this.bankAccountService.getCurrentBankAccount().subscribe(value =>
@@ -41,6 +42,14 @@ export class PaymentComponent implements OnInit {
     return false;
   }
   public searchBankaccount() {
-    console.log(this);
+    this.bankAccountService.getSpecificBankAccount(this.target).subscribe(bankAccount => {
+      if (bankAccount) {
+        this.targetBankAccountOwner = bankAccount.owner.firstname + bankAccount.owner.lastname;
+      } else {
+        this.targetBankAccountOwner = '';
+      }
+      console.log(this.targetBankAccountOwner);
+    });
+
   }
 }

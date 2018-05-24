@@ -28,6 +28,9 @@ export class BankAccountService extends ResourceBase {
   }
 
   public getSpecificBankAccount(accountNr: string): Observable<BankAccount> {
+    if (!accountNr) {
+      return null;
+    }
     return this.get(`/accounts/${accountNr}`)
       .pipe(
         map((result: any) => {
