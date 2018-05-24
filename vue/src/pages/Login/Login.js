@@ -23,11 +23,9 @@ export default {
       if (!this.password || this.password.length < 3) { this.errorMessage = 'Passwort ungültig'; return; }
       this.errorMessage = '';
 
-      login(this.username, this.password).then((response) => {
-        Auth.token = response.token;
-        Auth.owner = response.owner;
-        this.$router.push('/dashboard');
-      }).catch(e => this.errorMessage = 'Login fehlgeschlagen');
+      login(this.username, this.password)
+        .then((response) => this.$router.push('/dashboard'))
+        .catch(e => this.errorMessage = 'Login fehlgeschlagen');
     },
   },
 };
