@@ -5,6 +5,7 @@
     <form id="form-login" v-on:submit.prevent="login">
       <Input label="Benutzername" v-model="username"/>
       <Input label="Passwort" v-model="password" type="password"/>
+      <p>{{errorMessage}}</p>
       <button type="submit">Login</button>
     </form>
 
