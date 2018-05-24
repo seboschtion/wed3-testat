@@ -12,7 +12,9 @@
       </thead>
 
       <tbody>
-        <tr v-for="(transaction, index) in getFilteredTransactions(yearFilter, monthFilter)" :key="index">
+        <tr v-for="(transaction, index) in getFilteredTransactions(yearFilter, monthFilter)"
+            :key="index">
+          <td v-if="showCompleteList">{{prettifyDate(transaction.date)}}</td>
           <td>{{transaction.from}}</td>
           <td>{{transaction.target}}</td>
           <td>{{transaction.amount}}</td>

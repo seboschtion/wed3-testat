@@ -5,20 +5,26 @@
 
       <p>Wähle ein Jahr</p>
       <select v-model="selectedYear">
-        <option v-for="yearFilter in getYearFilters()" :value="yearFilter.value">
+        <option v-for="(yearFilter, index) in getYearFilters()"
+                :value="yearFilter.value"
+                :key="index">
           {{yearFilter.text}}
         </option>
       </select>
 
       <p>Wähle einen Monat</p>
       <select v-model="selectedMonth">
-        <option v-for="month in getMonthFilters()" :value="month.value">
+        <option v-for="(month, index) in getMonthFilters()"
+                :value="month.value"
+                :key="index">
           {{month.text}}
         </option>
       </select>
     </div>
 
-    <TransactionList v-bind:yearFilter="selectedYear" v-bind:monthFilter="selectedMonth"></TransactionList>
+    <TransactionList v-bind:yearFilter="selectedYear"
+                     v-bind:monthFilter="selectedMonth"
+                      showCompleteList="true"></TransactionList>
   </div>
 </template>
 
