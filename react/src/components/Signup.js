@@ -2,7 +2,8 @@
 
 import React from "react";
 import { Redirect } from "react-router-dom";
-
+import { Button, Form } from "semantic-ui-react";
+import ComponentTitle from "./ComponentTitle";
 import { signup } from "../api";
 
 class Signup extends React.Component<{}, *> {
@@ -58,34 +59,53 @@ class Signup extends React.Component<{}, *> {
     }
 
     return (
-      <div>
-        <h1>Bank of Rapperswil</h1>
-        <form>
-          <h2>Registrieren</h2>
-          <input
-            onChange={this.handleLoginChanged}
-            placeholder="Login"
-            value={this.state.login}
-          />
-          <input
-            onChange={this.handleFirstNameChanged}
-            placeholder="Vorname"
-            value={this.state.firstname}
-          />
-          <input
-            onChange={this.handleLastNameChanged}
-            placeholder="Nachname"
-            value={this.state.lastname}
-          />
-          <input
-            onChange={this.handlePasswordChanged}
-            placeholder="Passwort"
-            type="password"
-            value={this.state.password}
-          />
-          <button onClick={this.handleSubmit}>Account eröffnen</button>
-        </form>
-        {error && <p>Es ist ein Fehler aufgetreten!</p>}
+      <div className="entry-page">
+        <h1>Red Bank of North Koreact</h1>
+        <div className="window entry-form">
+          <ComponentTitle title="Registrierung" />
+          <div className="window-content">
+            <Form>
+              <label>
+                Vorname
+                <input
+                  onChange={this.handleFirstNameChanged}
+                  placeholder="Vorname"
+                  value={this.state.firstname}
+                />
+              </label>
+
+              <label>
+                Nachname
+                <input
+                  onChange={this.handleLastNameChanged}
+                  placeholder="Nachname"
+                  value={this.state.lastname}
+                />
+              </label>
+
+              <label>
+                Username
+                <input
+                  onChange={this.handleLoginChanged}
+                  placeholder="Username"
+                  value={this.state.login}
+                />
+              </label>
+
+              <label>
+                Passwort
+                <input
+                  onChange={this.handlePasswordChanged}
+                  placeholder="Passwort"
+                  type="password"
+                  value={this.state.password}
+                />
+              </label>
+              <Button onClick={this.handleSubmit}>Account eröffnen</Button>
+              {error && <p className="error">Es ist ein Fehler aufgetreten!</p>}
+            </Form>
+          </div>
+        </div>
       </div>
     );
   }
