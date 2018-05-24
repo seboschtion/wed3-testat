@@ -17,8 +17,8 @@
           <td v-if="showCompleteList">{{prettifyDate(transaction.date)}}</td>
           <td>{{transaction.from}}</td>
           <td>{{transaction.target}}</td>
-          <td>{{transaction.amount}}</td>
-          <td>{{transaction.total}}</td>
+          <td>{{transaction.amount.toFixed(2)}}</td>
+          <td>{{transaction.total.toFixed(2)}}</td>
         </tr>
       </tbody>
 

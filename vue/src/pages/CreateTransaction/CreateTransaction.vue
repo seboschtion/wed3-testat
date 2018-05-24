@@ -2,7 +2,7 @@
   <div>
     <form v-if="transactionCompleted == false">
       <label>Von</label>
-      <input disabled :value="myAccountNumber + ' [' + myBalance + ' CHF]' ">
+      <input disabled :value="myAccountNumber + ' [' + myBalance.toFixed(2) + ' CHF]' ">
 
       <label>An</label>
       <input v-model="to" v-on:input='loadAccount($event.target.value)'/>
