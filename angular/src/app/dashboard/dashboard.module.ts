@@ -11,6 +11,7 @@ import {BankAccountService} from './services';
 import {TransactionService} from './services/transaction.service';
 import {TransactionOverviewComponent} from './components/transaction-overview/transaction-overview.component';
 import {PaymentComponent} from './components/payment/payment.component';
+import {CurrencyMinDirective} from '../shared/currency-min-validator.directive';
 
 const EXPORTED_DECLARATIONS = [
   // Declarations (Components / Directives) which can be used outside the Module
@@ -36,8 +37,7 @@ const EXPORTS = [
     // DI Providers (hierarchical)
     // (Services, Tokens, Factories, ...) used from/within this Module; add either here or in forRoot();
     //  * Registers these Classes for the current Module; importing Modules will create new instances (for importing level and below)
-    BankAccountService,
-    TransactionService
+    BankAccountService, TransactionService
   ]
 })
 export class DashboardModule {
