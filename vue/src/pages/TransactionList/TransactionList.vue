@@ -12,7 +12,7 @@
       </thead>
 
       <tbody>
-        <tr v-for="(transaction, index) in transactions" :key="index">
+        <tr v-for="(transaction, index) in getFilteredTransactions(yearFilter, monthFilter)" :key="index">
           <td>{{transaction.from}}</td>
           <td>{{transaction.target}}</td>
           <td>{{transaction.amount}}</td>
@@ -21,7 +21,6 @@
       </tbody>
 
     </table>
-
   </div>
 </template>
 

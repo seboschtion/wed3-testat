@@ -17,7 +17,8 @@
         </option>
       </select>
     </div>
-    <TransactionList ></TransactionList>
+
+    <TransactionList v-bind:yearFilter="selectedYear" v-bind:monthFilter="selectedMonth"></TransactionList>
   </div>
 </template>
 
