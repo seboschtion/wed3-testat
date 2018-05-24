@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h3>Neue Zahlung</h3>
     <form v-if="transactionCompleted == false">
       <label>Von</label>
       <input disabled :value="myAccountNumber + ' [' + myBalance + ' CHF]' ">
