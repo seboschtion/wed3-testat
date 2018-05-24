@@ -11,7 +11,6 @@ export class CurrencyMinDirective implements Validator {
   customMin: number;
 
   validate(c: FormControl): {[key: string]: any} {
-    debugger
     const amount = c.value;
     return ( amount < this.customMin) ? {'customMin': true} : null;
   }
