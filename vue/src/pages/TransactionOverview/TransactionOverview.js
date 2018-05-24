@@ -17,6 +17,7 @@ export default {
   methods: {
     getYearFilters() {
       return [
+        { text: "-", value: '', key: ''},
         { text: "2018", value: 2018, key: 2018},
         { text: "2017", value: 2017, key: 2017},
         { text: "2016", value: 2016, key: 2016},
@@ -24,6 +25,7 @@ export default {
     },
     getMonthFilters() {
       return [
+        { text: "-", value: '', key: ''},
         { text: "Januar", value: 1, key: 1},
         { text: "Februar", value: 2, key: 2},
         { text: "März", value: 3, key: 3},
