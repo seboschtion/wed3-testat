@@ -1,7 +1,6 @@
-const TOKEN_KEY = "token";
+const TOKEN_KEY = 'token';
 
 class Auth {
-
   get token() {
     return localStorage.getItem(TOKEN_KEY);
   }
