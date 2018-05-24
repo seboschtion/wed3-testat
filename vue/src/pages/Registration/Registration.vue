@@ -8,9 +8,7 @@
       <Input label="Benutzername" v-model="username"/>
       <Input label="Passwort" type="password" v-model="password"/>
       <Input label="Passwort bestätigen" type="password" v-model="passwordConfirmation"/>
-      <small v-if="passwordConfirmation !== password" class="error">
-        Die Passwörter stimmen nicht überein
-      </small>
+      <p class="error">{{errorMessage}}</p>
       <button type="submit">Registrieren</button>
     </form>
 
