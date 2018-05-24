@@ -26,16 +26,21 @@ export default {
     },
     prettifyDate(dateString) {
       return Moment(dateString).format("DD.MM.YYYY");
-    }
+    },
+    fetchTransactions() {
+      const amountFetched = this.count ? this.count : 100;
+      getTransactions(Auth.token, '', '', amountFetched).then(response => {
+        this.transactions = response.result;
+      }).catch(e => {
+        this.errorMessage = e.toString();
+      });
+    },
   },
 
   beforeMount() {
-    console.log(this.showCompleteList);
-    const amountFetched = this.count ? this.count : 100;
-    getTransactions(Auth.token, '', '', amountFetched).then(response => {
-      this.transactions = response.result;
-    }).catch(e => {
-      this.errorMessage = e.toString();
+    this.$root.$on('refreshTransactions', () => {
+      this.fetchTransactions();
     });
+    this.fetchTransactions();
   },
 };

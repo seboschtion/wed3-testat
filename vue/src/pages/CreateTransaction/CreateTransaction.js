@@ -40,7 +40,7 @@ export default {
       transfer(this.to, this.amount, Auth.token).then(response => {
         this.transactionCompleted = true;
         this.myBalance = response.total;
-        this.$emit('refreshTransactions');
+        this.$root.$emit('refreshTransactions');
 
       }).catch(e => {
         this.errorMessage = e.toString();
