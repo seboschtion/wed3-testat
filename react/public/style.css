@@ -1,91 +1,152 @@
 /* Customizations */
+
+:root {
+  --theme: #e74034;
+  --warning: #1897e0;
+}
+
 nav {
-    display: flex;
-    height: 4rem;
-    width: 100%;
-    margin-bottom: 80px;
-    background-color: #0065a3;
+  display: flex;
+  height: 4rem;
+  width: 100%;
+  margin-bottom: 80px;
+  background-color: var(--theme);
+  padding-left: 24px;
+}
+
+label {
+  margin-bottom: 12px;
 }
 
 .navigation-targets,
 .navigation-actions {
-    display: flex;
+  display: flex;
 }
 
 .navigation-targets {
-    flex: 1 1 auto;
+  flex: 1 1 auto;
 }
 
 .navigation-actions {
-    flex: 0 0 auto;
-    margin-right: 12px;
+  flex: 0 0 auto;
+  margin-right: 12px;
 }
 
 .navigation-actions button,
 nav a {
-    align-self: center;
+  align-self: center;
 }
 
 nav a {
-    display: block;
-    font-size: 1.7em;
-    color: white;
-    margin: 12px;
-    padding: 8px 12px;
-    border-radius: 4px;
+  display: block;
+  font-size: 1.7em;
+  color: white;
+  margin: 12px;
+  padding: 8px 12px;
+  border-radius: 4px;
 }
 
 nav a:hover,
 nav a.active {
-    color: #0065a3;
-    background-color: white;
-    transition: 0.2s;
+  color: var(--theme);
+  background-color: white;
+  transition: 0.2s;
+}
+
+h1 {
+  color: var(--theme);
+  border: var(--theme) solid;
+  border-width: 4px 0px;
+  padding: 24px;
+}
+
+h2 {
+  margin-bottom: 0px;
+  color: white;
+  align-self: center;
+  margin-right: 48px;
+}
+
+.ui.form input:active,
+.ui.form input:focus {
+  border-color: var(--theme) !important;
+}
+
+.ui.form {
+  display: flex;
+  flex-direction: column;
 }
 
 .site-content {
-    display: flex;
-    margin: 12px;
+  display: flex;
+  margin: 12px;
 }
 
 .window {
-    border: 1px solid gray;
-    border-radius: 10px;
-    margin: 12px;
-    flex: 1 1 100%;
+  border: 1px solid var(--theme);
+  border-radius: 10px;
+  margin: 12px;
+  flex: 1 1 100%;
 }
 
 .window-left {
-    flex: 0 0 20%;
-    min-width: 400px;
+  flex: 0 0 20%;
+  min-width: 400px;
 }
 
 .window-content {
-    margin: 12px;
+  margin: 12px;
+}
+
+.entry-page .window {
+  margin: 64px auto 0px auto;
 }
 
 .button {
-    margin: 12px 12px 12px 0px !important;
+  margin: 12px 0px !important;
+}
+
+.button.dropdown {
+  margin-right: 12px !important;
 }
 
 .hide {
-    display: none !important;
+  display: none !important;
 }
 
 .component-title {
-    background-color: #0065a3;
-    color: white;
-    border-radius: 10px 10px 0px 0px;
-    padding: 4px 8px;
+  background-color: var(--theme);
+  color: white;
+  border-radius: 10px 10px 0px 0px;
+  padding: 4px 8px;
+}
+
+.entry-form {
+  width: 480px;
+}
+
+a {
+  color: var(--theme);
+}
+
+a:hover {
+  color: var(--theme);
+  text-decoration: underline;
+}
+
+.error {
+  color: var(--warning);
+  font-weight: bold;
 }
 
 @media (max-width: 940px) {
-    .window-left {
-        flex: none;
-        min-width: none;
-        width: auto;
-    }
+  .window-left {
+    flex: none;
+    min-width: none;
+    width: auto;
+  }
 
-    .site-content {
-        flex-flow: row wrap;
-    }
+  .site-content {
+    flex-flow: row wrap;
+  }
 }

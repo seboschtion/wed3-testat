@@ -1,9 +1,8 @@
 <template>
   <div>
-    <h3>Neue Zahlung</h3>
-    <form>
+    <form v-if="transactionCompleted == false">
       <label>Von</label>
-      <input disabled v-model="from"/>
+      <input disabled :value="myAccountNumber + ' [' + myBalance + ' CHF]' ">
 
       <label>An</label>
       <input v-model="to" v-on:input='loadAccount($event.target.value)'/>
@@ -12,8 +11,15 @@
       <label>Betrag</label>
       <input v-model="amount"/>
 
-      <button>Zahlung ausführen</button>
+      <p>{{errorMessage}}</p>
+      <button v-on:click="createTransaction()">Zahlung ausführen</button>
     </form>
+
+    <div v-if="transactionCompleted == true">
+      <p>Zahlung an {{to}} erfolgreich.</p>
+      <p>Neuer Kontostand: {{myBalance}}</p>
+      <button v-on:click="reset()">Neue Zahlung</button>
+    </div>
   </div>
 </template>
 

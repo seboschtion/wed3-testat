@@ -8,7 +8,9 @@
       <button type="submit">Login</button>
     </form>
 
-    <p id="new-account">Noch kein Account? <router-link to="/register">Melde dich hier an!</router-link></p>
+    <p id="new-account">Noch kein Account?
+      <router-link to="/register">Melde dich hier an!</router-link>
+    </p>
   </div>
 </template>
 
