@@ -1,8 +1,12 @@
-<nav>
-  <ul>
-    <li><a routerLink="." routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">overview</a></li>
-    <li><a routerLink="transactions" routerLinkActive="active">transactions</a></li>
-  </ul>
-</nav>
-<wed-logout></wed-logout>
-<router-outlet></router-outlet>
+<div id="wrapper">
+  <h2>Federal Bank of Bangulardesh<wed-logout></wed-logout></h2>
+  <div id="dashboard" class="shadow">
+    <nav>
+      <ul>
+        <li><a routerLink="." routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">overview</a></li>
+        <li><a routerLink="transactions" routerLinkActive="active">transactions</a></li>
+      </ul>
+    </nav>
+    <router-outlet></router-outlet>
+  </div>
+</div>

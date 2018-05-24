@@ -1,0 +1,19 @@
+@import "../../../../variables.scss";
+
+table {
+    width: 100%;
+
+    thead th {
+        font-weight: 700;
+        text-align: left;
+        padding: 0px 12px 24px 12px;
+    }
+
+    tr:nth-child(odd) td {
+        background-color: $light;
+    }
+
+    td {
+        padding: 12px;
+    }
+}

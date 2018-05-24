@@ -1,5 +1,7 @@
-<div>
-  <wed-transaction-overview [maxTransactions]="4"></wed-transaction-overview>
-  <a routerLink="transactions" routerLinkActive="active">Alle Transaktionen</a>
+<div class="flex">
+  <wed-payment></wed-payment>
+  <div>
+    <wed-transaction-overview [maxTransactions]="4"></wed-transaction-overview>
+    <a routerLink="transactions" routerLinkActive="active">Alle Transaktionen</a>
+  </div> 
 </div>
-<wed-payment></wed-payment>

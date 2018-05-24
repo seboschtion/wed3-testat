@@ -4,7 +4,7 @@ import { signup } from '../../services/Api';
 
 export default {
   components: {
-    Title, Input
+    Title, Input,
   },
 
   data() {
@@ -22,8 +22,8 @@ export default {
       event.preventDefault();
       if (this.password !== this.passwordConfirmation) { return; }
       signup(this.username, this.firstname, this.lastname, this.password)
-        .then(result => {
-          this.$router.push('/login')
+        .then((result) => {
+          this.$router.push('/login');
         });
     },
   },

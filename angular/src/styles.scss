@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import "/variables.scss";
 
 /* resets */
 html, body, div, span, applet, object, iframe,
@@ -50,10 +51,12 @@ table {
 * {
   font-family: 'Yantramanav', sans-serif;
   font-weight: 300;
+  font-size: 14pt;
 }
 
-p, input, button {
-  font-size: 16pt;
+body {
+  display: flex;
+  flex-direction: column;
 }
 
 h3 {
@@ -70,12 +73,12 @@ input {
 }
 
 input.ng-invalid.ng-dirty {
-  color: lightcoral;
-  border-bottom: 1px lightcoral solid;
+  color: $warning;
+  border-bottom: 1px $warning solid;
 }
 
 .shadow {
-  box-shadow: 0px 0px 8px 1px #c0bfbf;
+  box-shadow: 0px 0px 8px 1px $disabled;
 }
 
 .validated-input {
@@ -88,7 +91,7 @@ small[hidden] {
 }
 
 .validation-warning {
-  color: lightcoral;
+  color: $warning;
   height: 16pt;
   position: absolute;
   bottom: 0;
@@ -101,13 +104,22 @@ button {
   border: none;
   cursor: pointer;
   background: none;
-  color: #2c99f1;
+  color: $theme;
 }
 
 button:hover {
-  color: #136bb3;
+  color: $theme-dark;
 }
 
 button[disabled] {
-  color: #c0bfbf;
+  color: $disabled;
+}
+
+a {
+  color: $theme;
+  text-decoration: none;
+}
+
+a:hover {
+  color: $theme-dark;
 }

@@ -1,24 +1,28 @@
 <div>
 
-  <h4 *ngIf="!filteredTransactions || filteredTransactions.length == 0">
+  <p *ngIf="!filteredTransactions || filteredTransactions.length == 0">
     Keine Transaktionen für dieses Konto gefunden.
-  </h4>
+  </p>
 
   <table *ngIf="filteredTransactions && filteredTransactions.length > 0">
 
-    <tr>
-      <th>Von</th>
-      <th>Zu</th>
-      <th>Betrag[CHF]</th>
-      <th>Kontostand[CHF]</th>
-    </tr>
+    <thead>
+      <tr>
+        <th>Von</th>
+        <th>Zu</th>
+        <th>Betrag[CHF]</th>
+        <th>Kontostand[CHF]</th>
+      </tr>
+    </thead>
 
-    <tr *ngFor="let transaction of filteredTransactions">
-      <td>{{transaction.from}}</td>
-      <td>{{transaction.target}}</td>
-      <td>{{transaction.amount}}</td>
-      <td>{{transaction.total}}</td>
-    </tr>
+    <tbody>
+      <tr *ngFor="let transaction of filteredTransactions">
+        <td>{{transaction.from}}</td>
+        <td>{{transaction.target}}</td>
+        <td>{{transaction.amount | currency: 'CHF'}}</td>
+        <td>{{transaction.total | currency: 'CHF'}}</td>
+      </tr>
+    </tbody>
 
   </table>
 

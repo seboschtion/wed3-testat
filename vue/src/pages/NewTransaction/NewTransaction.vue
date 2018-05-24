@@ -1,5 +1,10 @@
 <template>
-  <p>Hello from NewTransaction</p>
+
+  <div>
+    <CreateTransaction></CreateTransaction>
+    <TransactionOverview></TransactionOverview>
+  </div>
+
 </template>
 
 <script src="./NewTransaction.js"></script>
