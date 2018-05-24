@@ -5,7 +5,7 @@
     <CreateTransaction></CreateTransaction>
 
     <h3>Neueste Zahlungen</h3>
-    <TransactionList></TransactionList>
+    <TransactionList count="3"></TransactionList>
   </div>
 
 </template>

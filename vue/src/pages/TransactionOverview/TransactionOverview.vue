@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>todo filters</p>
-    <TransactionList></TransactionList>
+    <TransactionList ></TransactionList>
   </div>
 </template>
 
