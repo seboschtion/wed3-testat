@@ -4,8 +4,12 @@
     <h3>Neue Zahlung</h3>
     <CreateTransaction></CreateTransaction>
 
-    <h3>Neueste Zahlungen</h3>
-    <TransactionList count="3"></TransactionList>
+    <div>
+      <h3>Neueste Zahlungen</h3>
+      <TransactionList count="3"></TransactionList>
+      <router-link to="/dashboard/transaction-overview">Alle Zahlungen</router-link>
+    </div>
+
   </div>
 
 </template>
