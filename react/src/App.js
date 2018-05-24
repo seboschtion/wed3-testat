@@ -5,10 +5,10 @@ import {
   BrowserRouter as Router,
   Route,
   NavLink,
-  withRouter
+  withRouter,
+  Redirect
 } from "react-router-dom";
 
-import Home from "./components/Home";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Dashboard from "./components/Dashboard";
@@ -18,7 +18,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import * as api from "./api";
 
 import type { User } from "./api";
-import { Button } from "semantic-ui-react"
+import { Button } from "semantic-ui-react";
 
 type State = {
   isAuthenticated: boolean,
@@ -81,16 +81,20 @@ class App extends React.Component<{}, State> {
         return (
           <nav>
             <div className="navigation-targets">
-                <NavLink exact to="/">Home</NavLink>
-                <NavLink to="/dashboard">Kontoübersicht</NavLink>
-                <NavLink to="/transactions">Zahlungen</NavLink>
+              <h2>Red Bank of North Koreact</h2>
+              <NavLink to="/dashboard">Kontoübersicht</NavLink>
+              <NavLink to="/transactions">Zahlungen</NavLink>
             </div>
             <div className="navigation-actions">
-                <Button className="button-logout"
-                    onClick={event => {
-                        event.preventDefault();
-                        this.signout(() => history.push("/"));
-                    }}>{user.firstname} {user.lastname} abmelden</Button>
+              <Button
+                className="button-logout"
+                onClick={event => {
+                  event.preventDefault();
+                  this.signout(() => history.push("/login"));
+                }}
+              >
+                {user.firstname} {user.lastname} abmelden
+              </Button>
             </div>
           </nav>
         );
@@ -103,13 +107,7 @@ class App extends React.Component<{}, State> {
       <Router>
         <div>
           <MenuBar />
-          <Route
-            exact
-            path="/"
-            render={props => (
-              <Home {...props} isAuthenticated={isAuthenticated} />
-            )}
-          />
+          <Redirect exact path="/" to="dashboard" />
           <Route
             path="/login"
             render={props => (
@@ -117,10 +115,6 @@ class App extends React.Component<{}, State> {
             )}
           />
           <Route path="/signup" component={Signup} />
-          {/* 
-            The following are protected routes that are only available for logged-in users. We also pass the user and token so 
-            these components can do API calls. PrivateRoute is not part of react-router but our own implementation.
-          */}
           <PrivateRoute
             path="/dashboard"
             isAuthenticated={isAuthenticated}
