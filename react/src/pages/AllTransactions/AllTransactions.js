@@ -1,18 +1,18 @@
-import React from "react";
-import { TransactionOverview } from "../../components";
-import * as api from "../../services/api";
+import React from 'react';
+import { TransactionOverview } from '../../components';
+import * as api from '../../services/api';
 
 export default class AllTransactions extends React.Component {
   state = {
-    transactions: []
+    transactions: [],
   };
 
   componentDidMount() {
     this.fetchTransactions();
   }
 
-  fetchTransactions(from = "", to = "") {
-    api.getTransactions(this.props.token, from, to, 155, 0).then(value => {
+  fetchTransactions(from = '', to = '') {
+    api.getTransactions(this.props.token, from, to, 155, 0).then((value) => {
       this.setState({ transactions: value.result });
     });
   }

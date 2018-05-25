@@ -3,12 +3,17 @@
   "version": "0.0.1",
   "private": true,
   "devDependencies": {
-    "flow-bin": "^0.66.0",
+    "flow-bin": "^0.42.0",
     "react-scripts": "1.1.1"
   },
   "dependencies": {
+    "babel-eslint": "^8.2.3",
+    "babel-preset-flow": "^6.23.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
     "lodash": "^4.17.10",
     "moment": "^2.22.1",
+    "prettier-eslint": "^8.8.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-router": "^4.2.0",
@@ -19,6 +24,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint ./src",
+    "lint-fix": "eslint --fix ./src"
   }
 }

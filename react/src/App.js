@@ -1,19 +1,19 @@
 // @flow
 
-import React from "react";
+import React from 'react';
 import {
   BrowserRouter as Router,
   Route,
   NavLink,
   withRouter,
-  Redirect
-} from "react-router-dom";
-import { Button } from "semantic-ui-react";
+  Redirect,
+} from 'react-router-dom';
+import { Button } from 'semantic-ui-react';
 
-import { Login, Signup, Dashboard, AllTransactions } from "./pages";
-import PrivateRoute from "./routing/PrivateRoute";
-import type { User } from "./services/api";
-import * as api from "./services/api";
+import { Login, Signup, Dashboard, AllTransactions } from './pages';
+import PrivateRoute from './routing/PrivateRoute';
+import type { User } from './services/api';
+import * as api from './services/api';
 
 type State = {
   isAuthenticated: boolean,
@@ -24,19 +24,19 @@ type State = {
 class App extends React.Component<{}, State> {
   constructor(props: any) {
     super(props);
-    const token = sessionStorage.getItem("token");
-    const user = sessionStorage.getItem("user");
+    const token = sessionStorage.getItem('token');
+    const user = sessionStorage.getItem('user');
     if (token && user) {
       this.state = {
         isAuthenticated: true,
         token,
-        user: JSON.parse(user)
+        user: JSON.parse(user),
       };
     } else {
       this.state = {
         isAuthenticated: false,
         token: undefined,
-        user: undefined
+        user: undefined,
       };
     }
   }
@@ -44,14 +44,14 @@ class App extends React.Component<{}, State> {
   authenticate = (
     login: string,
     password: string,
-    cb: (error: ?Error) => void
+    cb: (error: ?Error) => void,
   ) => {
     api
       .login(login, password)
       .then(({ token, owner }) => {
         this.setState({ isAuthenticated: true, token, user: owner });
-        sessionStorage.setItem("token", token);
-        sessionStorage.setItem("user", JSON.stringify(owner));
+        sessionStorage.setItem('token', token);
+        sessionStorage.setItem('user', JSON.stringify(owner));
         cb(null);
       })
       .catch(error => cb(error));
@@ -61,10 +61,10 @@ class App extends React.Component<{}, State> {
     this.setState({
       isAuthenticated: false,
       token: undefined,
-      user: undefined
+      user: undefined,
     });
-    sessionStorage.removeItem("token");
-    sessionStorage.removeItem("user");
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('user');
     callback();
   };
 
@@ -83,9 +83,9 @@ class App extends React.Component<{}, State> {
             <div className="navigation-actions">
               <Button
                 className="button-logout"
-                onClick={event => {
+                onClick={(event) => {
                   event.preventDefault();
-                  this.signout(() => history.push("/login"));
+                  this.signout(() => history.push('/login'));
                 }}
               >
                 {user.firstname} {user.lastname} abmelden
@@ -93,9 +93,8 @@ class App extends React.Component<{}, State> {
             </div>
           </nav>
         );
-      } else {
-        return null;
       }
+      return null;
     });
 
     return (

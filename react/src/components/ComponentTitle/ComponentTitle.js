@@ -1,3 +1,3 @@
-import React from "react";
+import React from 'react';
 
-export default ({title}) => <h3 className="component-title">{title}</h3>;
+export default ({ title }) => <h3 className="component-title">{title}</h3>;

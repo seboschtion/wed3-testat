@@ -1,10 +1,10 @@
-import React from "react";
-import { NewTransaction, TransactionOverview } from "../../components";
-import * as api from "../../services/api";
+import React from 'react';
+import { NewTransaction, TransactionOverview } from '../../components';
+import * as api from '../../services/api';
 
 class Dashboard extends React.Component {
   state = {
-    transactions: []
+    transactions: [],
   };
 
   componentDidMount() {
@@ -16,7 +16,7 @@ class Dashboard extends React.Component {
   }
 
   fetchTransactions() {
-    api.getTransactions(this.props.token).then(value => {
+    api.getTransactions(this.props.token).then((value) => {
       this.setState({ transactions: value.result });
     });
   }

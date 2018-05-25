@@ -27,42 +27,40 @@ export type Transaction = {
   date: string
 };
 
-/* Use the exported functions to call the API. 
+/* Use the exported functions to call the API.
  * If necessary, adapt the backend address below:
  */
 
-const backend = "https://wed3-server.herokuapp.com";
+const backend = 'https://wed3-server.herokuapp.com';
 
 export function login(
   login: string,
-  password: string
+  password: string,
 ): Promise<{ token: string, owner: User }> {
-  return postJson("/auth/login", { login, password }).then(parseJSON);
+  return postJson('/auth/login', { login, password }).then(parseJSON);
 }
 
 export function signup(
   login: string,
   firstname: string,
   lastname: string,
-  password: string
+  password: string,
 ): Promise<User> {
-  return postJson("/auth/register", {
+  return postJson('/auth/register', {
     login,
     firstname,
     lastname,
-    password
+    password,
   }).then(parseJSON);
 }
 
-export function getAccountDetails(
-  token: string
-): Promise<{ accountNr: string, amount: number, owner: User }> {
-  return getAuthenticatedJson(`/accounts`, token).then(parseJSON);
+export function getAccountDetails(token: string): Promise<{ accountNr: string, amount: number, owner: User }> {
+  return getAuthenticatedJson('/accounts', token).then(parseJSON);
 }
 
 export function getAccount(
   accountNr: AccountNr,
-  token: string
+  token: string,
 ): Promise<{
   accountNr: AccountNr,
   owner: { firstname: string, lastname: string }
@@ -73,35 +71,34 @@ export function getAccount(
 export function transfer(
   target: AccountNr,
   amount: number,
-  token: string
+  token: string,
 ): Promise<TransferResult> {
-  return postAuthenticatedJson("/accounts/transactions", token, {
+  return postAuthenticatedJson('/accounts/transactions', token, {
     target,
-    amount
+    amount,
   }).then(parseJSON);
 }
 
 export function getTransactions(
   token: string,
-  fromDate: string = "",
-  toDate: string = "",
+  fromDate: string = '',
+  toDate: string = '',
   count: number = 3,
-  skip: number = 0
+  skip: number = 0,
 ): Promise<{ result: Array<Transaction>, query: { resultcount: number } }> {
   return getAuthenticatedJson(
     `/accounts/transactions?fromDate=${fromDate}&toDate=${toDate}&count=${count}&skip=${skip}`,
-    token
+    token,
   ).then(parseJSON);
 }
 
 function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return response;
-  } else {
-    const error: Object = new Error(response.statusText);
-    error.response = response;
-    throw error;
   }
+  const error: Object = new Error(response.statusText);
+  error.response = response;
+  throw error;
 }
 
 function parseJSON(response) {
@@ -110,37 +107,37 @@ function parseJSON(response) {
 
 function getAuthenticatedJson(endpoint: string, token: string) {
   return fetch(`${backend}${endpoint}`, {
-    method: "GET",
+    method: 'GET',
     headers: {
       Authorization: `Bearer ${token}`,
-      Accept: "application/json"
-    }
+      Accept: 'application/json',
+    },
   }).then(checkStatus);
 }
 
 function postJson(endpoint: string, params: Object) {
   return fetch(`${backend}${endpoint}`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json"
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
     },
-    body: JSON.stringify(params)
+    body: JSON.stringify(params),
   }).then(checkStatus);
 }
 
 function postAuthenticatedJson(
   endpoint: string,
   token: string,
-  params: Object
+  params: Object,
 ) {
   return fetch(`${backend}${endpoint}`, {
-    method: "POST",
+    method: 'POST',
     headers: {
       Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-      Accept: "application/json"
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
     },
-    body: JSON.stringify(params)
+    body: JSON.stringify(params),
   }).then(checkStatus);
 }

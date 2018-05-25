@@ -1,9 +1,9 @@
 // @flow
 
-import React from "react";
-import { Redirect, Link } from "react-router-dom";
-import { Button, Form } from "semantic-ui-react";
-import { ComponentTitle } from "../../components";
+import React from 'react';
+import { Redirect, Link } from 'react-router-dom';
+import { Button, Form } from 'semantic-ui-react';
+import { ComponentTitle } from '../../components';
 
 export type Props = {
   /* Callback to submit an authentication request to the server */
@@ -12,7 +12,7 @@ export type Props = {
     password: string,
     callback: (error: ?Error) => void
   ) => void,
-  /* We need to know what page the user tried to access so we can 
+  /* We need to know what page the user tried to access so we can
      redirect after logging in */
   location: {
     state?: {
@@ -23,10 +23,10 @@ export type Props = {
 
 class Login extends React.Component<Props, *> {
   state = {
-    login: "",
-    password: "",
+    login: '',
+    password: '',
     error: undefined,
-    redirectToReferrer: false
+    redirectToReferrer: false,
   };
 
   handleLoginChanged = (event: Event) => {
@@ -44,7 +44,7 @@ class Login extends React.Component<Props, *> {
   handleSubmit = (event: Event) => {
     event.preventDefault();
     const { login, password } = this.state;
-    this.props.authenticate(login, password, error => {
+    this.props.authenticate(login, password, (error) => {
       if (error) {
         this.setState({ error });
       } else {
@@ -55,7 +55,7 @@ class Login extends React.Component<Props, *> {
 
   render() {
     const { from } = this.props.location.state || {
-      from: { pathname: "/dashboard" }
+      from: { pathname: '/dashboard' },
     };
     const { redirectToReferrer, error } = this.state;
 
@@ -79,7 +79,7 @@ class Login extends React.Component<Props, *> {
                 />
               </label>
               {this.state.login && this.state.login.length < 3
-                ? "Bitte geben Sie mindestens 3 Zeichen an."
+                ? 'Bitte geben Sie mindestens 3 Zeichen an.'
                 : null}
               <label>
                 Passwort
@@ -91,7 +91,7 @@ class Login extends React.Component<Props, *> {
                 />
               </label>
               {this.state.password && this.state.password.length < 3
-                ? "Bitte geben Sie mindestens 3 Zeichen an."
+                ? 'Bitte geben Sie mindestens 3 Zeichen an.'
                 : null}
               <Button onClick={this.handleSubmit}>Login</Button>
               {error && <p className="error">Es ist ein Fehler aufgetreten!</p>}

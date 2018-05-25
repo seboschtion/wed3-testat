@@ -1,19 +1,19 @@
 // @flow
 
-import React from "react";
-import { Redirect } from "react-router-dom";
-import { Button, Form } from "semantic-ui-react";
-import { ComponentTitle } from "../../components";
-import { signup } from "../../services/api";
+import React from 'react';
+import { Redirect } from 'react-router-dom';
+import { Button, Form } from 'semantic-ui-react';
+import { ComponentTitle } from '../../components';
+import { signup } from '../../services/api';
 
 class Signup extends React.Component<{}, *> {
   state = {
-    login: "",
-    firstname: "",
-    lastname: "",
-    password: "",
+    login: '',
+    firstname: '',
+    lastname: '',
+    password: '',
     error: null,
-    redirectToReferrer: false
+    redirectToReferrer: false,
   };
 
   handleLoginChanged = (event: Event) => {
@@ -42,10 +42,12 @@ class Signup extends React.Component<{}, *> {
 
   handleSubmit = (event: Event) => {
     event.preventDefault();
-    const { login, firstname, lastname, password } = this.state;
+    const {
+      login, firstname, lastname, password,
+    } = this.state;
     signup(login, firstname, lastname, password)
-      .then(result => {
-        console.log("Signup result ", result);
+      .then((result) => {
+        console.log('Signup result ', result);
         this.setState({ redirectToReferrer: true, error: null });
       })
       .catch(error => this.setState({ error }));

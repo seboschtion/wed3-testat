@@ -1,22 +1,22 @@
-import React from "react";
-import _ from "lodash";
-import moment from "moment";
-import { Table } from "semantic-ui-react";
-import { ComponentTitle } from "../index";
-import TableFilter from "./TableFilter";
-import TransactionOverviewRows from "./TransactionOverviewRows";
-import TransactionOverviewHeader from "./TransactionOverviewHeader";
+import React from 'react';
+import _ from 'lodash';
+import moment from 'moment';
+import { Table } from 'semantic-ui-react';
+import { ComponentTitle } from '../index';
+import TableFilter from './TableFilter';
+import TransactionOverviewRows from './TransactionOverviewRows';
+import TransactionOverviewHeader from './TransactionOverviewHeader';
 
 class TransactionOverview extends React.Component {
   state = {
     column: null,
-    direction: null
+    direction: null,
   };
 
   filter = {
-    from: moment("1970-01-01"),
+    from: moment('1970-01-01'),
     to: moment(),
-    monthWasSet: false
+    monthWasSet: false,
   };
 
   handleSort = clickedColumn => () => {
@@ -24,42 +24,42 @@ class TransactionOverview extends React.Component {
     if (column !== clickedColumn) {
       this.setState({
         column: clickedColumn,
-        direction: "asc"
+        direction: 'asc',
       });
     } else {
       this.setState({
-        direction: direction === "asc" ? "desc" : "asc"
+        direction: direction === 'asc' ? 'desc' : 'asc',
       });
     }
   };
 
   getYearFilters() {
     return [
-      { text: "2018", value: 2018, key: 2018 },
-      { text: "2017", value: 2017, key: 2017 },
-      { text: "2016", value: 2016, key: 2016 }
+      { text: '2018', value: 2018, key: 2018 },
+      { text: '2017', value: 2017, key: 2017 },
+      { text: '2016', value: 2016, key: 2016 },
     ];
   }
 
   getMonthFilters() {
     return [
-      { text: "Januar", value: 1, key: 1 },
-      { text: "Februar", value: 2, key: 2 },
-      { text: "März", value: 3, key: 3 },
-      { text: "April", value: 4, key: 4 },
-      { text: "Mai", value: 5, key: 5 },
-      { text: "Juni", value: 6, key: 6 },
-      { text: "Juli", value: 7, key: 7 },
-      { text: "August", value: 8, key: 8 },
-      { text: "September", value: 9, key: 9 },
-      { text: "Oktober", value: 10, key: 10 },
-      { text: "November", value: 11, key: 11 },
-      { text: "Dezember", value: 12, key: 12 }
+      { text: 'Januar', value: 1, key: 1 },
+      { text: 'Februar', value: 2, key: 2 },
+      { text: 'März', value: 3, key: 3 },
+      { text: 'April', value: 4, key: 4 },
+      { text: 'Mai', value: 5, key: 5 },
+      { text: 'Juni', value: 6, key: 6 },
+      { text: 'Juli', value: 7, key: 7 },
+      { text: 'August', value: 8, key: 8 },
+      { text: 'September', value: 9, key: 9 },
+      { text: 'Oktober', value: 10, key: 10 },
+      { text: 'November', value: 11, key: 11 },
+      { text: 'Dezember', value: 12, key: 12 },
     ];
   }
 
   // TODO: Filter das nächste mal besser auslagern
-  filterChanged = newValue => {
+  filterChanged = (newValue) => {
     if (newValue > 12) {
       this.filter.from.year(newValue);
       this.filter.to.year(newValue);
@@ -78,22 +78,22 @@ class TransactionOverview extends React.Component {
     this.filter.from.date(1);
     this.filter.to.date(1);
 
-    const format = "YYYY-MM-D";
+    const format = 'YYYY-MM-D';
     this.props.filterChangedCallback(
       this.filter.from.format(format),
-      this.filter.to.format(format)
+      this.filter.to.format(format),
     );
   };
 
   hideFilters() {
-    return this.props.showFilters ? "" : "hide";
+    return this.props.showFilters ? '' : 'hide';
   }
 
   render() {
-    let sortedTransactions = _.sortBy(this.props.transactions, [
-      this.state.column
+    const sortedTransactions = _.sortBy(this.props.transactions, [
+      this.state.column,
     ]);
-    if (this.state.direction === "desc") {
+    if (this.state.direction === 'desc') {
       sortedTransactions.reverse();
     }
 

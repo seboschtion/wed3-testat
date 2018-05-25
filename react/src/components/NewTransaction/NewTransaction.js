@@ -1,14 +1,14 @@
-import React from "react";
-import { Button, Form } from "semantic-ui-react";
-import { ComponentTitle } from "../index";
-import * as api from "../../services/api";
+import React from 'react';
+import { Button, Form } from 'semantic-ui-react';
+import { ComponentTitle } from '../index';
+import * as api from '../../services/api';
 
 class NewTransaction extends React.Component {
   componentDidMount() {
-    api.getAccountDetails(this.props.token).then(value => {
+    api.getAccountDetails(this.props.token).then((value) => {
       this.setState({
         transactionFromId: value.accountNr,
-        balance: value.amount
+        balance: value.amount,
       });
     });
   }
@@ -16,71 +16,71 @@ class NewTransaction extends React.Component {
   state = {
     transactionFromId: 0,
     balance: 0,
-    transactionToId: "",
-    transactionToName: "Bitte geben Sie den Empfänger ein",
-    submitWarning: "",
-    amount: "",
-    transferResult: null
+    transactionToId: '',
+    transactionToName: 'Bitte geben Sie den Empfänger ein',
+    submitWarning: '',
+    amount: '',
+    transferResult: null,
   };
 
-  submitTransaction = event => {
+  submitTransaction = (event) => {
     event.preventDefault();
 
     if (this.state.balance < this.state.amount) {
       this.setState({
-        submitWarning: "Der Betrag ist grösser als der momentane Kontostand."
+        submitWarning: 'Der Betrag ist grösser als der momentane Kontostand.',
       });
       return;
     }
 
     api
       .transfer(this.state.transactionToId, this.state.amount, this.props.token)
-      .then(transferResult => {
+      .then((transferResult) => {
         this.setState({
-          transferResult: transferResult,
-          balance: transferResult.total
+          transferResult,
+          balance: transferResult.total,
         });
         this.props.transactionCallback();
       });
   };
 
-  transactionToChanged = event => {
+  transactionToChanged = (event) => {
     this.setState({ transactionToId: event.target.value });
     api
       .getAccount(event.target.value, this.props.token)
-      .then(value => {
+      .then((value) => {
         this.setState({
-          transactionToName: value.owner.firstname + " " + value.owner.lastname
+          transactionToName: `${value.owner.firstname} ${value.owner.lastname}`,
         });
       })
-      .catch(reason => {
-        this.setState({ transactionToName: "Unbekannt" });
+      .catch((reason) => {
+        this.setState({ transactionToName: 'Unbekannt' });
       });
   };
 
-  amountChanged = event => {
+  amountChanged = (event) => {
     this.setState({
       amount: event.target.value,
-      submitWarning: ""
+      submitWarning: '',
     });
   };
 
-  clearSuccessfulTransaction = event => {
+  clearSuccessfulTransaction = (event) => {
     this.setState({
-      transactionToId: "",
-      transactionToName: "Bitte geben Sie den Empfänger ein",
-      submitWarning: "",
-      amount: "",
-      transferResult: null
+      transactionToId: '',
+      transactionToName: 'Bitte geben Sie den Empfänger ein',
+      submitWarning: '',
+      amount: '',
+      transferResult: null,
     });
   };
 
-  constructAccountName = function() {
+  constructAccountName = function () {
     return (
-      this.state.transactionFromId +
-      " [" +
-      this.state.balance.toFixed(2) +
-      " CHF]"
+      `${this.state.transactionFromId
+      } [${
+        this.state.balance.toFixed(2)
+      } CHF]`
     );
   };
 
@@ -94,7 +94,7 @@ class NewTransaction extends React.Component {
               Überweisung an {this.state.transferResult.target} war erfolgreich.
             </p>
             <p>
-              Ihr neuer Kontostand beträgt{" "}
+              Ihr neuer Kontostand beträgt{' '}
               {this.state.transferResult.total.toFixed(2)}
             </p>
             <Button onClick={this.clearSuccessfulTransaction}>
@@ -103,29 +103,29 @@ class NewTransaction extends React.Component {
           </div>
         </div>
       );
-    } else {
-      return (
-        <div className={this.props.className}>
-          <ComponentTitle title="Neue Bewegung" />
-          <Form className="window-content">
-            <label>
+    }
+    return (
+      <div className={this.props.className}>
+        <ComponentTitle title="Neue Bewegung" />
+        <Form className="window-content">
+          <label>
               Von
               <input type="text" value={this.constructAccountName()} disabled />
-            </label>
+          </label>
 
-            <label>
+          <label>
               Zu
               <input
                 value={this.state.transactionToId}
                 onChange={this.transactionToChanged}
                 placeholder="Empfängeraccount"
               />
-            </label>
-            <p>
-              <i>{this.state.transactionToName}</i>
-            </p>
+          </label>
+          <p>
+            <i>{this.state.transactionToName}</i>
+          </p>
 
-            <label>
+          <label>
               Betrag [CHF]
               <input
                 type="number"
@@ -134,16 +134,15 @@ class NewTransaction extends React.Component {
                 onChange={this.amountChanged}
                 placeholder="Betrag in CHF"
               />
-            </label>
+          </label>
 
-            <Button type="submit" onClick={this.submitTransaction}>
+          <Button type="submit" onClick={this.submitTransaction}>
               Überweisen
-            </Button>
-            <label>{this.state.submitWarning}</label>
-          </Form>
-        </div>
-      );
-    }
+          </Button>
+          <label>{this.state.submitWarning}</label>
+        </Form>
+      </div>
+    );
   }
 }
 
