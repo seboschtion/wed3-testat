@@ -8,17 +8,12 @@ import {
   withRouter,
   Redirect
 } from "react-router-dom";
-
-import Login from "./components/Login";
-import Signup from "./components/Signup";
-import Dashboard from "./components/Dashboard";
-import AllTransactions from "./components/AllTransactions";
-import PrivateRoute from "./components/PrivateRoute";
-
-import * as api from "./api";
-
-import type { User } from "./api";
 import { Button } from "semantic-ui-react";
+
+import { Login, Signup, Dashboard, AllTransactions } from "./pages";
+import PrivateRoute from "./routing/PrivateRoute";
+import type { User } from "./api";
+import * as api from "./api";
 
 type State = {
   isAuthenticated: boolean,

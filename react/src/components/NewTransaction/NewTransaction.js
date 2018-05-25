@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Form } from "semantic-ui-react";
-import ComponentTitle from "./ComponentTitle";
-import * as api from "../api";
+import { ComponentTitle } from "../index";
+import * as api from "../../api";
 
 class NewTransaction extends React.Component {
   componentDidMount() {

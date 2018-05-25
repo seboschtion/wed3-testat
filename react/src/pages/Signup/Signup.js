@@ -3,8 +3,8 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 import { Button, Form } from "semantic-ui-react";
-import ComponentTitle from "./ComponentTitle";
-import { signup } from "../api";
+import { ComponentTitle } from "../../components";
+import { signup } from "../../api";
 
 class Signup extends React.Component<{}, *> {
   state = {

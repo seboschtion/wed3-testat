@@ -3,7 +3,7 @@
 import React from "react";
 import { Redirect, Link } from "react-router-dom";
 import { Button, Form } from "semantic-ui-react";
-import ComponentTitle from "./ComponentTitle";
+import { ComponentTitle } from "../../components";
 
 export type Props = {
   /* Callback to submit an authentication request to the server */
