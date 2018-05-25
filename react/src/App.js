@@ -12,8 +12,8 @@ import { Button } from "semantic-ui-react";
 
 import { Login, Signup, Dashboard, AllTransactions } from "./pages";
 import PrivateRoute from "./routing/PrivateRoute";
-import type { User } from "./api";
-import * as api from "./api";
+import type { User } from "./services/api";
+import * as api from "./services/api";
 
 type State = {
   isAuthenticated: boolean,

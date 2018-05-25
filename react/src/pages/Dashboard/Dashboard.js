@@ -1,6 +1,6 @@
 import React from "react";
 import { NewTransaction, TransactionOverview } from "../../components";
-import * as api from "../../api";
+import * as api from "../../services/api";
 
 class Dashboard extends React.Component {
   state = {

@@ -1,6 +1,6 @@
 import React from "react";
 import { TransactionOverview } from "../../components";
-import * as api from "../../api";
+import * as api from "../../services/api";
 
 export default class AllTransactions extends React.Component {
   state = {
