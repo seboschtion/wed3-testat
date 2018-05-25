@@ -1,7 +1,15 @@
+import Auth from "./Auth";
+
 const backend = 'https://wed3-server.herokuapp.com';
 
 export function login(login, password) {
-  return postJson('/auth/login', { login, password }).then(parseJSON);
+  return postJson('/auth/login', { login, password })
+    .then(parseJSON)
+    .then(response => {
+    Auth.token = response.token;
+    Auth.owner = response.owner;
+    return response;
+  });
 }
 
 export function signup(

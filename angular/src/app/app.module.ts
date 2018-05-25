@@ -10,6 +10,7 @@ import {AppComponent} from './app.component';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AuthModule} from './auth/auth.module';
+import {SharedModule} from './shared/shared.module';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import {AuthModule} from './auth/auth.module';
     CoreModule.forRoot(),
     AuthModule.forRoot(),
     WelcomeModule.forRoot(),
+    SharedModule.forRoot(),
 
     AppRoutingModule
   ],

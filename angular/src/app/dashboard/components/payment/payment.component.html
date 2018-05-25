@@ -18,10 +18,13 @@
     <label>
       <div class="validated-input">
         Betrag [CHF]:
-        <input pattern=".{1,}" type="number" placeholder="Betrag in CHF" name="amount" #amount="ngModel" ngModel required/>
-        <small class="validation-warning" [hidden]="amount.pristine || amount.valid">Bitte geben Sie einen Betrag
-          an.
-        </small>
+        <input type="number" placeholder="Betrag in CHF" name="amount" #amount="ngModel" ngModel [customMin]="minNum"/>
+        <div *ngIf="amount.errors?.customMin" [hidden]="amount.pristine || amount.valid">
+          <small class="validation-warning">
+            Der Betrag muss mindestends {{minNum}} CHF sein.
+          </small>
+        </div>
+
       </div>
     </label>
 

@@ -19,6 +19,7 @@ export class PaymentComponent implements OnInit {
   private transaction: Transaction;
   public target: string;
   public targetBankAccountOwner: string;
+  public minNum = 0.05;
 
   ngOnInit() {
     const bankAccount = this.bankAccountService.getCurrentBankAccount().subscribe(value =>
