@@ -1,0 +1,34 @@
+.window {
+  border: 1px solid var(--theme);
+  border-radius: 10px;
+  margin: 12px;
+  flex: 1 1 100%;
+  min-width: 0px;
+}
+
+.window-left {
+  flex: none;
+  width: auto;
+}
+
+.window-content {
+  margin: 12px;
+}
+
+.window h3 {
+  background-color: var(--theme);
+  color: white;
+  border-radius: 10px 10px 0px 0px;
+  padding: 4px 8px;
+}
+
+@media (min-width: 960px) {
+  .window {
+    min-width: 400px;
+  }
+
+  .window-left {
+    flex: 0 0 20%;
+    min-width: 400px;
+  }
+}

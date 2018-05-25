@@ -2,7 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 import moment from 'moment';
 import { Table } from 'semantic-ui-react';
-import { ComponentTitle } from '../index';
+import { Window } from '../index';
 import TableFilter from './TableFilter';
 import TransactionOverviewRows from './TransactionOverviewRows';
 import TransactionOverviewHeader from './TransactionOverviewHeader';
@@ -90,35 +90,30 @@ class TransactionOverview extends React.Component {
   }
 
   render() {
-    const sortedTransactions = _.sortBy(this.props.transactions, [
-      this.state.column,
-    ]);
+    const sortedTransactions = _.sortBy(this.props.transactions, [this.state.column]);
     if (this.state.direction === 'desc') {
       sortedTransactions.reverse();
     }
 
     return (
-      <div className={this.props.className}>
-        <ComponentTitle title={this.props.title} />
-        <div className="window-content">
-          <TableFilter
-            name="Jahr"
-            items={this.getYearFilters()}
-            filterChangedCallback={this.filterChanged.bind(this)}
-            className={this.hideFilters()}
-          />
-          <TableFilter
-            name="Monat"
-            items={this.getMonthFilters()}
-            filterChangedCallback={this.filterChanged.bind(this)}
-            className={this.hideFilters()}
-          />
-          <Table sortable celled>
-            <TransactionOverviewHeader sortHandler={this.handleSort} />
-            <TransactionOverviewRows transactions={sortedTransactions} />
-          </Table>
-        </div>
-      </div>
+      <Window title={this.props.title}>
+        <TableFilter
+          name="Jahr"
+          items={this.getYearFilters()}
+          filterChangedCallback={this.filterChanged.bind(this)}
+          className={this.hideFilters()}
+        />
+        <TableFilter
+          name="Monat"
+          items={this.getMonthFilters()}
+          filterChangedCallback={this.filterChanged.bind(this)}
+          className={this.hideFilters()}
+        />
+        <Table sortable celled>
+          <TransactionOverviewHeader sortHandler={this.handleSort} />
+          <TransactionOverviewRows transactions={sortedTransactions} />
+        </Table>
+      </Window>
     );
   }
 }

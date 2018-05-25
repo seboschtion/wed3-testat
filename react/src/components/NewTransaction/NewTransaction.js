@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Form } from 'semantic-ui-react';
-import { ComponentTitle } from '../index';
+import { Window } from '../index';
 import * as api from '../../services/api';
 
 class NewTransaction extends React.Component {
@@ -76,72 +76,56 @@ class NewTransaction extends React.Component {
   };
 
   constructAccountName = function () {
-    return (
-      `${this.state.transactionFromId
-      } [${
-        this.state.balance.toFixed(2)
-      } CHF]`
-    );
+    return `${this.state.transactionFromId} [${this.state.balance.toFixed(2)} CHF]`;
   };
 
   render() {
     if (this.state.transferResult) {
       return (
-        <div className={this.props.className}>
-          <ComponentTitle title="Neue Bewegung" />
-          <div className="window-content">
-            <p>
-              Überweisung an {this.state.transferResult.target} war erfolgreich.
-            </p>
-            <p>
-              Ihr neuer Kontostand beträgt{' '}
-              {this.state.transferResult.total.toFixed(2)}
-            </p>
-            <Button onClick={this.clearSuccessfulTransaction}>
-              Neue Überweisung
-            </Button>
-          </div>
-        </div>
+        <Window title="Neue Überweisung">
+          <p>Überweisung an {this.state.transferResult.target} war erfolgreich.</p>
+          <p>Ihr neuer Kontostand beträgt {this.state.transferResult.total.toFixed(2)}</p>
+          <Button onClick={this.clearSuccessfulTransaction}>Neue Überweisung</Button>
+        </Window>
       );
     }
     return (
-      <div className={this.props.className}>
-        <ComponentTitle title="Neue Bewegung" />
+      <Window title="Neue Überweisung">
         <Form className="window-content">
           <label>
-              Von
-              <input type="text" value={this.constructAccountName()} disabled />
+            Von
+            <input type="text" value={this.constructAccountName()} disabled />
           </label>
 
           <label>
-              Zu
-              <input
-                value={this.state.transactionToId}
-                onChange={this.transactionToChanged}
-                placeholder="Empfängeraccount"
-              />
+            Zu
+            <input
+              value={this.state.transactionToId}
+              onChange={this.transactionToChanged}
+              placeholder="Empfängeraccount"
+            />
           </label>
           <p>
             <i>{this.state.transactionToName}</i>
           </p>
 
           <label>
-              Betrag [CHF]
-              <input
-                type="number"
-                step=".01"
-                value={this.state.amount}
-                onChange={this.amountChanged}
-                placeholder="Betrag in CHF"
-              />
+            Betrag [CHF]
+            <input
+              type="number"
+              step=".01"
+              value={this.state.amount}
+              onChange={this.amountChanged}
+              placeholder="Betrag in CHF"
+            />
           </label>
 
           <Button type="submit" onClick={this.submitTransaction}>
-              Überweisen
+            Überweisen
           </Button>
           <label>{this.state.submitWarning}</label>
         </Form>
-      </div>
+      </Window>
     );
   }
 }

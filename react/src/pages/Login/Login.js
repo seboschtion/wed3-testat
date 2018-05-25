@@ -3,22 +3,18 @@
 import React from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import { Button, Form } from 'semantic-ui-react';
-import { ComponentTitle } from '../../components';
+import { Window } from '../../components';
 
 export type Props = {
   /* Callback to submit an authentication request to the server */
-  authenticate: (
-    login: string,
-    password: string,
-    callback: (error: ?Error) => void
-  ) => void,
+  authenticate: (login: string, password: string, callback: (error: ?Error) => void) => void,
   /* We need to know what page the user tried to access so we can
      redirect after logging in */
   location: {
     state?: {
-      from: string
-    }
-  }
+      from: string,
+    },
+  },
 };
 
 class Login extends React.Component<Props, *> {
@@ -66,41 +62,36 @@ class Login extends React.Component<Props, *> {
     return (
       <div className="entry-page">
         <h1>Red Bank of North Koreact</h1>
-        <div className="window entry-form">
-          <ComponentTitle title="Login" />
-          <div className="window-content">
-            <Form>
-              <label>
-                Username
-                <input
-                  onChange={this.handleLoginChanged}
-                  placeholder="Login"
-                  value={this.state.login}
-                />
-              </label>
-              {this.state.login && this.state.login.length < 3
-                ? 'Bitte geben Sie mindestens 3 Zeichen an.'
-                : null}
-              <label>
-                Passwort
-                <input
-                  onChange={this.handlePasswordChanged}
-                  placeholder="Password"
-                  type="password"
-                  value={this.state.password}
-                />
-              </label>
-              {this.state.password && this.state.password.length < 3
-                ? 'Bitte geben Sie mindestens 3 Zeichen an.'
-                : null}
-              <Button onClick={this.handleSubmit}>Login</Button>
-              {error && <p className="error">Es ist ein Fehler aufgetreten!</p>}
-            </Form>
-            <Link to="/signup">
-              Noch kein Account? Registrieren Sie sich hier!
-            </Link>
-          </div>
-        </div>
+        <Window title="Login">
+          <Form>
+            <label>
+              Username
+              <input
+                onChange={this.handleLoginChanged}
+                placeholder="Login"
+                value={this.state.login}
+              />
+            </label>
+            {this.state.login && this.state.login.length < 3
+              ? 'Bitte geben Sie mindestens 3 Zeichen an.'
+              : null}
+            <label>
+              Passwort
+              <input
+                onChange={this.handlePasswordChanged}
+                placeholder="Password"
+                type="password"
+                value={this.state.password}
+              />
+            </label>
+            {this.state.password && this.state.password.length < 3
+              ? 'Bitte geben Sie mindestens 3 Zeichen an.'
+              : null}
+            <Button onClick={this.handleSubmit}>Login</Button>
+            {error && <p className="error">Es ist ein Fehler aufgetreten!</p>}
+          </Form>
+          <Link to="/signup">Noch kein Account? Registrieren Sie sich hier!</Link>
+        </Window>
       </div>
     );
   }

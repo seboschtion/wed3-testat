@@ -79,22 +79,7 @@ h2 {
 
 .site-content {
   display: flex;
-  margin: 12px;
-}
-
-.window {
-  border: 1px solid var(--theme);
-  border-radius: 10px;
-  margin: 12px;
-  flex: 1 1 100%;
-}
-
-.window-left {
-  flex: 0 0 20%;
-  min-width: 400px;
-}
-
-.window-content {
+  flex-flow: row wrap;
   margin: 12px;
 }
 
@@ -114,17 +99,6 @@ h2 {
   display: none !important;
 }
 
-.component-title {
-  background-color: var(--theme);
-  color: white;
-  border-radius: 10px 10px 0px 0px;
-  padding: 4px 8px;
-}
-
-.entry-form {
-  width: 480px;
-}
-
 a {
   color: var(--theme);
 }
@@ -139,14 +113,8 @@ a:hover {
   font-weight: bold;
 }
 
-@media (max-width: 940px) {
-  .window-left {
-    flex: none;
-    min-width: none;
-    width: auto;
-  }
-
+@media (min-width: 960px) {
   .site-content {
-    flex-flow: row wrap;
+    flex-flow: row;
   }
 }

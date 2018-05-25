@@ -3,10 +3,10 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { Button, Form } from 'semantic-ui-react';
-import { ComponentTitle } from '../../components';
+import { Window } from '../../components';
 import { signup } from '../../services/api';
 
-class Signup extends React.Component<{}, *> {
+export default class Signup extends React.Component<{}, *> {
   state = {
     login: '',
     firstname: '',
@@ -63,54 +63,49 @@ class Signup extends React.Component<{}, *> {
     return (
       <div className="entry-page">
         <h1>Red Bank of North Koreact</h1>
-        <div className="window entry-form">
-          <ComponentTitle title="Registrierung" />
-          <div className="window-content">
-            <Form>
-              <label>
-                Vorname
-                <input
-                  onChange={this.handleFirstNameChanged}
-                  placeholder="Vorname"
-                  value={this.state.firstname}
-                />
-              </label>
+        <Window title="Registrierung">
+          <Form>
+            <label>
+              Vorname
+              <input
+                onChange={this.handleFirstNameChanged}
+                placeholder="Vorname"
+                value={this.state.firstname}
+              />
+            </label>
 
-              <label>
-                Nachname
-                <input
-                  onChange={this.handleLastNameChanged}
-                  placeholder="Nachname"
-                  value={this.state.lastname}
-                />
-              </label>
+            <label>
+              Nachname
+              <input
+                onChange={this.handleLastNameChanged}
+                placeholder="Nachname"
+                value={this.state.lastname}
+              />
+            </label>
 
-              <label>
-                Username
-                <input
-                  onChange={this.handleLoginChanged}
-                  placeholder="Username"
-                  value={this.state.login}
-                />
-              </label>
+            <label>
+              Username
+              <input
+                onChange={this.handleLoginChanged}
+                placeholder="Username"
+                value={this.state.login}
+              />
+            </label>
 
-              <label>
-                Passwort
-                <input
-                  onChange={this.handlePasswordChanged}
-                  placeholder="Passwort"
-                  type="password"
-                  value={this.state.password}
-                />
-              </label>
-              <Button onClick={this.handleSubmit}>Account eröffnen</Button>
-              {error && <p className="error">Es ist ein Fehler aufgetreten!</p>}
-            </Form>
-          </div>
-        </div>
+            <label>
+              Passwort
+              <input
+                onChange={this.handlePasswordChanged}
+                placeholder="Passwort"
+                type="password"
+                value={this.state.password}
+              />
+            </label>
+            <Button onClick={this.handleSubmit}>Account eröffnen</Button>
+            {error && <p className="error">Es ist ein Fehler aufgetreten!</p>}
+          </Form>
+        </Window>
       </div>
     );
   }
 }
-
-export default Signup;
