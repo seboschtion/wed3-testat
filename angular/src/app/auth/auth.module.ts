@@ -1,5 +1,4 @@
 import {NgModule, ModuleWithProviders} from '@angular/core';
-import {FormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 
 import {AuthService, SecurityTokenStore} from './services';
@@ -12,11 +11,9 @@ import {AuthGuard} from './services/auth.guard';
 
 const EXPORTED_DECLARATIONS = [
   LoginComponent, LogoutComponent, RegisterComponent
-  // TODO: Add declarations here, if additional components should be exported
 ];
 const INTERNAL_DECLARATIONS = [
   ...EXPORTED_DECLARATIONS
-  // TODO: Add declarations here, if additional components should be registered for the Auth module
 ];
 const EXPORTS = [
   ...EXPORTED_DECLARATIONS
@@ -36,9 +33,6 @@ export class AuthModule {
     return {
       ngModule: AuthModule,
       providers: [
-        // DI Providers (Services, Tokens, Factories...) to be used globally and instantiate only once
-
-        // TODO: Add services/guards/... here, if additional classes are placed within the Auth moduley
         AuthService,
         AuthGuard,
         SecurityTokenStore,

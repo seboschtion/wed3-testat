@@ -8,14 +8,12 @@ export class NavigationService {
     this.router.navigateByUrl(url);
   }
 
-  // TODO: add other routing targets, if needed
-
   public goToHome(): void {
-    this.goToUrl('/'); // TODO: adjust routing according this URL
+    this.goToUrl('/');
   }
 
   public goToDashboard(): void {
-    this.goToUrl('/dashboard'); // TODO: adjust routing according this URL
+    this.goToUrl('/dashboard');
   }
 
   constructor(private router: Router) {
