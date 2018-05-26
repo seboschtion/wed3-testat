@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <h4>Filter</h4>
+      <h3>Zahlungsübersicht</h3>
 
       <p>Wähle ein Jahr</p>
       <select v-model="selectedYear">

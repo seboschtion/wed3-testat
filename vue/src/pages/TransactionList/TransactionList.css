@@ -1,0 +1,53 @@
+td {
+    padding: 12px 0px;
+}
+
+table {
+    width: 100%;
+}
+
+td, thead {
+    display: none;
+}
+
+tr:nth-child(odd) td {
+    background-color: #f0f0f0;
+}
+
+thead th {
+    text-decoration: underline;
+    text-align: left;
+}
+
+td.mobile {
+    display: table-cell;
+}
+
+td p {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+td p span:first-child {
+    text-decoration: underline;
+}
+
+@media(min-width: 480px) {
+    td {
+        display: table-cell;
+        padding: 12px;
+    }
+
+    th {
+        padding: 12px;
+    }
+
+    thead {
+        display: table-header-group;
+    }
+
+    td.mobile {
+        display: none;
+    }
+}

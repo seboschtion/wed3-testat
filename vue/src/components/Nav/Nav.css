@@ -17,6 +17,8 @@ nav a {
 
 nav .right a {
     margin: 24px 0px 0px 0px;
+    color: #991717;
+    border-color: #991717;
 }
 
 .left {
@@ -26,4 +28,10 @@ nav .right a {
 nav a:hover,
 .router-link-active {
     border-bottom: 8px black solid;
+}
+
+nav .right a:hover {
+    border-color: #991717;
+    background-color: #991717;
+    color: white;
 }

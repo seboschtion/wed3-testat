@@ -6,7 +6,7 @@
       <CreateTransaction></CreateTransaction>
     </div>
 
-    <div>
+    <div class="newest-payments">
       <h3>Neueste Zahlungen</h3>
       <TransactionList count="3"></TransactionList>
       <router-link to="/dashboard/transaction-overview">Alle Zahlungen</router-link>
