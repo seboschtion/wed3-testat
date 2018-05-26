@@ -2,7 +2,7 @@ import React from 'react';
 import { NewTransaction, TransactionOverview, Page } from '../../components';
 import * as api from '../../services/api';
 
-class Dashboard extends React.Component {
+export default class Dashboard extends React.Component {
   state = {
     transactions: [],
   };
@@ -25,12 +25,10 @@ class Dashboard extends React.Component {
     return (
       <Page>
         <NewTransaction
-          className="window window-left"
           token={this.props.token}
           transactionCallback={this.transactionsUpdated.bind(this)}
         />
         <TransactionOverview
-          className="window"
           token={this.props.token}
           title="Letzte Bewegungen"
           transactions={this.state.transactions}
@@ -39,5 +37,3 @@ class Dashboard extends React.Component {
     );
   }
 }
-
-export default Dashboard;

@@ -1,9 +1,9 @@
 // @flow
 import React from 'react';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 
 import type State from './services/auth';
-import { validate, defaultState } from './services/auth';
+import { validate, defaultState, authenticate } from './services/auth';
 
 import { Login, Signup, Dashboard, AllTransactions } from './pages';
 import PrivateRoute from './routing/PrivateRoute';
@@ -21,12 +21,9 @@ export default class App extends React.Component<{}, State> {
     const { isAuthenticated, user, token } = this.state;
     return (
       <Router>
-        <div>
-          <Redirect exact path="/" to="dashboard" />
-          <Route
-            path="/login"
-            render={props => <Login {...props} authenticate={this.authenticate} />}
-          />
+        <Switch>
+          <Redirect exact path="/" to="/dashboard" />
+          <Route path="/login" render={props => <Login {...props} authenticate={authenticate} />} />
           <Route path="/signup" component={Signup} />
           <PrivateRoute
             path="/dashboard"
@@ -41,7 +38,7 @@ export default class App extends React.Component<{}, State> {
             user={user}
             component={AllTransactions}
           />
-        </div>
+        </Switch>
       </Router>
     );
   }

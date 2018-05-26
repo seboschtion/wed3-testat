@@ -1,29 +1,27 @@
 // @flow
 
 import React from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Button, Form } from 'semantic-ui-react';
 import { Page, Window } from '../../components';
-import { authenticate } from '../../services/auth';
 
-export type Props = {
-  /* Callback to submit an authentication request to the server */
+type Props = {
   authenticate: (login: string, password: string, callback: (error: ?Error) => void) => void,
-  /* We need to know what page the user tried to access so we can
-     redirect after logging in */
-  location: {
-    state?: {
-      from: string,
-    },
-  },
 };
 
-class Login extends React.Component<Props, *> {
-  state = {
+type State = {
+  login: string,
+  password: string,
+  error: any,
+  redirect: boolean,
+};
+
+class Login extends React.Component<Props, State> {
+  state: State = {
     login: '',
     password: '',
     error: undefined,
-    redirectToReferrer: false,
+    redirect: false,
   };
 
   handleLoginChanged = (event: Event) => {
@@ -41,24 +39,19 @@ class Login extends React.Component<Props, *> {
   handleSubmit = (event: Event) => {
     event.preventDefault();
     const { login, password } = this.state;
-    authenticate(
+    this.props.authenticate(
       login,
       password,
-      (newState) => {
-        this.setState({ redirectToReferrer: true, error: undefined });
+      (s) => {
+        this.setState({ redirect: true });
       },
       error => this.setState({ error }),
     );
   };
 
   render() {
-    const { from } = this.props.location.state || {
-      from: { pathname: '/dashboard' },
-    };
-    const { redirectToReferrer, error } = this.state;
-
-    if (redirectToReferrer) {
-      return <Redirect to={from} />;
+    if (this.state.redirect) {
+      return <Redirect to="/dashboard" />;
     }
 
     return (
@@ -89,7 +82,7 @@ class Login extends React.Component<Props, *> {
               ? 'Bitte geben Sie mindestens 3 Zeichen an.'
               : null}
             <Button onClick={this.handleSubmit}>Login</Button>
-            {error && <p className="error">Es ist ein Fehler aufgetreten!</p>}
+            {this.state.error && <p className="error">Es ist ein Fehler aufgetreten!</p>}
           </Form>
           <Link to="/signup">Noch kein Account? Registrieren Sie sich hier!</Link>
         </Window>

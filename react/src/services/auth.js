@@ -59,3 +59,13 @@ export function validate(callback: (newState: State) => void) {
     });
   }
 }
+
+export function getToken(callback: (token: string) => void) {
+  const token = sessionStorage.getItem('token');
+  callback(token);
+}
+
+export function getUser(callback: (user: User) => void) {
+  const user = sessionStorage.getItem('user');
+  callback(user);
+}
