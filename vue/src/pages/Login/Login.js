@@ -1,6 +1,5 @@
 import Title from '../../components/Title/Title.vue';
 import Input from '../../components/Input/Input.vue';
-import Auth from '../../services/Auth';
 import { login } from '../../services/Api';
 
 export default {
@@ -24,8 +23,8 @@ export default {
       this.errorMessage = '';
 
       login(this.username, this.password)
-        .then((response) => this.$router.push('/dashboard'))
-        .catch(e => this.errorMessage = 'Login fehlgeschlagen');
+        .then(() => this.$router.push('/dashboard'))
+        .catch(() => { this.errorMessage = 'Login fehlgeschlagen'; });
     },
   },
 };

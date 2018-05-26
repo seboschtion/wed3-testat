@@ -30,10 +30,10 @@ export default {
       this.errorMessage = '';
 
       signup(this.username, this.firstname, this.lastname, this.password)
-        .then((result) => login(this.username, this.password)
-            .then(response => this.$router.push('/dashboard'))
-            .catch(e => this.errorMessage = e.toString()))
-        .catch(e => this.errorMessage = e.toString());
+        .then(() => login(this.username, this.password)
+          .then(() => this.$router.push('/dashboard'))
+          .catch((e) => { this.errorMessage = e.toString(); }))
+        .catch((e) => { this.errorMessage = e.toString(); });
     },
   },
 };

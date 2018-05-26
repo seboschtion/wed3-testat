@@ -14,24 +14,24 @@ export default {
   },
 
   methods: {
-    getFilteredTransactions(year, month){
-      const yearNumber = parseInt(year);
-      const monthNumber = parseInt(month);
-      return this.transactions.filter(transaction => {
+    getFilteredTransactions(year, month) {
+      const yearNumber = parseInt(year, 10);
+      const monthNumber = parseInt(month, 10);
+      return this.transactions.filter((transaction) => {
         const transactionDate = new Date(transaction.date);
         const yearMatches = !year || transactionDate.getFullYear() === yearNumber;
-        const monthMatches = !month || transactionDate.getMonth() === (monthNumber-1);
+        const monthMatches = !month || transactionDate.getMonth() === (monthNumber - 1);
         return yearMatches && monthMatches;
       });
     },
     prettifyDate(dateString) {
-      return Moment(dateString).format("DD.MM.YYYY");
+      return Moment(dateString).format('DD.MM.YYYY');
     },
     fetchTransactions() {
       const amountFetched = this.count ? this.count : 100;
-      getTransactions(Auth.token, '', '', amountFetched).then(response => {
+      getTransactions(Auth.token, '', '', amountFetched).then((response) => {
         this.transactions = response.result;
-      }).catch(e => {
+      }).catch((e) => {
         this.errorMessage = e.toString();
       });
     },

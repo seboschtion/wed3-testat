@@ -6,9 +6,9 @@ const NO_ACC = 'Account existiert nicht';
 
 export default {
   components: {
-    Input
+    Input,
   },
-  
+
   data() {
     return {
       myAccountNumber: '',
@@ -29,9 +29,9 @@ export default {
         return;
       }
 
-      getAccount(target, Auth.token).then(response => {
+      getAccount(target, Auth.token).then((response) => {
         this.recipientName = `${response.owner.firstname} ${response.owner.lastname}`;
-      }).catch(e => {
+      }).catch(() => {
         this.recipientName = NO_ACC;
       });
     },
@@ -42,12 +42,11 @@ export default {
       if (this.amount < 0.05) { this.errorMessage = 'Der Betrag muss mindestens 5 Rappen betragen'; return; }
       this.errorMessage = '';
 
-      transfer(this.to, this.amount, Auth.token).then(response => {
+      transfer(this.to, this.amount, Auth.token).then((response) => {
         this.transactionCompleted = true;
         this.myBalance = response.total;
         this.$root.$emit('refreshTransactions');
-
-      }).catch(e => {
+      }).catch((e) => {
         this.errorMessage = e.toString();
       });
     },
@@ -57,11 +56,11 @@ export default {
       this.recipientName = '';
       this.amount = 0.0;
       this.errorMessage = '';
-    }
+    },
   },
 
-  beforeMount(){
-    getAccountDetails(Auth.token).then(response => {
+  beforeMount() {
+    getAccountDetails(Auth.token).then((response) => {
       this.myAccountNumber = response.accountNr;
       this.myBalance = response.amount;
       this.from = `${this.myAccountNumber} [${this.myBalance} CHF]`;

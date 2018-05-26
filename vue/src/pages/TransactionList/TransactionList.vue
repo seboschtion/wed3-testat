@@ -20,7 +20,8 @@
           <td>{{transaction.amount.toFixed(2)}}</td>
           <td>{{transaction.total.toFixed(2)}}</td>
           <td class="mobile">
-            <p v-if="showCompleteList"><span>Datum</span><span>{{prettifyDate(transaction.date)}}</span></p>
+            <p v-if="showCompleteList"><span>Datum</span>
+              <span>{{prettifyDate(transaction.date)}}</span></p>
             <p><span>Von</span><span>{{transaction.from}}</span></p>
             <p><span>An</span><span>{{transaction.target}}</span></p>
             <p><span>Betrag [CHF]</span><span>{{transaction.amount.toFixed(2)}}</span></p>
