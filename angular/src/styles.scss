@@ -1,5 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 @import "/variables.scss";
+@font-face {
+  font-family: 'Yantramanav';
+  font-style: normal;
+  font-weight: 300;
+  src: url(assets/fonts/Yantramanav-Light.ttf);
+}
+@font-face {
+  font-family: 'Yantramanav';
+  font-style: normal;
+  font-weight: 700;
+  src: url(assets/fonts/Yantramanav-Bold.ttf);
+}
+
 
 /* resets */
 html, body, div, span, applet, object, iframe,
