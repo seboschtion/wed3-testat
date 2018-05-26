@@ -6,12 +6,12 @@
 }
 
 #dashboard {
-  padding: 48px;
+  padding: 24px;
 }
 
 h2 {
-  font-size: 48pt;
-  margin: 48px;
+  font-size: 12pt;
+  margin: 12px;
 }
 
 nav ul {
@@ -30,4 +30,20 @@ nav ul {
     color: $theme-dark;
     border-color: $theme;
   } 
+}
+
+@media(min-width: 480px) {
+  h2 {
+    font-size: 48pt;
+  }
+}
+
+@media(min-width: 960px) {
+  h2 {
+    margin: 48px;
+  }
+
+  #dashboard {
+    padding: 48px;
+  }
 }

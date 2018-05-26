@@ -3,14 +3,28 @@
     flex-wrap: wrap;
 
     > * {
-        margin-right: 48px;
+        flex: 1 1 100%;
     }
 
-    > div {
-        flex: 1 1;
+    > .wed-transaction-overview {
+        margin-top: 64px;
     }
+}
 
-    > wed-payment {
-        max-width: 320px;
+@media(min-width: 840px) {
+    .flex {
+    flex-wrap: nowrap;
+
+        > wed-payment {
+            flex-basis: 420px;
+            flex-grow: 0;
+        }
+
+        > .wed-transaction-overview {
+            flex-basis: 1px;
+            flex-shrink: 0;
+            margin-top: 0px;
+            margin-left: 64px;
+        }
     }
 }

@@ -1,4 +1,4 @@
-<div *ngIf="bankAccount">
+<div class="payment" *ngIf="bankAccount">
   <form (ngSubmit)="doPayment(paymentForm)" #paymentForm="ngForm">
     Von:
     <input type="text" value="{{bankAccount.accountNr}} [{{bankAccount.amount}} CHF]" [readonly]="true"/>
@@ -9,13 +9,13 @@
         <input pattern=".{1,}" type="text" placeholder="Zielkontonummer" name="target" #targetControl="ngModel" type="text" [(ngModel)]="target" (ngModelChange)="searchBankaccount()" required/>
         <small class="validation-warning" [hidden]="targetControl.pristine || targetControl.valid">Bitte geben Sie eine Kontonummer an
         </small>
-        <small>
+        <i>
           {{targetBankAccountOwner}}
-        </small>
+        </i>
       </div>
     </label>
 
-    <label>
+    <label class="amount">
       <div class="validated-input">
         Betrag [CHF]:
         <input type="number" placeholder="Betrag in CHF" name="amount" #amount="ngModel" ngModel [customMin]="minNum"/>
@@ -24,7 +24,6 @@
             Der Betrag muss mindestends {{minNum}} CHF sein.
           </small>
         </div>
-
       </div>
     </label>
 

@@ -40,6 +40,7 @@ export default class AllTransactions extends React.Component<Props, State> {
           transactions={this.state.transactions}
           filterChangedCallback={this.filterChanged}
           showFilters
+          showDate
         />
       </Page>
     );

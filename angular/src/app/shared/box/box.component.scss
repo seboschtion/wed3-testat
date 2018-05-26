@@ -1,7 +1,13 @@
 .box {
-  width: 520px;
+  max-width: 520px;
   min-height: 256px;
-  padding: 48px;
+  padding: 24px;
   margin: 24px auto;
   border-radius: 8px;
+}
+
+@media(min-width: 480px) {
+  .box {
+    padding: 48px;
+  }
 }

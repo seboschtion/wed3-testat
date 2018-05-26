@@ -1,9 +1,17 @@
 form {
     display: flex;
     flex-direction: column;
-}
 
-button {
-    align-self: flex-end;
-    font-weight: bold;
+    button {
+        align-self: flex-end;
+        font-weight: bold;
+    }
+    
+    i {
+        font-style: italic;
+    }
+
+    .amount {
+        margin-top: 48px;
+    }
 }

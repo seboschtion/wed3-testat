@@ -10,8 +10,8 @@
       <tr>
         <th>Von</th>
         <th>Zu</th>
-        <th>Betrag[CHF]</th>
-        <th>Kontostand[CHF]</th>
+        <th>Betrag [CHF]</th>
+        <th>Kontostand [CHF]</th>
       </tr>
     </thead>
 
@@ -21,6 +21,12 @@
         <td>{{transaction.target}}</td>
         <td>{{transaction.amount | currency: 'CHF'}}</td>
         <td>{{transaction.total | currency: 'CHF'}}</td>
+        <td class="mobile">
+          <p><span>Von</span><span>{{transaction.from}}</span></p>
+          <p><span>An</span><span>{{transaction.target}}</span></p>
+          <p><span>Betrag [CHF]</span><span>{{transaction.amount | currency: 'CHF'}}</span></p>
+          <p><span>Kontostand [CHF]</span><span>{{transaction.total | currency: 'CHF'}}</span></p>
+      </td>
       </tr>
     </tbody>
 

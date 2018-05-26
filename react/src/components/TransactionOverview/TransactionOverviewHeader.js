@@ -4,9 +4,21 @@ import { Table } from 'semantic-ui-react';
 
 type Props = {
   sortHandler: any,
+  showDate: boolean,
 };
 
 export default class TransactionOverviewHeader extends React.Component<Props> {
+  renderDateRow(column: string, direction: string) {
+    if (this.props.showDate) {
+      return (
+        <Table.HeaderCell sorted={column === 'date' ? direction : null} onClick={this.props.sortHandler('date')}>
+          Datum
+        </Table.HeaderCell>
+      );
+    }
+    return '';
+  }
+
   render() {
     let column: null;
     let direction: null;
@@ -14,9 +26,7 @@ export default class TransactionOverviewHeader extends React.Component<Props> {
     return (
       <Table.Header>
         <Table.Row>
-          <Table.HeaderCell sorted={column === 'date' ? direction : null} onClick={this.props.sortHandler('date')}>
-            Datum
-          </Table.HeaderCell>
+          {this.renderDateRow(column, direction)}
           <Table.HeaderCell sorted={column === 'from' ? direction : null} onClick={this.props.sortHandler('from')}>
             Von
           </Table.HeaderCell>

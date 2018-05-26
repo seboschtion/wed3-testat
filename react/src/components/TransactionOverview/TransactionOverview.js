@@ -14,6 +14,7 @@ type Props = {
   showFilters: boolean,
   transactions: Array<Transaction>,
   title: string,
+  showDate: boolean
 };
 
 type State = {
@@ -118,8 +119,8 @@ class TransactionOverview extends React.Component<Props, State> {
           className={this.hideFilters()}
         />
         <Table sortable celled>
-          <TransactionOverviewHeader sortHandler={this.handleSort} />
-          <TransactionOverviewRows transactions={sortedTransactions} />
+          <TransactionOverviewHeader showDate={this.props.showDate} sortHandler={this.handleSort} />
+          <TransactionOverviewRows showDate={this.props.showDate} transactions={sortedTransactions} />
         </Table>
       </Window>
     );

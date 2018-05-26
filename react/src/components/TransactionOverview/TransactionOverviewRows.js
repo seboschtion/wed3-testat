@@ -6,22 +6,21 @@ import type { Transaction } from '../../services/api';
 
 type Props = {
   transactions: Array<Transaction>,
+  showDate: boolean,
 };
 
 export default class TransactionOverviewRows extends React.Component<Props> {
-  static renderRow(transaction: Transaction) {
-    return (
-      <Table.Row key={transaction.date}>
-        <Table.Cell>{moment(transaction.date).format('DD.MM.YYYY')}</Table.Cell>
-        <Table.Cell>{transaction.from}</Table.Cell>
-        <Table.Cell>{transaction.target}</Table.Cell>
-        <Table.Cell>{transaction.amount.toFixed(2)}</Table.Cell>
-        <Table.Cell>{transaction.total.toFixed(2)}</Table.Cell>
-      </Table.Row>
-    );
-  }
+  renderRow = (transaction: Transaction) => (
+    <Table.Row key={transaction.date}>
+      {this.props.showDate ? <Table.Cell>{moment(transaction.date).format('DD.MM.YYYY')}</Table.Cell> : ''}
+      <Table.Cell>{transaction.from}</Table.Cell>
+      <Table.Cell>{transaction.target}</Table.Cell>
+      <Table.Cell>{transaction.amount.toFixed(2)}</Table.Cell>
+      <Table.Cell>{transaction.total.toFixed(2)}</Table.Cell>
+    </Table.Row>
+  );
 
   render() {
-    return <Table.Body>{this.props.transactions.map(TransactionOverviewRows.renderRow)}</Table.Body>;
+    return <Table.Body>{this.props.transactions.map(this.renderRow)}</Table.Body>;
   }
 }

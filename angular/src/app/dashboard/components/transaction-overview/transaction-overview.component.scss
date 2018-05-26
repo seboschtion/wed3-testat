@@ -3,17 +3,56 @@
 table {
     width: 100%;
 
-    thead th {
-        font-weight: 700;
-        text-align: left;
-        padding: 0px 12px 24px 12px;
+    thead {
+        display: none;
+
+        th {
+            font-weight: 700;
+            text-align: left;
+            padding: 0px 12px 24px 12px;
+        }
     }
 
     tr:nth-child(odd) td {
         background-color: $light;
     }
 
-    td {
-        padding: 12px;
+    tr {
+        td {
+            display: none;
+            padding: 12px;
+        }
+
+        td.mobile {
+            display: table-cell;
+    
+            p {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 4px;
+    
+                span:first-child {
+                    font-weight: 700;
+                }
+            }
+        }
+    }
+}
+
+@media(min-width: 640px) {
+    table {
+        thead {
+            display: table-header-group;
+        }
+
+        tr {
+            td.mobile {
+                display: none;
+            }
+
+            td {
+                display: table-cell;
+            }
+        }
     }
 }
