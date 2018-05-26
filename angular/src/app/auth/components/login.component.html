@@ -22,6 +22,6 @@
         </small>
       </div>
     </label>
-    <button class="button-right" [disabled]="!loginForm.valid">Login</button>
+    <button class="button-right" [disabled]="!loginForm.valid || isProcessing">Login</button>
   </form>
 </wed-box>
