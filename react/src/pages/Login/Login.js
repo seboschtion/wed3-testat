@@ -61,10 +61,10 @@ class Login extends React.Component<Props, State> {
             {this.state.login && this.state.login.length < 3 ? 'Bitte geben Sie mindestens 3 Zeichen an.' : null}
             <Input label="Passwort" type="password" onChange={this.handlePasswordChanged} value={this.state.password} />
             {this.state.password && this.state.password.length < 3 ? 'Bitte geben Sie mindestens 3 Zeichen an.' : null}
-            <Button onClick={this.handleSubmit}>Login</Button>
+            <Button onClick={this.handleSubmit} disabled={(this.state.login.length < 3) || (this.state.password.length < 3)}>Login</Button>
             {this.state.error && <p className="error">Es ist ein Fehler aufgetreten!</p>}
           </Form>
-          <Link to="/signup">Noch kein Account? Registrieren Sie sich hier!</Link>
+          <Link to="/signup">Noch keinen Account? Registrieren Sie sich hier!</Link>
         </Window>
       </Page>
     );

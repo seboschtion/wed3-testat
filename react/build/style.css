@@ -1,0 +1,42 @@
+/* Customizations */
+
+:root {
+  --theme: #e74034;
+  --warning: #1897e0;
+}
+
+.ui.form input:active,
+.ui.form input:focus {
+  border-color: var(--theme) !important;
+}
+
+.ui.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.button {
+  margin: 12px 0px !important;
+}
+
+.button.dropdown {
+  margin-right: 12px !important;
+}
+
+.hide {
+  display: none !important;
+}
+
+a {
+  color: var(--theme);
+}
+
+a:hover {
+  color: var(--theme);
+  text-decoration: underline;
+}
+
+.error {
+  color: var(--warning);
+  font-weight: bold;
+}
