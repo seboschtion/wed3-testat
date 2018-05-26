@@ -94,7 +94,7 @@ export default class NewTransaction extends React.Component<Props, State> {
   render() {
     if (this.state.transferResult) {
       return (
-        <Window title="Neue Überweisung">
+        <Window left title="Neue Überweisung">
           <p>Überweisung an {this.state.transferResult.target} war erfolgreich.</p>
           <p>Ihr neuer Kontostand beträgt {this.state.transferResult.total.toFixed(2)}</p>
           <Button onClick={this.clearSuccessfulTransaction}>Neue Überweisung</Button>
@@ -102,7 +102,7 @@ export default class NewTransaction extends React.Component<Props, State> {
       );
     }
     return (
-      <Window title="Neue Überweisung">
+      <Window left title="Neue Überweisung">
         <Form className="window-content">
           <Input label="Von" value={this.constructAccountName()} disabled />
           <Input label="Zu" value={this.state.transactionToId} onChange={this.transactionToChanged} />

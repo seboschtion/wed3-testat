@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import PageHeader from './PageHeader';
+import './Page.css';
 
 type Props = {
   children: any,
@@ -11,7 +12,7 @@ export default class Page extends React.Component<Props> {
     return (
       <div className="page">
         <PageHeader />
-        <div>{this.props.children}</div>
+        <div className="page-content">{this.props.children}</div>
       </div>
     );
   }

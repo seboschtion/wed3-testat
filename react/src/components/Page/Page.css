@@ -1,0 +1,10 @@
+.page-content {
+  display: flex;
+  flex-flow: wrap;
+}
+
+@media (min-width: 640px) {
+  .page-content {
+    flex-flow: nowrap;
+  }
+}

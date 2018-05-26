@@ -6,11 +6,6 @@
   min-width: 0px;
 }
 
-.window-left {
-  flex: none;
-  width: auto;
-}
-
 .window-content {
   margin: 12px;
 }
@@ -28,7 +23,12 @@
   }
 
   .window-left {
-    flex: 0 0 20%;
-    min-width: 400px;
+    flex: 0 1 1px;
+    width: 360px;
+  }
+
+  .window-center {
+    max-width: 420px;
+    margin: 12px auto;
   }
 }

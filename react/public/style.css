@@ -5,68 +5,6 @@
   --warning: #1897e0;
 }
 
-nav {
-  display: flex;
-  height: 4rem;
-  width: 100%;
-  margin-bottom: 80px;
-  background-color: var(--theme);
-  padding-left: 24px;
-}
-
-label {
-  margin-bottom: 12px;
-}
-
-.navigation-targets,
-.navigation-actions {
-  display: flex;
-}
-
-.navigation-targets {
-  flex: 1 1 auto;
-}
-
-.navigation-actions {
-  flex: 0 0 auto;
-  margin-right: 12px;
-}
-
-.navigation-actions button,
-nav a {
-  align-self: center;
-}
-
-nav a {
-  display: block;
-  font-size: 1.7em;
-  color: white;
-  margin: 12px;
-  padding: 8px 12px;
-  border-radius: 4px;
-}
-
-nav a:hover,
-nav a.active {
-  color: var(--theme);
-  background-color: white;
-  transition: 0.2s;
-}
-
-h1 {
-  color: var(--theme);
-  border: var(--theme) solid;
-  border-width: 4px 0px;
-  padding: 24px;
-}
-
-h2 {
-  margin-bottom: 0px;
-  color: white;
-  align-self: center;
-  margin-right: 48px;
-}
-
 .ui.form input:active,
 .ui.form input:focus {
   border-color: var(--theme) !important;
@@ -75,16 +13,6 @@ h2 {
 .ui.form {
   display: flex;
   flex-direction: column;
-}
-
-.site-content {
-  display: flex;
-  flex-flow: row wrap;
-  margin: 12px;
-}
-
-.entry-page .window {
-  margin: 64px auto 0px auto;
 }
 
 .button {
@@ -111,10 +39,4 @@ a:hover {
 .error {
   color: var(--warning);
   font-weight: bold;
-}
-
-@media (min-width: 960px) {
-  .site-content {
-    flex-flow: row;
-  }
 }

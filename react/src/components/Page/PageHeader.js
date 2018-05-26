@@ -2,9 +2,9 @@
 import React from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 import { Button } from 'semantic-ui-react';
-
 import type State from '../../services/auth';
 import { validate, defaultState, signout } from '../../services/auth';
+import './PageHeader.css';
 
 type Props = {
   // empty

@@ -1,5 +1,6 @@
 // @flow
 import React from 'react';
+import './Input.css';
 
 type Props = {
   label: string,

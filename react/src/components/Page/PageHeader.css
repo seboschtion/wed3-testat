@@ -1,0 +1,95 @@
+h1 {
+  color: var(--theme);
+  border: var(--theme) solid;
+  border-width: 4px 0px;
+  padding: 24px;
+}
+
+h2 {
+  margin-bottom: 0px;
+  color: white;
+  align-self: center;
+  margin-right: 48px;
+  display: none;
+}
+
+h1,
+nav {
+  margin-bottom: 12px;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: var(--theme);
+}
+
+.navigation-targets,
+.navigation-actions {
+  display: flex;
+  flex-direction: column;
+}
+
+.navigation-targets {
+  flex: 1 1 auto;
+  margin-top: 4px;
+}
+
+.navigation-actions {
+  flex: 0 0 auto;
+}
+
+.navigation-targets > a,
+.navigation-actions > button.ui.button {
+  margin: 0px 0px 4px 0px !important;
+}
+
+.navigation-actions button,
+nav a {
+  align-self: center;
+}
+
+nav a {
+  display: block;
+  font-size: 1.7em;
+  color: white;
+  margin: 0px 12px;
+  padding: 8px 12px;
+  border-radius: 4px;
+}
+
+nav a:hover,
+nav a.active {
+  color: var(--theme);
+  background-color: white;
+  transition: 0.2s;
+}
+
+@media (min-width: 640px) {
+  .navigation-targets,
+  .navigation-actions,
+  nav {
+    flex-direction: row;
+  }
+
+  nav {
+    padding: 12px 24px;
+  }
+}
+
+@media (min-width: 960px) {
+  h1,
+  nav {
+    margin-bottom: 64px;
+  }
+
+  h2 {
+    display: inline;
+  }
+
+  .navigation-targets,
+  .navigation-actions {
+    flex-direction: row;
+  }
+}

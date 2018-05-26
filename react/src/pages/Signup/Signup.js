@@ -60,7 +60,7 @@ export default class Signup extends React.Component<{}, *> {
 
     return (
       <Page>
-        <Window title="Registrierung">
+        <Window center title="Registrierung">
           <Form>
             <Input label="Vorname" onChange={this.handleFirstNameChanged} value={this.state.firstname} />
             <Input label="Nachname" onChange={this.handleLastNameChanged} value={this.state.lastname} />

@@ -55,7 +55,7 @@ class Login extends React.Component<Props, State> {
 
     return (
       <Page>
-        <Window title="Login">
+        <Window center title="Login">
           <Form>
             <Input label="Benutzername" onChange={this.handleLoginChanged} value={this.state.login} />
             {this.state.login && this.state.login.length < 3 ? 'Bitte geben Sie mindestens 3 Zeichen an.' : null}
