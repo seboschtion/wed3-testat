@@ -1,13 +1,49 @@
+// @flow
 import React from 'react';
 import _ from 'lodash';
-import moment from 'moment';
+import moment, { Moment } from 'moment';
 import { Table } from 'semantic-ui-react';
+import type Transaction from '../../services/api';
 import { Window } from '../index';
 import TableFilter from './TableFilter';
 import TransactionOverviewRows from './TransactionOverviewRows';
 import TransactionOverviewHeader from './TransactionOverviewHeader';
 
-class TransactionOverview extends React.Component {
+type Props = {
+  filterChangedCallback: any,
+  showFilters: boolean,
+  transactions: Array<Transaction>,
+  title: string,
+};
+
+type State = {
+  from: Moment,
+  to: Moment,
+  monthWasSet: boolean,
+};
+
+class TransactionOverview extends React.Component<Props, State> {
+  static getYearFilters() {
+    return [{ text: '2018', value: 2018, key: 2018 }, { text: '2017', value: 2017, key: 2017 }, { text: '2016', value: 2016, key: 2016 }];
+  }
+
+  static getMonthFilters() {
+    return [
+      { text: 'Januar', value: 1, key: 1 },
+      { text: 'Februar', value: 2, key: 2 },
+      { text: 'März', value: 3, key: 3 },
+      { text: 'April', value: 4, key: 4 },
+      { text: 'Mai', value: 5, key: 5 },
+      { text: 'Juni', value: 6, key: 6 },
+      { text: 'Juli', value: 7, key: 7 },
+      { text: 'August', value: 8, key: 8 },
+      { text: 'September', value: 9, key: 9 },
+      { text: 'Oktober', value: 10, key: 10 },
+      { text: 'November', value: 11, key: 11 },
+      { text: 'Dezember', value: 12, key: 12 },
+    ];
+  }
+
   state = {
     column: null,
     direction: null,
@@ -33,31 +69,6 @@ class TransactionOverview extends React.Component {
     }
   };
 
-  getYearFilters() {
-    return [
-      { text: '2018', value: 2018, key: 2018 },
-      { text: '2017', value: 2017, key: 2017 },
-      { text: '2016', value: 2016, key: 2016 },
-    ];
-  }
-
-  getMonthFilters() {
-    return [
-      { text: 'Januar', value: 1, key: 1 },
-      { text: 'Februar', value: 2, key: 2 },
-      { text: 'März', value: 3, key: 3 },
-      { text: 'April', value: 4, key: 4 },
-      { text: 'Mai', value: 5, key: 5 },
-      { text: 'Juni', value: 6, key: 6 },
-      { text: 'Juli', value: 7, key: 7 },
-      { text: 'August', value: 8, key: 8 },
-      { text: 'September', value: 9, key: 9 },
-      { text: 'Oktober', value: 10, key: 10 },
-      { text: 'November', value: 11, key: 11 },
-      { text: 'Dezember', value: 12, key: 12 },
-    ];
-  }
-
   // TODO: Filter das nächste mal besser auslagern
   filterChanged = (newValue) => {
     if (newValue > 12) {
@@ -79,10 +90,7 @@ class TransactionOverview extends React.Component {
     this.filter.to.date(1);
 
     const format = 'YYYY-MM-D';
-    this.props.filterChangedCallback(
-      this.filter.from.format(format),
-      this.filter.to.format(format),
-    );
+    this.props.filterChangedCallback(this.filter.from.format(format), this.filter.to.format(format));
   };
 
   hideFilters() {
@@ -99,14 +107,14 @@ class TransactionOverview extends React.Component {
       <Window title={this.props.title}>
         <TableFilter
           name="Jahr"
-          items={this.getYearFilters()}
-          filterChangedCallback={this.filterChanged.bind(this)}
+          items={TransactionOverview.getYearFilters()}
+          filterChangedCallback={this.filterChanged}
           className={this.hideFilters()}
         />
         <TableFilter
           name="Monat"
-          items={this.getMonthFilters()}
-          filterChangedCallback={this.filterChanged.bind(this)}
+          items={TransactionOverview.getMonthFilters()}
+          filterChangedCallback={this.filterChanged}
           className={this.hideFilters()}
         />
         <Table sortable celled>

@@ -1,23 +1,27 @@
+// @flow
 import React from 'react';
 import moment from 'moment';
 import { Table } from 'semantic-ui-react';
+import type { Transaction } from '../../services/api';
 
-function TransactionOverviewRows({ transactions }) {
-  const renderRow = function ({
-    from, target, amount, total, date,
-  }) {
+type Props = {
+  transactions: Array<Transaction>,
+};
+
+export default class TransactionOverviewRows extends React.Component<Props> {
+  static renderRow(transaction: Transaction) {
     return (
-      <Table.Row>
-        <Table.Cell>{moment(date).format('DD.MM.YYYY')}</Table.Cell>
-        <Table.Cell>{from}</Table.Cell>
-        <Table.Cell>{target}</Table.Cell>
-        <Table.Cell>{amount.toFixed(2)}</Table.Cell>
-        <Table.Cell>{total.toFixed(2)}</Table.Cell>
+      <Table.Row key={transaction.date}>
+        <Table.Cell>{moment(transaction.date).format('DD.MM.YYYY')}</Table.Cell>
+        <Table.Cell>{transaction.from}</Table.Cell>
+        <Table.Cell>{transaction.target}</Table.Cell>
+        <Table.Cell>{transaction.amount.toFixed(2)}</Table.Cell>
+        <Table.Cell>{transaction.total.toFixed(2)}</Table.Cell>
       </Table.Row>
     );
-  };
+  }
 
-  return <Table.Body>{transactions.map(renderRow)}</Table.Body>;
+  render() {
+    return <Table.Body>{this.props.transactions.map(TransactionOverviewRows.renderRow)}</Table.Body>;
+  }
 }
-
-export default TransactionOverviewRows;

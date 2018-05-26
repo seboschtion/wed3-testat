@@ -1,8 +1,17 @@
+// @flow
 import React from 'react';
 import { Page, TransactionOverview } from '../../components';
 import * as api from '../../services/api';
 
-export default class AllTransactions extends React.Component {
+type Props = {
+  token: string,
+};
+
+type State = {
+  transactions: Array<api.Transaction>,
+};
+
+export default class AllTransactions extends React.Component<Props, State> {
   state = {
     transactions: [],
   };
@@ -17,9 +26,9 @@ export default class AllTransactions extends React.Component {
     });
   }
 
-  filterChanged(newFrom, newTo) {
+  filterChanged = (newFrom, newTo) => {
     this.fetchTransactions(newFrom, newTo);
-  }
+  };
 
   render() {
     return (
@@ -29,7 +38,7 @@ export default class AllTransactions extends React.Component {
           token={this.props.token}
           title="Letzte Bewegungen"
           transactions={this.state.transactions}
-          filterChangedCallback={this.filterChanged.bind(this)}
+          filterChangedCallback={this.filterChanged}
           showFilters
         />
       </Page>

@@ -1,9 +1,8 @@
 // @flow
-
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { Button, Form } from 'semantic-ui-react';
-import { Page, Window } from '../../components';
+import { Page, Window, Input } from '../../components';
 
 type Props = {
   authenticate: (login: string, password: string, callback: (error: ?Error) => void) => void,
@@ -42,7 +41,7 @@ class Login extends React.Component<Props, State> {
     this.props.authenticate(
       login,
       password,
-      (s) => {
+      () => {
         this.setState({ redirect: true });
       },
       error => this.setState({ error }),
@@ -58,29 +57,10 @@ class Login extends React.Component<Props, State> {
       <Page>
         <Window title="Login">
           <Form>
-            <label>
-              Username
-              <input
-                onChange={this.handleLoginChanged}
-                placeholder="Login"
-                value={this.state.login}
-              />
-            </label>
-            {this.state.login && this.state.login.length < 3
-              ? 'Bitte geben Sie mindestens 3 Zeichen an.'
-              : null}
-            <label>
-              Passwort
-              <input
-                onChange={this.handlePasswordChanged}
-                placeholder="Password"
-                type="password"
-                value={this.state.password}
-              />
-            </label>
-            {this.state.password && this.state.password.length < 3
-              ? 'Bitte geben Sie mindestens 3 Zeichen an.'
-              : null}
+            <Input label="Benutzername" onChange={this.handleLoginChanged} value={this.state.login} />
+            {this.state.login && this.state.login.length < 3 ? 'Bitte geben Sie mindestens 3 Zeichen an.' : null}
+            <Input label="Passwort" type="password" onChange={this.handlePasswordChanged} value={this.state.password} />
+            {this.state.password && this.state.password.length < 3 ? 'Bitte geben Sie mindestens 3 Zeichen an.' : null}
             <Button onClick={this.handleSubmit}>Login</Button>
             {this.state.error && <p className="error">Es ist ein Fehler aufgetreten!</p>}
           </Form>

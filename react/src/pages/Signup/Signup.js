@@ -1,9 +1,8 @@
 // @flow
-
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { Button, Form } from 'semantic-ui-react';
-import { Window, Page } from '../../components';
+import { Window, Page, Input } from '../../components';
 import { signup } from '../../services/api';
 
 export default class Signup extends React.Component<{}, *> {
@@ -13,7 +12,7 @@ export default class Signup extends React.Component<{}, *> {
     lastname: '',
     password: '',
     error: null,
-    redirectToReferrer: false,
+    redirect: false,
   };
 
   handleLoginChanged = (event: Event) => {
@@ -46,60 +45,27 @@ export default class Signup extends React.Component<{}, *> {
       login, firstname, lastname, password,
     } = this.state;
     signup(login, firstname, lastname, password)
-      .then((result) => {
-        console.log('Signup result ', result);
-        this.setState({ redirectToReferrer: true, error: null });
+      .then(() => {
+        this.setState({ redirect: true, error: null });
       })
-      .catch(error => this.setState({ error }));
+      .catch(error => this.setState({ redirect: false, error }));
   };
 
   render() {
-    const { redirectToReferrer, error } = this.state;
+    const { redirect, error } = this.state;
 
-    if (redirectToReferrer) {
-      return <Redirect to="/login" />;
+    if (redirect) {
+      return <Redirect to="/dashboard" />;
     }
 
     return (
       <Page>
         <Window title="Registrierung">
           <Form>
-            <label>
-              Vorname
-              <input
-                onChange={this.handleFirstNameChanged}
-                placeholder="Vorname"
-                value={this.state.firstname}
-              />
-            </label>
-
-            <label>
-              Nachname
-              <input
-                onChange={this.handleLastNameChanged}
-                placeholder="Nachname"
-                value={this.state.lastname}
-              />
-            </label>
-
-            <label>
-              Username
-              <input
-                onChange={this.handleLoginChanged}
-                placeholder="Username"
-                value={this.state.login}
-              />
-            </label>
-
-            <label>
-              Passwort
-              <input
-                onChange={this.handlePasswordChanged}
-                placeholder="Passwort"
-                type="password"
-                value={this.state.password}
-              />
-            </label>
+            <Input label="Vorname" onChange={this.handleFirstNameChanged} value={this.state.firstname} />
+            <Input label="Nachname" onChange={this.handleLastNameChanged} value={this.state.lastname} />
+            <Input label="Benutzername" onChange={this.handleLoginChanged} value={this.state.login} />
+            <Input label="Passwort" onChange={this.handlePasswordChanged} value={this.state.password} type="password" />
             <Button onClick={this.handleSubmit}>Account eröffnen</Button>
             {error && <p className="error">Es ist ein Fehler aufgetreten!</p>}
           </Form>

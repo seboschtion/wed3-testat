@@ -1,5 +1,5 @@
 // @flow
-import type { User } from './services/api';
+import type { User } from './api';
 import * as api from './api';
 
 export type State = {
@@ -14,6 +14,18 @@ export function defaultState(): State {
     token: undefined,
     user: undefined,
   };
+}
+
+export function getToken() {
+  return sessionStorage.getItem('token');
+}
+
+export function getUser() {
+  return sessionStorage.getItem('user');
+}
+
+export function getIsAuthenticated() {
+  return getToken() && getUser();
 }
 
 export function signout(callback: (newState: State) => void) {
@@ -43,8 +55,8 @@ export function authenticate(
 }
 
 export function validate(callback: (newState: State) => void) {
-  const token = sessionStorage.getItem('token');
-  const user = sessionStorage.getItem('user');
+  const token = getToken();
+  const user = getUser();
   if (token && user) {
     callback({
       isAuthenticated: true,
@@ -58,14 +70,4 @@ export function validate(callback: (newState: State) => void) {
       user: undefined,
     });
   }
-}
-
-export function getToken(callback: (token: string) => void) {
-  const token = sessionStorage.getItem('token');
-  callback(token);
-}
-
-export function getUser(callback: (user: User) => void) {
-  const user = sessionStorage.getItem('user');
-  callback(user);
 }

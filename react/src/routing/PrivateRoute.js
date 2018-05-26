@@ -1,16 +1,20 @@
+// @flow
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import { getIsAuthenticated, getUser, getToken } from '../services/auth';
 
-export default function PrivateRoute({
-  component, isAuthenticated, user, token, ...rest
-}) {
-  if (isAuthenticated) {
-    return (
-      <Route
-        {...rest}
-        render={props => React.createElement(component, { ...props, user, token })}
-      />
-    );
+type Props = {
+  component: any,
+  rest?: any,
+};
+
+export default class PrivateRoute extends React.Component<Props> {
+  render() {
+    const user = getUser();
+    const token = getToken();
+    if (getIsAuthenticated() && this.props.component) {
+      return <Route {...this.props.rest} render={props => React.createElement(this.props.component, { ...props, user, token })} />;
+    }
+    return <Route {...this.props.rest} render={() => <Redirect to={{ pathname: '/login' }} />} />;
   }
-  return <Route {...rest} render={props => <Redirect to={{ pathname: '/login' }} />} />;
 }

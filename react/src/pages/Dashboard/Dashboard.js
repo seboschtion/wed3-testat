@@ -1,8 +1,17 @@
+// @flow
 import React from 'react';
 import { NewTransaction, TransactionOverview, Page } from '../../components';
 import * as api from '../../services/api';
 
-export default class Dashboard extends React.Component {
+type Props = {
+  token: string,
+};
+
+type State = {
+  transactions: Array<api.Transaction>,
+};
+
+export default class Dashboard extends React.Component<Props, State> {
   state = {
     transactions: [],
   };
@@ -11,9 +20,9 @@ export default class Dashboard extends React.Component {
     this.fetchTransactions();
   }
 
-  transactionsUpdated() {
+  transactionsUpdated = () => {
     this.fetchTransactions();
-  }
+  };
 
   fetchTransactions() {
     api.getTransactions(this.props.token).then((value) => {
@@ -24,15 +33,8 @@ export default class Dashboard extends React.Component {
   render() {
     return (
       <Page>
-        <NewTransaction
-          token={this.props.token}
-          transactionCallback={this.transactionsUpdated.bind(this)}
-        />
-        <TransactionOverview
-          token={this.props.token}
-          title="Letzte Bewegungen"
-          transactions={this.state.transactions}
-        />
+        <NewTransaction token={this.props.token} transactionCallback={this.transactionsUpdated} />
+        <TransactionOverview token={this.props.token} title="Letzte Bewegungen" transactions={this.state.transactions} />
       </Page>
     );
   }

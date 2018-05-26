@@ -11,17 +11,17 @@ type Props = {
 };
 
 export default class PageHeader extends React.Component<Props, State> {
+  state: State = defaultState();
+
   componentWillMount() {
     validate((s) => {
       this.setState(s);
     });
   }
 
-  state: State = defaultState();
-
   render() {
     const { isAuthenticated, user } = this.state;
-    const MenuBar = withRouter(({ history, location: { pathname } }) => {
+    const MenuBar = withRouter(({ history }) => {
       if (isAuthenticated && user) {
         return (
           <nav>
