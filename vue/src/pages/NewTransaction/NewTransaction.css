@@ -1,0 +1,8 @@
+.overview {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.overview > div {
+    flex: 1 1 100%;
+}

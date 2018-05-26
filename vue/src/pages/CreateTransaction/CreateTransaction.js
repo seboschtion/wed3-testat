@@ -1,9 +1,14 @@
 import Auth from '../../services/Auth';
 import { getAccountDetails, getAccount, transfer } from '../../services/Api';
+import Input from '../../components/Input/Input.vue';
 
 const NO_ACC = 'Account existiert nicht';
 
 export default {
+  components: {
+    Input
+  },
+  
   data() {
     return {
       myAccountNumber: '',

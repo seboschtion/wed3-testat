@@ -1,18 +1,15 @@
 <template>
   <div>
     <form v-if="transactionCompleted == false">
-      <label>Von</label>
-      <input disabled :value="myAccountNumber + ' [' + myBalance.toFixed(2) + ' CHF]' ">
+      <Input label="Von" disabled :value="myAccountNumber + ' [' + myBalance.toFixed(2) + ' CHF]' "/>
 
-      <label>An</label>
-      <input v-model="to" v-on:input='loadAccount($event.target.value)'/>
+      <Input label="An" v-model="to" v-on:input='loadAccount($event.target.value)'/>
       <p>{{recipientName}}</p>
 
-      <label>Betrag</label>
-      <input v-model="amount"/>
-
-      <p>{{errorMessage}}</p>
+      <Input label="Betrag" v-model="amount"/>
+      
       <button v-on:click="createTransaction()">Zahlung ausführen</button>
+      <p>{{errorMessage}}</p>
     </form>
 
     <div v-if="transactionCompleted == true">

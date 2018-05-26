@@ -1,8 +1,10 @@
 <template>
 
-  <div>
-    <h3>Neue Zahlung</h3>
-    <CreateTransaction></CreateTransaction>
+  <div class="overview">
+    <div>
+      <h3>Neue Zahlung</h3>
+      <CreateTransaction></CreateTransaction>
+    </div>
 
     <div>
       <h3>Neueste Zahlungen</h3>

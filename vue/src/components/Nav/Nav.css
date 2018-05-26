@@ -5,6 +5,7 @@ nav {
 ul {
    display: flex;
    justify-content: space-between;
+   flex-wrap: wrap;
 }
 
 nav a {
@@ -15,7 +16,7 @@ nav a {
 }
 
 nav .right a {
-    margin: 24px 0px 0px 48px;
+    margin: 24px 0px 0px 0px;
 }
 
 .left {

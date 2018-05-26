@@ -11,7 +11,25 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Gothic+A1:300,500,800');
+/* @import url('https://fonts.googleapis.com/css?family=Gothic+A1:300,500,800'); */
+@font-face {
+    font-family: 'Gothic A1';
+    font-weight: 300;
+    font-style: normal;
+    src: url('/assets/GothicA1-Light');
+}
+@font-face {
+    font-family: 'Gothic A1';
+    font-weight: 500;
+    font-style: normal;
+    src: url('/assets/GothicA1-Regular');
+}
+@font-face {
+    font-family: 'Gothic A1';
+    font-weight: 800;
+    font-style: normal;
+    src: url('/assets/GothicA1-Bold');
+}
 
 #app {
     font-family: 'Gothic A1', sans-serif;
