@@ -3,7 +3,8 @@
 import React from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import { Button, Form } from 'semantic-ui-react';
-import { Window } from '../../components';
+import { Page, Window } from '../../components';
+import { authenticate } from '../../services/auth';
 
 export type Props = {
   /* Callback to submit an authentication request to the server */
@@ -40,13 +41,14 @@ class Login extends React.Component<Props, *> {
   handleSubmit = (event: Event) => {
     event.preventDefault();
     const { login, password } = this.state;
-    this.props.authenticate(login, password, (error) => {
-      if (error) {
-        this.setState({ error });
-      } else {
-        this.setState({ redirectToReferrer: true, error: null });
-      }
-    });
+    authenticate(
+      login,
+      password,
+      (newState) => {
+        this.setState({ redirectToReferrer: true, error: undefined });
+      },
+      error => this.setState({ error }),
+    );
   };
 
   render() {
@@ -60,8 +62,7 @@ class Login extends React.Component<Props, *> {
     }
 
     return (
-      <div className="entry-page">
-        <h1>Red Bank of North Koreact</h1>
+      <Page>
         <Window title="Login">
           <Form>
             <label>
@@ -92,7 +93,7 @@ class Login extends React.Component<Props, *> {
           </Form>
           <Link to="/signup">Noch kein Account? Registrieren Sie sich hier!</Link>
         </Window>
-      </div>
+      </Page>
     );
   }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { TransactionOverview } from '../../components';
+import { Page, TransactionOverview } from '../../components';
 import * as api from '../../services/api';
 
 export default class AllTransactions extends React.Component {
@@ -23,7 +23,7 @@ export default class AllTransactions extends React.Component {
 
   render() {
     return (
-      <div className="site-content">
+      <Page>
         <TransactionOverview
           className="window"
           token={this.props.token}
@@ -32,7 +32,7 @@ export default class AllTransactions extends React.Component {
           filterChangedCallback={this.filterChanged.bind(this)}
           showFilters
         />
-      </div>
+      </Page>
     );
   }
 }

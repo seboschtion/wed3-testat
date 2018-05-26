@@ -1,5 +1,5 @@
 import React from 'react';
-import { NewTransaction, TransactionOverview } from '../../components';
+import { NewTransaction, TransactionOverview, Page } from '../../components';
 import * as api from '../../services/api';
 
 class Dashboard extends React.Component {
@@ -23,7 +23,7 @@ class Dashboard extends React.Component {
 
   render() {
     return (
-      <div className="site-content">
+      <Page>
         <NewTransaction
           className="window window-left"
           token={this.props.token}
@@ -35,7 +35,7 @@ class Dashboard extends React.Component {
           title="Letzte Bewegungen"
           transactions={this.state.transactions}
         />
-      </div>
+      </Page>
     );
   }
 }

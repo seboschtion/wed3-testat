@@ -3,7 +3,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { Button, Form } from 'semantic-ui-react';
-import { Window } from '../../components';
+import { Window, Page } from '../../components';
 import { signup } from '../../services/api';
 
 export default class Signup extends React.Component<{}, *> {
@@ -61,8 +61,7 @@ export default class Signup extends React.Component<{}, *> {
     }
 
     return (
-      <div className="entry-page">
-        <h1>Red Bank of North Koreact</h1>
+      <Page>
         <Window title="Registrierung">
           <Form>
             <label>
@@ -105,7 +104,7 @@ export default class Signup extends React.Component<{}, *> {
             {error && <p className="error">Es ist ein Fehler aufgetreten!</p>}
           </Form>
         </Window>
-      </div>
+      </Page>
     );
   }
 }
