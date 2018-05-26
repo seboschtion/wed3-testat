@@ -9,4 +9,11 @@
 
 .newest-payments {
     margin-top: 48px;
+    display: flex;
+    flex-direction: column;
+}
+
+.newest-payments > a {
+    align-self: flex-end;
+    margin-top: 12px;
 }

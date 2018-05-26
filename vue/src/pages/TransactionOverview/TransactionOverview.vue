@@ -3,23 +3,27 @@
     <div>
       <h3>Zahlungsübersicht</h3>
 
-      <p>Wähle ein Jahr</p>
-      <select v-model="selectedYear">
-        <option v-for="(yearFilter, index) in getYearFilters()"
-                :value="yearFilter.value"
-                :key="index">
-          {{yearFilter.text}}
-        </option>
-      </select>
+      <div class="filter">
+        <label>Filtere nach Jahr
+          <select v-model="selectedYear">
+            <option v-for="(yearFilter, index) in getYearFilters()"
+                    :value="yearFilter.value"
+                    :key="index">
+              {{yearFilter.text}}
+            </option>
+          </select>
+        </label>
 
-      <p>Wähle einen Monat</p>
-      <select v-model="selectedMonth">
-        <option v-for="(month, index) in getMonthFilters()"
-                :value="month.value"
-                :key="index">
-          {{month.text}}
-        </option>
-      </select>
+        <label>und nach Monat
+          <select v-model="selectedMonth">
+            <option v-for="(month, index) in getMonthFilters()"
+                    :value="month.value"
+                    :key="index">
+              {{month.text}}
+            </option>
+          </select>
+        </label>
+      </div>
     </div>
 
     <TransactionList v-bind:yearFilter="selectedYear"
