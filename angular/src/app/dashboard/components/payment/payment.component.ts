@@ -25,6 +25,7 @@ export class PaymentComponent implements OnInit {
   public targetBankAccountOwner: string;
   public minNum = 0.05;
   public amount: number;
+  public errorMessage = '';
 
 
   ngOnInit() {
@@ -35,8 +36,14 @@ export class PaymentComponent implements OnInit {
 
   public doPayment(f: NgForm): boolean {
     if (this.targetBankAccountOwner === this.NO_ACC) {
-      return false;
+      this.errorMessage = "Geben Sie einen gültigen Empfänger ein.";
+      return;
     }
+    if (this.target === this.bankAccount.accountNr) {
+      this.errorMessage = "Sie können kein Geld an sich selbst überweisen.";
+      return;
+    }
+    this.errorMessage = '';
 
     if (f && f.valid) {
       this.transactionService.submitTransaction(f.form.value.target, f.form.value.amount).subscribe(reponse => {
@@ -51,6 +58,7 @@ export class PaymentComponent implements OnInit {
   }
 
   public searchBankaccount() {
+    this.errorMessage = '';
     if (!this.target) { return; }
     this.bankAccountService.getSpecificBankAccount(this.target).subscribe(bankAccount => {
       if (bankAccount) {

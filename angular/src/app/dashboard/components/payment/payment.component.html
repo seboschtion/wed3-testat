@@ -14,6 +14,7 @@
         </i>
       </div>
     </label>
+    <small class="validation-warning">{{errorMessage}}</small>
 
     <label class="amount">
       <div class="validated-input">
@@ -26,6 +27,7 @@
         </div>
       </div>
     </label>
+
 
     <button type="submit" [disabled]="!paymentForm.valid">Bezahlen</button>
   </form>
