@@ -76,7 +76,6 @@ class TransactionOverview extends React.Component<Props, State> {
     }
   };
 
-  // TODO: Filter das nächste mal besser auslagern
   filterChanged = (newValue) => {
     if (newValue > 12) {
       this.filter.from.year(newValue);
