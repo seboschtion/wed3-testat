@@ -18,10 +18,11 @@ export class PaymentComponent implements OnInit {
   private NO_ACC = 'Account existiert nicht';
 
   public bankAccount: BankAccount;
-  private transaction: Transaction;
+  private transactionSubmitted = false;
   public target: string;
   public targetBankAccountOwner: string;
   public minNum = 0.05;
+
 
   ngOnInit() {
     const bankAccount = this.bankAccountService.getCurrentBankAccount().subscribe(value =>
@@ -35,19 +36,18 @@ export class PaymentComponent implements OnInit {
     }
 
     if (f && f.valid) {
-      this.transactionService.submitTransaction(f.form.value.target, f.form.value.amount).subscribe(value => {
-          if (!value) {
-            return false;
-          }
-            // TODO: display current transaction
-            this.transaction = value;
-            return true;
+      this.transactionService.submitTransaction(f.form.value.target, f.form.value.amount).subscribe(reponse => {
+          if (!reponse) { return; }
+          this.transactionSubmitted = true;
+          this.bankAccount.amount = reponse.total;
         }
       );
     }
     return false;
   }
+
   public searchBankaccount() {
+    if (!this.target) { return; }
     this.bankAccountService.getSpecificBankAccount(this.target).subscribe(bankAccount => {
       if (bankAccount) {
         this.targetBankAccountOwner = bankAccount.owner.firstname + " " + bankAccount.owner.lastname;
@@ -55,6 +55,9 @@ export class PaymentComponent implements OnInit {
         this.targetBankAccountOwner = this.NO_ACC;
       }
     });
+  }
 
+  public resetForNewTransaction() {
+    this.transactionSubmitted = false;
   }
 }

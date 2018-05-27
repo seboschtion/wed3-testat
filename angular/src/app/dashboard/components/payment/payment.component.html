@@ -1,5 +1,5 @@
 <div class="payment" *ngIf="bankAccount">
-  <form (ngSubmit)="doPayment(paymentForm)" #paymentForm="ngForm">
+  <form (ngSubmit)="doPayment(paymentForm)" #paymentForm="ngForm" *ngIf="!transactionSubmitted">
     Von:
     <input type="text" value="{{bankAccount.accountNr}} [{{bankAccount.amount.toFixed(2)}} CHF]" [readonly]="true"/>
 
@@ -29,4 +29,10 @@
 
     <button type="submit" [disabled]="!paymentForm.valid">Bezahlen</button>
   </form>
+
+  <div *ngIf="transactionSubmitted">
+    <p>Zahlung an {{targetBankAccountOwner}} erfolgreich.</p>
+    <p>Neuer Kontostand: {{bankAccount.amount.toFixed(2)}}</p>
+    <button (click)="resetForNewTransaction()">Neue Zahlung</button>
+  </div>
 </div>
