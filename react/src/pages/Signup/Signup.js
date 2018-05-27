@@ -14,7 +14,6 @@ export default class Signup extends React.Component<{}, *> {
     passwordConfirmation: '',
     error: null,
     redirect: false,
-    errorMessage: 'Bitte geben Sie mindestens 3 Zeichen an.',
     passwordConfirmationErrorMessage: '',
   };
 
@@ -71,21 +70,22 @@ export default class Signup extends React.Component<{}, *> {
     }
 
     const formCompleted = this.isFormCompleted();
+    const defaultMinlengthErrMsg = 'Bitte geben Sie mindestens 3 Zeichen an.';
 
     return (
       <Page>
         <Window center title="Registrierung">
           <Form>
             <Input name="firstname" label="Vorname" onChange={e => this.onTextCahnged(e)} value={this.state.firstname} />
-            {this.state.firstname && this.state.firstname.length < 3 ? this.state.errorMessage : null}
+            {this.state.firstname && this.state.firstname.length < 3 ? defaultMinlengthErrMsg : null}
             <Input name="lastname" label="Nachname" onChange={e => this.onTextCahnged(e)} value={this.state.lastname} />
-            {this.state.lastname && this.state.lastname.length < 3 ? this.state.errorMessage : null}
+            {this.state.lastname && this.state.lastname.length < 3 ? defaultMinlengthErrMsg : null}
             <Input name="login" label="Benutzername" onChange={e => this.onTextCahnged(e)} value={this.state.login} />
-            {this.state.login && this.state.login.length < 3 ? this.state.errorMessage : null}
+            {this.state.login && this.state.login.length < 3 ? defaultMinlengthErrMsg : null}
             <Input name="password" label="Passwort" onChange={e => this.onTextCahnged(e)} value={this.state.password} type="password" />
-            {this.state.password && this.state.password.length < 3 ? this.state.errorMessage : null}
+            {this.state.password && this.state.password.length < 3 ? defaultMinlengthErrMsg : null}
             <Input name="passwordConfirmation" label="Passwort bestätigen" onChange={this.handlePasswordConfirmationChanged} value={this.state.passwordConfirmation} type="password" />
-            {this.state.password && this.state.password.length < 3 ? this.state.errorMessage : null} {this.state.passwordConfirmationErrorMessage}
+            {this.state.password && this.state.password.length < 3 ? defaultMinlengthErrMsg : null} {this.state.passwordConfirmationErrorMessage}
             <Button onClick={this.handleSubmit} disabled={!formCompleted}>Account eröffnen</Button>
             {error && <p className="error">Es ist ein Fehler aufgetreten!</p>}
           </Form>
