@@ -20,7 +20,7 @@
 
     <div v-if="transactionCompleted === true">
       <p>Zahlung an {{to}} erfolgreich.</p>
-      <p>Neuer Kontostand: {{myBalance}}</p>
+      <p>Neuer Kontostand: {{myBalance.toFixed(2)}} CHF</p>
       <button v-on:click="reset()">Neue Zahlung</button>
     </div>
   </div>

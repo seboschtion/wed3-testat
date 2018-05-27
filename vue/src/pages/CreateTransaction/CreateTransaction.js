@@ -40,6 +40,7 @@ export default {
       if (!this.amount || this.amount === 0.0) { this.errorMessage = 'Geben Sie einen Betrag ein.'; return; }
       if (this.amount > this.myBalance) { this.errorMessage = 'Der Betrag darf den Kontostand nicht überschreiten.'; return; }
       if (this.amount < 0.05) { this.errorMessage = 'Der Betrag muss mindestens 5 Rappen betragen'; return; }
+      if (this.to === this.myAccountNumber) { this.errorMessage = 'Sie können kein Geld an sich selbst überweisen.'; return; }
       this.errorMessage = '';
 
       transfer(this.to, this.amount, Auth.token).then((response) => {
