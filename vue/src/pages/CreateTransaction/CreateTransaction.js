@@ -36,7 +36,7 @@ export default {
       });
     },
     createTransaction() {
-      if (!this.to || this.to === '' || this.recipientName === NO_ACC) { this.errorMessage = 'Geben Sie einen gültigen Empfänger ein.'; return; }
+      if (!this.to || this.to === '' || this.recipientName === NO_ACC) { this.errorMessage = 'Geben Sie einen gültigen Empfänger an.'; return; }
       if (!this.amount || this.amount === 0.0) { this.errorMessage = 'Geben Sie einen Betrag ein.'; return; }
       if (this.amount > this.myBalance) { this.errorMessage = 'Der Betrag darf den Kontostand nicht überschreiten.'; return; }
       if (this.amount < 0.05) { this.errorMessage = 'Der Betrag muss mindestens 5 Rappen betragen'; return; }

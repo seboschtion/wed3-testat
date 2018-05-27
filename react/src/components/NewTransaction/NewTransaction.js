@@ -19,6 +19,8 @@ type State = {
   transferResult: any,
 };
 
+const NO_ACC = "Account existiert nicht";
+
 export default class NewTransaction extends React.Component<Props, State> {
   state = {
     transactionFromId: 0,
@@ -43,11 +45,25 @@ export default class NewTransaction extends React.Component<Props, State> {
     event.preventDefault();
 
     if (this.state.balance < this.state.amount) {
-      this.setState({
-        submitWarning: 'Der Betrag ist grösser als der momentane Kontostand.',
-      });
+      this.setState({ submitWarning: 'Der Betrag ist grösser als der momentane Kontostand.' });
       return;
     }
+
+    if (this.state.transactionToName === NO_ACC) {
+      this.setState({ submitWarning: 'Geben Sie einen gültigen Empfänger an.' });
+      return;
+    }
+
+    if (this.state.amount < 0.05) {
+      this.setState({ submitWarning: 'Der Betrag muss mindestens 5 Rappen betragen.' });
+      return;
+    }
+
+    if (this.state.transactionToId === this.state.transactionFromId) {
+      this.setState({ submitWarning: 'Sie können sich nicht selbst Geld überweisen.' });
+      return;
+    }
+    this.setState({ submitWarning: '' });
 
     api.transfer(this.state.transactionToId, this.state.amount, this.props.token).then((transferResult) => {
       this.setState({
@@ -59,6 +75,12 @@ export default class NewTransaction extends React.Component<Props, State> {
   };
 
   transactionToChanged = (event) => {
+    if (!event.target.value || event.target.value === '') {
+      this.setState({ transactionToName: NO_ACC });
+      this.setState({ transactionToId: '' });
+      return;
+    }
+
     this.setState({ transactionToId: event.target.value });
     api
       .getAccount(event.target.value, this.props.token)
@@ -68,7 +90,7 @@ export default class NewTransaction extends React.Component<Props, State> {
         });
       })
       .catch(() => {
-        this.setState({ transactionToName: 'Unbekannt' });
+        this.setState({ transactionToName: NO_ACC });
       });
   };
 
