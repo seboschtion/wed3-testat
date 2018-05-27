@@ -1,4 +1,5 @@
 import {Component, Input, OnInit, SimpleChanges} from '@angular/core';
+import { DatePipe } from '@angular/common'
 import {TransactionService} from "../../services/transaction.service";
 import {Transaction} from "../../models/transaction";
 
@@ -16,7 +17,7 @@ export class TransactionOverviewComponent implements OnInit {
   @Input() yearFilter: string;
   @Input() monthFilter: string;
 
-  constructor(private transactionService: TransactionService) {}
+  constructor(private transactionService: TransactionService, public datepipe: DatePipe) {}
 
   ngOnInit() {
     this.refreshTransactions();
@@ -37,6 +38,11 @@ export class TransactionOverviewComponent implements OnInit {
       const monthMatches = !this.monthFilter || transactionDate.getMonth() === (monthNumber- 1);
       return yearMatches && monthMatches;
     });
+  }
+
+  public prettifyDateString(dateString: string): string {
+    const date = new Date(dateString);
+    return this.datepipe.transform(date, 'dd.MM.yyyy');
   }
 
   public refreshTransactions() {
