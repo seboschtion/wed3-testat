@@ -4,11 +4,12 @@
       <Input label="Von"
              disabled :value="myAccountNumber + ' [' + myBalance.toFixed(2) + ' CHF]' "/>
 
-      <label>
-        An
-        <input v-model="to" v-on:input='loadAccount($event.target.value)'/>
-      </label>
-
+      <div class="input">
+        <label>
+          An
+          <input v-model="to" v-on:input='loadAccount($event.target.value)'/>
+        </label>
+      </div>
 
       <p>{{recipientName}}</p>
 

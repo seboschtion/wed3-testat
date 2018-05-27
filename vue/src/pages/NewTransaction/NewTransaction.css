@@ -17,3 +17,19 @@
     align-self: flex-end;
     margin-top: 12px;
 }
+
+@media(min-width: 840px) {
+    .overview {
+        flex-wrap: nowrap;
+        justify-items: stretch;
+    }
+
+    .new-payment {
+        margin-right: 48px;
+        max-width: 480px;
+    }
+
+    .newest-payments {
+        margin-top: 0px;
+    }
+}

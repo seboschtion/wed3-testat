@@ -8,8 +8,8 @@
       <Input label="Benutzername" v-model="username"/>
       <Input label="Passwort" type="password" v-model="password"/>
       <Input label="Passwort bestätigen" type="password" v-model="passwordConfirmation"/>
-      <Error :message="errorMessage"/>
       <button type="submit">Registrieren</button>
+      <Error :message="errorMessage"/>
     </form>
 
   </div>

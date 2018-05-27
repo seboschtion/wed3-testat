@@ -1,7 +1,7 @@
 <template>
 
   <div class="overview">
-    <div>
+    <div class="new-payment">
       <h3>Neue Zahlung</h3>
       <CreateTransaction></CreateTransaction>
     </div>
