@@ -19,7 +19,7 @@ type State = {
   transferResult: any,
 };
 
-const NO_ACC = "Account existiert nicht";
+const NO_ACC = 'Account existiert nicht';
 
 export default class NewTransaction extends React.Component<Props, State> {
   state = {

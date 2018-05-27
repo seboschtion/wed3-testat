@@ -9,6 +9,8 @@ type Props = {
   onChange: any,
   disabled: boolean,
   step: string,
+  name: string,
+  pattern: string
 };
 
 type State = {
