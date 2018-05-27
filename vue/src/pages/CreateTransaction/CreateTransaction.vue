@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form v-if="transactionCompleted == false">
+    <form v-if="transactionCompleted === false">
       <Input label="Von"
              disabled :value="myAccountNumber + ' [' + myBalance.toFixed(2) + ' CHF]' "/>
 
@@ -13,7 +13,7 @@
       <p>{{errorMessage}}</p>
     </form>
 
-    <div v-if="transactionCompleted == true">
+    <div v-if="transactionCompleted === true">
       <p>Zahlung an {{to}} erfolgreich.</p>
       <p>Neuer Kontostand: {{myBalance}}</p>
       <button v-on:click="reset()">Neue Zahlung</button>
