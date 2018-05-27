@@ -18,7 +18,7 @@
 
     <tbody>
       <tr *ngFor="let transaction of filteredTransactions">
-        <td *ngIf="showDate">{{transaction.date}}</td>
+        <td *ngIf="showDate">{{prettifyDateString(transaction.date)}}</td>
         <td>{{transaction.from}}</td>
         <td>{{transaction.target}}</td>
         <td>{{transaction.amount | currency: 'CHF'}}</td>
