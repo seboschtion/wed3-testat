@@ -41,6 +41,8 @@ export default class Input extends React.Component<Props, State> {
           value={this.props.value}
           disabled={this.props.disabled}
           step={this.props.step}
+          name={this.props.name}
+          pattern={this.props.pattern}
         />
       </label>
     );

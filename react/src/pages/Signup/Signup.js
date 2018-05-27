@@ -18,38 +18,29 @@ export default class Signup extends React.Component<{}, *> {
     passwordConfirmationErrorMessage: '',
   };
 
-  handleLoginChanged = (event: Event) => {
-    if (event.target instanceof HTMLInputElement) {
-      this.setState({ login: event.target.value });
-    }
-  };
-
-  handleFirstNameChanged = (event: Event) => {
-    if (event.target instanceof HTMLInputElement) {
-      this.setState({ firstname: event.target.value });
-    }
-  };
-
-  handleLastNameChanged = (event: Event) => {
-    if (event.target instanceof HTMLInputElement) {
-      this.setState({ lastname: event.target.value });
-    }
-  };
-
-  handlePasswordChanged = (event: Event) => {
-    if (event.target instanceof HTMLInputElement) {
-      this.setState({ password: event.target.value });
-    }
-  };
-
   handlePasswordConfirmationChanged = (event: Event) => {
-    if (event.target instanceof HTMLInputElement) {
-      this.setState({ passwordConfirmation: event.target.value });
+      this.setState(
+        { passwordConfirmation: event.target.value},
+        () => {
+          if(!this.passwordEqualsPasswordConfirmation()) {
+            this.setState({passwordConfirmationErrorMessage: 'Passwörter stimmen nicht überein.'});
+          } else {
+            this.setState({passwordConfirmationErrorMessage: ''});
+          }
+      });
+  };
 
-      if(this.state.password.length > 2 && this.state.passwordConfirmation.length > 2 && this.state.password !== this.state.passwordConfirmation) {
-        this.setState({passwordConfirmationErrorMessage: 'Passwörter stimmen nicht überein.'});
-      }
+  passwordEqualsPasswordConfirmation = () => {
+    if(!this.state.password || !this.state.passwordConfirmation) {
+      return false;
     }
+    return this.state.password === this.state.passwordConfirmation;
+  };
+
+  onTextCahnged = (e: Event) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
   };
 
   handleSubmit = (event: Event) => {
@@ -61,7 +52,15 @@ export default class Signup extends React.Component<{}, *> {
       .then(() => {
         this.setState({ redirect: true, error: null });
       })
-      .catch(error => this.setState({ redirect: false, error }));
+      .catch(error => this.setState({ redirect: false, error: error }));
+  };
+
+  isFormCompleted = () => {
+    return this.state.firstname && this.state.lastname && this.state.login && this.state.password && this.state.passwordConfirmation && this.isMinlengthEnsured() && this.passwordEqualsPasswordConfirmation();
+  };
+
+  isMinlengthEnsured = () => {
+    return this.state.firstname.length > 2 && this.state.lastname.length > 2 && this.state.login.length > 2 && this.state.password.length > 2 && this.state.passwordConfirmation.length > 2;
   };
 
   render() {
@@ -71,21 +70,23 @@ export default class Signup extends React.Component<{}, *> {
       return <Redirect to="/dashboard" />;
     }
 
+    const formCompleted = this.isFormCompleted();
+
     return (
       <Page>
         <Window center title="Registrierung">
           <Form>
-            <Input label="Vorname" onChange={this.handleFirstNameChanged} value={this.state.firstname} />
+            <Input name="firstname" label="Vorname" onChange={e => this.onTextCahnged(e)} value={this.state.firstname} />
             {this.state.firstname && this.state.firstname.length < 3 ? this.state.errorMessage : null}
-            <Input label="Nachname" onChange={this.handleLastNameChanged} value={this.state.lastname} />
+            <Input name="lastname" label="Nachname" onChange={e => this.onTextCahnged(e)} value={this.state.lastname} />
             {this.state.lastname && this.state.lastname.length < 3 ? this.state.errorMessage : null}
-            <Input label="Benutzername" onChange={this.handleLoginChanged} value={this.state.login} />
+            <Input name="login" label="Benutzername" onChange={e => this.onTextCahnged(e)} value={this.state.login} />
             {this.state.login && this.state.login.length < 3 ? this.state.errorMessage : null}
-            <Input label="Passwort" onChange={this.handlePasswordChanged} value={this.state.password} type="password" />
+            <Input name="password" label="Passwort" onChange={e => this.onTextCahnged(e)} value={this.state.password} type="password" />
             {this.state.password && this.state.password.length < 3 ? this.state.errorMessage : null}
-            <Input label="Passwort bestätigen" onChange={this.handlePasswordConfirmationChanged} value={this.state.passwordConfirmation} type="password" />
+            <Input name="passwordConfirmation" label="Passwort bestätigen" onChange={this.handlePasswordConfirmationChanged} value={this.state.passwordConfirmation} type="password" />
             {this.state.password && this.state.password.length < 3 ? this.state.errorMessage : null} {this.state.passwordConfirmationErrorMessage}
-            <Button onClick={this.handleSubmit} disabled={!this.state.firstname || !this.state.lastname || !this.state.login || !this.state.password || !this.state.passwordConfirmation }>Account eröffnen</Button>
+            <Button onClick={this.handleSubmit} disabled={!formCompleted}>Account eröffnen</Button>
             {error && <p className="error">Es ist ein Fehler aufgetreten!</p>}
           </Form>
         </Window>
