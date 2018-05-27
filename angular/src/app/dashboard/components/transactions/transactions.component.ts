@@ -16,10 +16,12 @@ export class TransactionsComponent implements OnInit {
   }
 
   getYearFilters() {
+    const today = new Date();
+    const currentYear = today.getFullYear();
     return [
-      { text: "2018", value: 2018, key: 2018},
-      { text: "2017", value: 2017, key: 2017},
-      { text: "2016", value: 2016, key: 2016},
+      { text: `${currentYear}`, value: currentYear, key: currentYear },
+      { text: `${currentYear-1}`, value: currentYear-1, key: currentYear-1 },
+      { text: `${currentYear-2}`, value: currentYear-2, key: currentYear-2 }
     ];
   }
 
