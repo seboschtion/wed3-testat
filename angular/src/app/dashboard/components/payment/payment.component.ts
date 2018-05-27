@@ -54,7 +54,6 @@ export class PaymentComponent implements OnInit {
       } else {
         this.targetBankAccountOwner = this.NO_ACC;
       }
-      console.log(this.targetBankAccountOwner);
     });
 
   }

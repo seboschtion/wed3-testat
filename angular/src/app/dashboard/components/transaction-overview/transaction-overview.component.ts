@@ -1,7 +1,6 @@
-import {Component, Input, OnInit, SimpleChange, SimpleChanges} from '@angular/core';
+import {Component, Input, OnInit, SimpleChanges} from '@angular/core';
 import {TransactionService} from "../../services/transaction.service";
 import {Transaction} from "../../models/transaction";
-import {HttpResponse} from "@angular/common/http";
 
 @Component({
   selector: 'wed-transaction-overview',
@@ -13,6 +12,7 @@ export class TransactionOverviewComponent implements OnInit {
   private transactions: Transaction[] = [];
   public filteredTransactions: Transaction[] = [];
   @Input() maxTransactions: number = 1000;
+  @Input() showDate: boolean = true;
   @Input() yearFilter: number;
   @Input() monthFilter: number;
 

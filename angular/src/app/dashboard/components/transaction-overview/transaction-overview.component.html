@@ -8,6 +8,7 @@
 
     <thead>
       <tr>
+        <th *ngIf="showDate">Datum</th>
         <th>Von</th>
         <th>Zu</th>
         <th>Betrag [CHF]</th>
@@ -17,6 +18,7 @@
 
     <tbody>
       <tr *ngFor="let transaction of filteredTransactions">
+        <td *ngIf="showDate">{{transaction.date}}</td>
         <td>{{transaction.from}}</td>
         <td>{{transaction.target}}</td>
         <td>{{transaction.amount | currency: 'CHF'}}</td>
