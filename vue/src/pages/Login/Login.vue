@@ -3,8 +3,8 @@
     <Title title="Login"/>
 
     <form id="form-login" v-on:submit.prevent="login">
-      <Input label="Benutzername" v-model="username"/>
-      <Input label="Passwort" v-model="password" type="password"/>
+      <Input label="Benutzername" v-model="username" required/>
+      <Input label="Passwort" v-model="password" type="password" required/>
       <p>{{errorMessage}}</p>
       <button type="submit">Login</button>
     </form>

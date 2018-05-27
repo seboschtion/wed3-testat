@@ -19,12 +19,15 @@ export default {
     login(event) {
       event.preventDefault();
       if (!this.username) { this.errorMessage = 'Benutzername ungültig'; return; }
-      if (!this.password || this.password.length < 3) { this.errorMessage = 'Passwort ungültig'; return; }
+      if (!this.validMinLength(this.username)) { this.errorMessage = 'Benutzername muss mindestens 3 Zeichen enthalten.'; return; }
+      if (!this.password) { this.errorMessage = 'Passwort ungültig'; return; }
+      if (!this.validMinLength(this.password)) { this.errorMessage = 'Passwort muss mindestens 3 Zeichen enthalten.'; return; }
       this.errorMessage = '';
 
       login(this.username, this.password)
         .then(() => this.$router.push('/dashboard'))
         .catch(() => { this.errorMessage = 'Login fehlgeschlagen'; });
     },
+    validMinLength: value => value.length > 2,
   },
 };
