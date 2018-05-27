@@ -50,7 +50,7 @@ export class PaymentComponent implements OnInit {
   public searchBankaccount() {
     this.bankAccountService.getSpecificBankAccount(this.target).subscribe(bankAccount => {
       if (bankAccount) {
-        this.targetBankAccountOwner = bankAccount.owner.firstname + bankAccount.owner.lastname;
+        this.targetBankAccountOwner = bankAccount.owner.firstname + " " + bankAccount.owner.lastname;
       } else {
         this.targetBankAccountOwner = this.NO_ACC;
       }
