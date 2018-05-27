@@ -13,8 +13,8 @@ export class TransactionOverviewComponent implements OnInit {
   public filteredTransactions: Transaction[] = [];
   @Input() maxTransactions: number = 1000;
   @Input() showDate: boolean = true;
-  @Input() yearFilter: number;
-  @Input() monthFilter: number;
+  @Input() yearFilter: string;
+  @Input() monthFilter: string;
 
   constructor(private transactionService: TransactionService) {}
 
@@ -35,18 +35,12 @@ export class TransactionOverviewComponent implements OnInit {
   applyFilter() {
     if(!this.transactions){return;}
 
-    this.filteredTransactions = this.transactions.filter((transaction, index) => {
-      const date = new Date(transaction.date);
-      let yearMatches = true;
-
-      if(this.yearFilter){
-        yearMatches = date.getFullYear() == this.yearFilter
-      }
-
-      let monthMatches = true;
-      if(this.monthFilter){
-        monthMatches = date.getMonth() == (this.monthFilter-1);
-      }
+    const yearNumber = parseInt(this.yearFilter, 10);
+    const monthNumber = parseInt(this.monthFilter, 10);
+    this.filteredTransactions = this.transactions.filter((transaction) => {
+      const transactionDate = new Date(transaction.date);
+      const yearMatches = !this.yearFilter || transactionDate.getFullYear() === yearNumber;
+      const monthMatches = !this.monthFilter || transactionDate.getMonth() === (monthNumber- 1);
       return yearMatches && monthMatches;
     });
   }

@@ -19,6 +19,7 @@ export default {
       const today = new Date();
       const currentYear = today.getFullYear();
       return [
+        { text: '-', value: '', key: '' },
         { text: `${currentYear}`, value: currentYear, key: currentYear },
         { text: `${currentYear-1}`, value: currentYear-1, key: currentYear-1 },
         { text: `${currentYear-2}`, value: currentYear-2, key: currentYear-2 }
