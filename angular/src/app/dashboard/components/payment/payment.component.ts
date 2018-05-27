@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {BankAccountService} from '../../services';
 import {BankAccount} from '../../models/bankaccount';
 import {NgForm} from '@angular/forms';
@@ -17,11 +17,14 @@ export class PaymentComponent implements OnInit {
 
   private NO_ACC = 'Account existiert nicht';
 
+  @Output() refreshTransactions = new EventEmitter<void>();
+
   public bankAccount: BankAccount;
   private transactionSubmitted = false;
   public target: string;
   public targetBankAccountOwner: string;
   public minNum = 0.05;
+  public amount: number;
 
 
   ngOnInit() {
@@ -40,6 +43,7 @@ export class PaymentComponent implements OnInit {
           if (!reponse) { return; }
           this.transactionSubmitted = true;
           this.bankAccount.amount = reponse.total;
+          this.refreshTransactions.emit();
         }
       );
     }
@@ -59,5 +63,8 @@ export class PaymentComponent implements OnInit {
 
   public resetForNewTransaction() {
     this.transactionSubmitted = false;
+    this.target = null;
+    this.targetBankAccountOwner = null;
+    this.amount = 0;
   }
 }

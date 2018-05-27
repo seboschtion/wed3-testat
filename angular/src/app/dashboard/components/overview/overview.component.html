@@ -1,5 +1,5 @@
 <div class="flex">
-  <wed-payment></wed-payment>
+  <wed-payment (refreshTransactions)="refreshTransactions()"></wed-payment>
   <div class="wed-transaction-overview">
     <wed-transaction-overview [maxTransactions]="3" [showDate]="false"></wed-transaction-overview>
     <a routerLink="transactions" routerLinkActive="active">Alle Transaktionen</a>

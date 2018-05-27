@@ -19,20 +19,14 @@ export class TransactionOverviewComponent implements OnInit {
   constructor(private transactionService: TransactionService) {}
 
   ngOnInit() {
-    this.transactionService.getTransactions(null, null, this.maxTransactions).subscribe((response: any) => {
-       this.transactions = response.result;
-       this.filteredTransactions = this.transactions;
-    },
-    error => {
-      console.log(error);
-    });
+    this.refreshTransactions();
   }
 
   ngOnChanges(changes: SimpleChanges){
     this.applyFilter();
   }
 
-  applyFilter() {
+  public applyFilter() {
     if(!this.transactions){return;}
 
     const yearNumber = parseInt(this.yearFilter, 10);
@@ -43,6 +37,16 @@ export class TransactionOverviewComponent implements OnInit {
       const monthMatches = !this.monthFilter || transactionDate.getMonth() === (monthNumber- 1);
       return yearMatches && monthMatches;
     });
+  }
+
+  public refreshTransactions() {
+    this.transactionService.getTransactions(null, null, this.maxTransactions).subscribe((response: any) => {
+        this.transactions = response.result;
+        this.filteredTransactions = this.transactions;
+      },
+      error => {
+        console.log(error);
+      });
   }
 
 }
