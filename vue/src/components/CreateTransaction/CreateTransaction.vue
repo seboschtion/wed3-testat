@@ -15,7 +15,7 @@
       <Input label="Betrag" v-model="amount"/>
 
       <button v-on:click="createTransaction()">Zahlung ausführen</button>
-      <p>{{errorMessage}}</p>
+      <Error :message="errorMessage"/>
     </form>
 
     <div v-if="transactionCompleted === true">

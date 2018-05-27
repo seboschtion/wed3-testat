@@ -1,0 +1,12 @@
+.error {
+    margin: 12px 0px;
+}
+
+.error p {
+    color: #991717;
+}
+
+.error span {
+    font-weight: 500;
+    margin-right: 6px;
+}

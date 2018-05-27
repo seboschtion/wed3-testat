@@ -1,5 +1,5 @@
-import CreateTransaction from '../../pages/CreateTransaction/CreateTransaction.vue';
-import TransactionList from '../../pages/TransactionList/TransactionList.vue';
+import CreateTransaction from '../../components/CreateTransaction/CreateTransaction.vue';
+import TransactionList from '../../components/TransactionList/TransactionList.vue';
 
 export default {
   components: {

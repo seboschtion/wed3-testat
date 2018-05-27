@@ -1,4 +1,4 @@
-import TransactionList from '../../pages/TransactionList/TransactionList.vue';
+import TransactionList from '../../components/TransactionList/TransactionList.vue';
 
 export default {
   components: {

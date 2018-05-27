@@ -4,9 +4,3 @@ form {
     max-width: 420px;
     margin: 0px auto;
 }
-
-small.error {
-    color: #ff5e00;
-    font-weight: 500;
-    margin-bottom: 24px;
-}

@@ -1,10 +1,11 @@
 import Title from '../../components/Title/Title.vue';
 import Input from '../../components/Input/Input.vue';
+import Error from '../../components/Error/Error.vue';
 import { login } from '../../services/Api';
 
 export default {
   components: {
-    Title, Input,
+    Title, Input, Error
   },
 
   data() {

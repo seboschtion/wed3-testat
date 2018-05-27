@@ -8,7 +8,7 @@
       <Input label="Benutzername" v-model="username"/>
       <Input label="Passwort" type="password" v-model="password"/>
       <Input label="Passwort bestätigen" type="password" v-model="passwordConfirmation"/>
-      <p class="error">{{errorMessage}}</p>
+      <Error :message="errorMessage"/>
       <button type="submit">Registrieren</button>
     </form>
 
