@@ -15,6 +15,8 @@ export class PaymentComponent implements OnInit {
   constructor(private bankAccountService: BankAccountService, private transactionService: TransactionService) {
   }
 
+  private NO_ACC = 'Account existiert nicht';
+
   public bankAccount: BankAccount;
   private transaction: Transaction;
   public target: string;
@@ -28,9 +30,12 @@ export class PaymentComponent implements OnInit {
   }
 
   public doPayment(f: NgForm): boolean {
+    if (this.targetBankAccountOwner === this.NO_ACC) {
+      return false;
+    }
+
     if (f && f.valid) {
       this.transactionService.submitTransaction(f.form.value.target, f.form.value.amount).subscribe(value => {
-          console.log(value); // TODO: remove log
           if (!value) {
             return false;
           }
@@ -47,7 +52,7 @@ export class PaymentComponent implements OnInit {
       if (bankAccount) {
         this.targetBankAccountOwner = bankAccount.owner.firstname + bankAccount.owner.lastname;
       } else {
-        this.targetBankAccountOwner = '';
+        this.targetBankAccountOwner = this.NO_ACC;
       }
       console.log(this.targetBankAccountOwner);
     });

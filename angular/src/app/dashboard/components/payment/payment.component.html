@@ -1,7 +1,7 @@
 <div class="payment" *ngIf="bankAccount">
   <form (ngSubmit)="doPayment(paymentForm)" #paymentForm="ngForm">
     Von:
-    <input type="text" value="{{bankAccount.accountNr}} [{{bankAccount.amount}} CHF]" [readonly]="true"/>
+    <input type="text" value="{{bankAccount.accountNr}} [{{bankAccount.amount.toFixed(2)}} CHF]" [readonly]="true"/>
 
     <label>
       <div class="validated-input">
