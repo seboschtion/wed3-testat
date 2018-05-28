@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {TransactionOverviewComponent} from "../transaction-overview/transaction-overview.component";
+import {TransactionOverviewComponent} from '../transaction-overview/transaction-overview.component';
 
 @Component({
   selector: 'wed-overview',
@@ -16,7 +16,7 @@ export class OverviewComponent implements OnInit {
 
   @ViewChild(TransactionOverviewComponent) private transactionOverview: TransactionOverviewComponent;
   public refreshTransactions() {
-    if(this.transactionOverview) {
+    if (this.transactionOverview) {
       this.transactionOverview.refreshTransactions();
     }
   }

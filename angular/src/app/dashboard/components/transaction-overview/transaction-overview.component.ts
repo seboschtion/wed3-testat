@@ -1,7 +1,7 @@
 import {Component, Input, OnInit, SimpleChanges} from '@angular/core';
-import { DatePipe } from '@angular/common'
-import {TransactionService} from "../../services/transaction.service";
-import {Transaction} from "../../models/transaction";
+import { DatePipe } from '@angular/common';
+import {TransactionService} from '../../services/transaction.service';
+import {Transaction} from '../../models/transaction';
 
 @Component({
   selector: 'wed-transaction-overview',
@@ -12,8 +12,8 @@ export class TransactionOverviewComponent implements OnInit {
 
   private transactions: Transaction[] = [];
   public filteredTransactions: Transaction[] = [];
-  @Input() maxTransactions: number = 1000;
-  @Input() showDate: boolean = true;
+  @Input() maxTransactions = 1000;
+  @Input() showDate = true;
   @Input() yearFilter: string;
   @Input() monthFilter: string;
 
@@ -23,19 +23,19 @@ export class TransactionOverviewComponent implements OnInit {
     this.refreshTransactions();
   }
 
-  ngOnChanges(changes: SimpleChanges){
+  ngOnChanges(changes: SimpleChanges) {
     this.applyFilter();
   }
 
   public applyFilter() {
-    if(!this.transactions){return;}
+    if (!this.transactions) {return; }
 
     const yearNumber = parseInt(this.yearFilter, 10);
     const monthNumber = parseInt(this.monthFilter, 10);
     this.filteredTransactions = this.transactions.filter((transaction) => {
       const transactionDate = new Date(transaction.date);
       const yearMatches = !this.yearFilter || transactionDate.getFullYear() === yearNumber;
-      const monthMatches = !this.monthFilter || transactionDate.getMonth() === (monthNumber- 1);
+      const monthMatches = !this.monthFilter || transactionDate.getMonth() === (monthNumber - 1);
       return yearMatches && monthMatches;
     });
   }

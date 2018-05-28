@@ -36,11 +36,11 @@ export class PaymentComponent implements OnInit {
 
   public doPayment(f: NgForm): boolean {
     if (this.targetBankAccountOwner === this.NO_ACC) {
-      this.errorMessage = "Geben Sie einen gültigen Empfänger ein.";
+      this.errorMessage = 'Geben Sie einen gültigen Empfänger ein.';
       return;
     }
     if (this.target === this.bankAccount.accountNr) {
-      this.errorMessage = "Sie können kein Geld an sich selbst überweisen.";
+      this.errorMessage = 'Sie können kein Geld an sich selbst überweisen.';
       return;
     }
     this.errorMessage = '';
@@ -62,7 +62,7 @@ export class PaymentComponent implements OnInit {
     if (!this.target) { return; }
     this.bankAccountService.getSpecificBankAccount(this.target).subscribe(bankAccount => {
       if (bankAccount) {
-        this.targetBankAccountOwner = bankAccount.owner.firstname + " " + bankAccount.owner.lastname;
+        this.targetBankAccountOwner = bankAccount.owner.firstname + ' ' + bankAccount.owner.lastname;
       } else {
         this.targetBankAccountOwner = this.NO_ACC;
       }

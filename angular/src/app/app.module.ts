@@ -12,7 +12,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AuthModule} from './auth/auth.module';
 import {SharedModule} from './shared/shared.module';
 
-import {DatePipe} from "@angular/common";
+import {DatePipe} from '@angular/common';
 
 
 @NgModule({
