@@ -12,6 +12,7 @@ export default class PrivateRoute extends React.Component<Props> {
   render() {
     const user = getUser();
     const token = getToken();
+    console.log(getIsAuthenticated());
     if (getIsAuthenticated() && this.props.component) {
       return <Route {...this.props.rest} render={props => React.createElement(this.props.component, { ...props, user, token })} />;
     }

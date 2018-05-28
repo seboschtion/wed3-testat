@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { Button, Form } from 'semantic-ui-react';
 import { Window, Page, Input } from '../../components';
 import { signup } from '../../services/api';
+import { authenticate } from '../../services/auth';
 
 export default class Signup extends React.Component<{}, *> {
   state = {
@@ -47,7 +48,9 @@ export default class Signup extends React.Component<{}, *> {
     } = this.state;
     signup(login, firstname, lastname, password)
       .then(() => {
-        this.setState({ redirect: true, error: null });
+        authenticate(login, password, () => {
+          this.setState({ redirect: true, error: null });
+        });
       })
       .catch(error => this.setState({ redirect: false, error }));
   };
