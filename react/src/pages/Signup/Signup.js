@@ -19,27 +19,28 @@ export default class Signup extends React.Component<{}, *> {
   };
 
   onTextChanged = (e: Event) => {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+    this.setState(
+      {
+        [name]: value,
+      },
+      () => {
+        if (name === 'password' || name === 'passwordConfirmation') {
+          this.setPasswordEqualsPasswordConfirmation();
+        }
+      },
+    );
   };
 
-  passwordEqualsPasswordConfirmation = () => {
-    if (!this.state.password || !this.state.passwordConfirmation) {
-      return false;
+  setPasswordEqualsPasswordConfirmation = () => {
+    if (this.getPasswordEqualsPasswordConfirmation()) {
+      this.setState({ passwordConfirmationErrorMessage: '' });
+    } else {
+      this.setState({ passwordConfirmationErrorMessage: 'Passwörter stimmen nicht überein.' });
     }
-    return this.state.password === this.state.passwordConfirmation;
   };
 
-  handlePasswordConfirmationChanged = (event: Event) => {
-    this.setState({ passwordConfirmation: event.target.value }, () => {
-      if (!this.passwordEqualsPasswordConfirmation()) {
-        this.setState({ passwordConfirmationErrorMessage: 'Passwörter stimmen nicht überein.' });
-      } else {
-        this.setState({ passwordConfirmationErrorMessage: '' });
-      }
-    });
-  };
+  getPasswordEqualsPasswordConfirmation = () => this.state.password.length < 3 || this.state.password === this.state.passwordConfirmation;
 
   handleSubmit = (event: Event) => {
     event.preventDefault();
@@ -62,7 +63,7 @@ export default class Signup extends React.Component<{}, *> {
     this.state.password &&
     this.state.passwordConfirmation &&
     this.isMinlengthEnsured() &&
-    this.passwordEqualsPasswordConfirmation();
+    this.getPasswordEqualsPasswordConfirmation();
 
   isMinlengthEnsured = () =>
     this.state.firstname.length > 2 &&
@@ -79,32 +80,27 @@ export default class Signup extends React.Component<{}, *> {
     }
 
     const formCompleted = this.isFormCompleted();
-    const defaultMinlengthErrMsg = 'Bitte geben Sie mindestens 3 Zeichen an.';
 
     return (
       <Page>
         <Window center title="Registrierung">
           <Form>
-            <Input name="firstname" label="Vorname" onChange={e => this.onTextChanged(e)} value={this.state.firstname} />
-            {this.state.firstname && this.state.firstname.length < 3 ? defaultMinlengthErrMsg : null}
-            <Input name="lastname" label="Nachname" onChange={e => this.onTextChanged(e)} value={this.state.lastname} />
-            {this.state.lastname && this.state.lastname.length < 3 ? defaultMinlengthErrMsg : null}
-            <Input name="login" label="Benutzername" onChange={e => this.onTextChanged(e)} value={this.state.login} />
-            {this.state.login && this.state.login.length < 3 ? defaultMinlengthErrMsg : null}
-            <Input name="password" label="Passwort" onChange={e => this.onTextChanged(e)} value={this.state.password} type="password" />
-            {this.state.password && this.state.password.length < 3 ? defaultMinlengthErrMsg : null}
+            <Input name="firstname" label="Vorname" onChange={e => this.onTextChanged(e)} value={this.state.firstname} min={3} />
+            <Input name="lastname" label="Nachname" onChange={e => this.onTextChanged(e)} value={this.state.lastname} min={3} />
+            <Input name="login" label="Benutzername" onChange={e => this.onTextChanged(e)} value={this.state.login} min={3} />
+            <Input name="password" label="Passwort" onChange={e => this.onTextChanged(e)} value={this.state.password} type="password" min={3} />
             <Input
               name="passwordConfirmation"
               label="Passwort bestätigen"
-              onChange={this.handlePasswordConfirmationChanged}
+              onChange={e => this.onTextChanged(e)}
               value={this.state.passwordConfirmation}
               type="password"
             />
-            {this.state.password && this.state.password.length < 3 ? defaultMinlengthErrMsg : null} {this.state.passwordConfirmationErrorMessage}
+            <small className="error">{this.state.passwordConfirmationErrorMessage}</small>
             <Button onClick={this.handleSubmit} disabled={!formCompleted}>
               Account eröffnen
             </Button>
-            {error && <p className="error">Es ist ein Fehler aufgetreten!</p>}
+            {error && <small className="error">Es ist ein Fehler aufgetreten!</small>}
           </Form>
         </Window>
       </Page>

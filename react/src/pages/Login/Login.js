@@ -53,17 +53,15 @@ class Login extends React.Component<Props, State> {
       return <Redirect to="/dashboard" />;
     }
 
-    const defaultMinlengthErrMsg = 'Bitte geben Sie mindestens 3 Zeichen an.';
-
     return (
       <Page>
         <Window center title="Login">
           <Form>
-            <Input label="Benutzername" onChange={this.handleLoginChanged} value={this.state.login} />
-            {this.state.login && this.state.login.length < 3 ? defaultMinlengthErrMsg : null}
-            <Input label="Passwort" type="password" onChange={this.handlePasswordChanged} value={this.state.password} />
-            {this.state.password && this.state.password.length < 3 ? defaultMinlengthErrMsg : null}
-            <Button onClick={this.handleSubmit} disabled={(this.state.login.length < 3) || (this.state.password.length < 3)}>Login</Button>
+            <Input label="Benutzername" onChange={this.handleLoginChanged} value={this.state.login} min={3} />
+            <Input label="Passwort" type="password" onChange={this.handlePasswordChanged} value={this.state.password} min={3} />
+            <Button onClick={this.handleSubmit} disabled={this.state.login.length < 3 || this.state.password.length < 3}>
+              Login
+            </Button>
             {this.state.error && <p className="error">Es ist ein Fehler aufgetreten!</p>}
           </Form>
           <Link to="/signup">Noch keinen Account? Registrieren Sie sich hier!</Link>

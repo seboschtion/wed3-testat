@@ -10,7 +10,8 @@ type Props = {
   disabled: boolean,
   step: string,
   name: string,
-  pattern: string
+  pattern: string,
+  min: number,
 };
 
 type State = {
@@ -31,6 +32,13 @@ export default class Input extends React.Component<Props, State> {
     this.setState({ id: randomId });
   }
 
+  renderMinError() {
+    if (this.props.min && this.props.value && this.props.value.length < this.props.min) {
+      return <small className="error">Bitte geben Sie mindestens 3 Zeichen an.</small>;
+    }
+    return '';
+  }
+
   render() {
     return (
       <label htmlFor={this.state.id}>
@@ -46,6 +54,7 @@ export default class Input extends React.Component<Props, State> {
           name={this.props.name}
           pattern={this.props.pattern}
         />
+        {this.renderMinError()}
       </label>
     );
   }
